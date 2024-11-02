@@ -34,13 +34,14 @@ Luego de instalar docker asegurarse de que pulleaste los ultimos datos del githu
 2. Montar BD 
     Despues de tener todo listo en la terminal del proyecto ejecutas
 
-    docker exec -i SQLSERVER mysql -u myuser -pmypassword mydatabase < backup.sql(El archivo estara en el git del proyecto)
+    docker exec -i SQLSERVER mysql -u myuser -pmypassword mydatabase < backup.sql (El archivo estara en el git del proyecto) Ejecturar en CMD
 
     y ya tienes la BD conectada
 
     Comando para exportar datos de la BD que hiciste o actualizaste
     
-    docker exec SQLSERVER mysqldump -u myuser -pmypassword mydatabase > backup.sql
+    docker exec SQLSERVER mysqldump --hex-blob -u myuser -pmypassword mydatabase > backup.sql
+
 
     si no los deja editar cosas por cosas de privilegios usan los siguientes comandos
 
