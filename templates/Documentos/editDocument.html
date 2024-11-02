@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor de Documentos</title>
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <link rel="stylesheet" href="editDocument.css">
+</head>
+<body>
+  <div class="editor-container">
+    <h1>Editor de Documentos</h1>
+    <div id="toolbar"></div>
+    <div id="editor"></div>
+    
+    <!-- Botones de acción -->
+    <button id="save-button" onclick="saveContent()">Descargar Documento</button>
+    <input type="file" id="upload-input" accept=".html" onchange="uploadContent(event)">
+    <label for="upload-input" class="upload-label">Cargar Documento</label>
+  </div>
+
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <script src="editDocument.js"></script>
+</body>
+</html>

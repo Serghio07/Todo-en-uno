@@ -1,0 +1,49 @@
+/* Contenedor del Editor */
+.editor-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  /* Barra de herramientas */
+  #toolbar {
+    margin-bottom: 10px;
+  }
+  
+  /* Editor de Quill */
+  #editor {
+    height: 400px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+  }
+  
+  /* Botón de guardar */
+  #save-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  #save-button:hover {
+    background-color: #45a049;
+  }
+  /* Botón de carga de documento */
+.upload-label {
+    padding: 10px 20px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .upload-label:hover {
+    background-color: #007B9E;
+  }
+  
