@@ -48,14 +48,24 @@
         <button type="submit">Programar Impresión</button>
     </form>
 
+    <!-- Vista previa de la impresión -->
+    <section id="previewSection">
+        <h2>Vista previa de la programación</h2>
+        <div id="preview">
+            <!-- Aquí se mostrará la vista previa de las opciones seleccionadas -->
+            <p><strong>Archivo seleccionado:</strong> <span id="filePreview">Ninguno</span></p>
+            <p><strong>Fecha de impresión:</strong> <span id="datePreview">No seleccionada</span></p>
+            <p><strong>Número de copias:</strong> <span id="copiesPreview">1</span></p>
+            <p><strong>Color:</strong> <span id="colorPreview">Blanco y Negro</span></p>
+        </div>
+    </section>
+
     <!-- Cola de Impresiones -->
     <section id="printQueue">
         <h2>Cola de Impresión</h2>
         <ul id="queueList">
-            <!-- Aquí se listarán los documentos en cola -->
             <li>Documento 1 - En proceso</li>
             <li>Documento 2 - Programado para 2024-11-05</li>
-            <!-- Más elementos según la cola de impresión -->
         </ul>
     </section>
 </main>
@@ -71,5 +81,6 @@
     </div>
 </footer>
 
+<script src="impresion.js"></script>
 </body>
 </html>
