@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación de Impresiones</title>
+    <link rel="stylesheet" href="impresion.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="#" class="navbar-logo">Impresiones que Impresionan</a>
+        <ul class="navbar-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="documentos.html">Documentos</a></li>
+            <li><a href="almacenamiento.html">Almacenamiento</a></li>
+            <li><a href="impresion.html" class="active">Impresión</a></li>
+            <li><a href="pagos.html">Pagos</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Section: Impresión -->
+<main class="main-content">
+    <h1>Programación de Impresiones</h1>
+    <p>Sube un documento y selecciona las opciones para programar tu impresión.</p>
+
+    <!-- Formulario de Impresión -->
+    <form id="printForm" action="/schedulePrint" method="POST">
+        <label for="fileUpload">Subir documento:</label>
+        <input type="file" id="fileUpload" name="documento" required>
+
+        <label for="printDate">Fecha de impresión:</label>
+        <input type="date" id="printDate" name="fecha" required>
+
+        <label for="copies">Número de copias:</label>
+        <input type="number" id="copies" name="copias" min="1" value="1" required>
+
+        <label for="color">Color:</label>
+        <select id="color" name="color">
+            <option value="blancoNegro">Blanco y Negro</option>
+            <option value="color">Color</option>
+        </select>
+
+        <button type="submit">Programar Impresión</button>
+    </form>
+
+    <!-- Cola de Impresiones -->
+    <section id="printQueue">
+        <h2>Cola de Impresión</h2>
+        <ul id="queueList">
+            <!-- Aquí se listarán los documentos en cola -->
+            <li>Documento 1 - En proceso</li>
+            <li>Documento 2 - Programado para 2024-11-05</li>
+            <!-- Más elementos según la cola de impresión -->
+        </ul>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <p>&copy; 2024 Impresiones que Impresionan. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="terms.html">Términos y Condiciones</a>
+            <a href="privacy.html">Política de Privacidad</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
