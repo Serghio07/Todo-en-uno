@@ -8,12 +8,14 @@
 </head>
 <body>
     <div class="auth-container">
-        <h1>Registro de Usuario</h1>
-        
+        <h1>Crear Cuenta</h1>
+
         <!-- Formulario de Registro -->
         <div id="registerForm">
+            <input type="text" id="registerName" placeholder="Nombre completo" required>
             <input type="email" id="registerEmail" placeholder="Correo electrónico" required>
             <input type="password" id="registerPassword" placeholder="Contraseña" required>
+            <input type="password" id="registerConfirmPassword" placeholder="Confirmar contraseña" required>
             <button onclick="register()">Registrarse</button>
             <p id="registerMessage"></p>
         </div>
