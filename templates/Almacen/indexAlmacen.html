@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Storage Service</title>
     <link rel="stylesheet" href="styles.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -14,34 +14,33 @@
         <div class="container">
             <h1 class="logo">Storage Service</h1>
             <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Subir Archivo</a></li>
-                <li><a href="#">Listar Archivos</a></li>
-                <li><a href="#">Descargar Archivo</a></li>
+                <li><a href="#home"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#documents"><i class="fas fa-file-alt"></i> Documentos</a></li>
+                <li><a href="#storage"><i class="fas fa-cloud-upload-alt"></i> Almacenamiento</a></li>
+                <li><a href="#printing"><i class="fas fa-print"></i> Impresión</a></li>
+                <li><a href="#payments"><i class="fas fa-money-check-alt"></i> Pagos</a></li>
+                <li><a href="#profile"><i class="fas fa-user"></i> Perfil</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Contenido principal -->
     <div class="container">
-        <h2>Almacenamiento de Archivos</h2>
+        <h2 id="home">Almacenamiento de Archivos</h2>
 
-        <!-- Sección para subir archivos -->
-        <div class="upload-section">
+        <div class="card upload-section" id="storage">
             <h3>Subir Archivo</h3>
             <input type="file" id="file-input">
             <button onclick="uploadFile()">Subir</button>
         </div>
 
-        <!-- Sección para listar archivos -->
-        <div class="list-section">
+        <div class="card list-section" id="documents">
             <h3>Archivos Disponibles</h3>
             <button onclick="listFiles()">Actualizar Lista</button>
             <ul id="file-list"></ul>
         </div>
 
-        <!-- Sección para descargar archivos -->
-        <div class="download-section">
+        <div class="card download-section" id="printing">
             <h3>Descargar Archivo</h3>
             <input type="text" id="download-input" placeholder="Nombre del archivo">
             <button onclick="downloadFile()">Descargar</button>
