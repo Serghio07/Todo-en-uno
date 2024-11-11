@@ -45,6 +45,9 @@
             <option value="color">Color</option>
         </select>
 
+        <!-- Estimación del costo -->
+        <p><strong>Costo estimado:</strong> <span id="costPreview">Bs 0.50</span></p>
+
         <button type="submit">Programar Impresión</button>
     </form>
 
@@ -52,7 +55,6 @@
     <section id="previewSection">
         <h2>Vista previa de la programación</h2>
         <div id="preview">
-            <!-- Aquí se mostrará la vista previa de las opciones seleccionadas -->
             <p><strong>Archivo seleccionado:</strong> <span id="filePreview">Ninguno</span></p>
             <p><strong>Fecha de impresión:</strong> <span id="datePreview">No seleccionada</span></p>
             <p><strong>Número de copias:</strong> <span id="copiesPreview">1</span></p>
@@ -60,12 +62,37 @@
         </div>
     </section>
 
+    <!-- Historial de Impresiones -->
+    <section id="printHistory">
+        <h2>Historial de Impresiones</h2>
+        <ul id="historyList">
+            <li>Documento 1 - Completado el 2024-10-31</li>
+            <li>Documento 2 - Completado el 2024-11-01</li>
+        </ul>
+    </section>
+
+    <!-- Opciones Avanzadas de Configuración -->
+    <section id="advancedOptions">
+        <h2>Opciones Avanzadas de Configuración</h2>
+        <p>Aquí puedes seleccionar opciones avanzadas como el tamaño del papel, tipo de papel, y otras preferencias.</p>
+        <!-- Puedes añadir más configuraciones según lo necesites -->
+    </section>
+
+    <!-- Previsualización del Documento -->
+    <section id="documentPreview">
+        <h2>Previsualización del Documento</h2>
+        <div id="docPreview">
+            <iframe id="pdfPreview" style="display:none; width: 100%; height: 500px;"></iframe>
+            <p id="previewMessage">Previsualización no disponible para este archivo.</p>
+        </div>
+    </section>
+
     <!-- Cola de Impresiones -->
     <section id="printQueue">
         <h2>Cola de Impresión</h2>
         <ul id="queueList">
-            <li>Documento 1 - En proceso</li>
-            <li>Documento 2 - Programado para 2024-11-05</li>
+            <li>Documento 1 - En proceso <button class="cancel-btn">Cancelar</button></li>
+            <li>Documento 2 - Programado para 2024-11-05 <button class="cancel-btn">Cancelar</button></li>
         </ul>
     </section>
 </main>
