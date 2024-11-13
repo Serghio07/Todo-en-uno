@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Formal - Plantilla</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Editor de Plantilla -->
+    <div class="editor-container">
+        <h2>Plantilla: Carta Formal</h2>
+        <div id="editor">
+            <!-- El contenido editable irá aquí -->
+            <p>Estimado/a [Nombre del destinatario],</p>
+            <p>Me dirijo a usted para...</p>
+            <p>Atentamente,<br>[Tu Nombre]</p>
+        </div>
+    </div>
+    
+    <script>
+        // Inicializar el editor Quill
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+    </script>
+</body>
+</html>
