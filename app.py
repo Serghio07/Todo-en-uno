@@ -26,8 +26,8 @@ def contact():
     return render_template('contact.html')
 
 @app.route('/almacen')
-def team():
-    return render_template('alamcen/indexAlmacen.html')
+def almacen():
+    return render_template('Almacen/indexAlmacen.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
