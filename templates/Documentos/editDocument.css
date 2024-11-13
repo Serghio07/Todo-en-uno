@@ -1,49 +1,129 @@
+/* Estilos generales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+/* Barra de navegación */
+.navbar {
+  background-color: #333;
+  padding: 10px 0;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.navbar-logo {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+}
+
+.navbar-menu li {
+  margin-left: 20px;
+}
+
+.navbar-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.navbar-menu a:hover {
+  color: #ddd;
+}
+
 /* Contenedor del Editor */
 .editor-container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    text-align: center;
-  }
-  
-  /* Barra de herramientas */
-  #toolbar {
-    margin-bottom: 10px;
-  }
-  
-  /* Editor de Quill */
-  #editor {
-    height: 400px;
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    margin-bottom: 15px;
-  }
-  
-  /* Botón de guardar */
-  #save-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  #save-button:hover {
-    background-color: #45a049;
-  }
-  /* Botón de carga de documento */
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Título */
+.editor-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Barra de herramientas */
+#toolbar {
+  margin-bottom: 10px;
+}
+
+/* Editor de Quill */
+#editor {
+  height: 400px;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+/* Botón de guardar */
+#save-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+#save-button:hover {
+  background-color: #45a049;
+}
+
+/* Botón de carga de documento */
 .upload-label {
-    padding: 10px 20px;
-    background-color: #008CBA;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .upload-label:hover {
-    background-color: #007B9E;
-  }
-  
+  padding: 10px 20px;
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+.upload-label:hover {
+  background-color: #007B9E;
+}
+
+/* Pie de página */
+.footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+  color: white;
+  margin-top: 40px;
+}
+
+.footer p {
+  font-size: 14px;
+}

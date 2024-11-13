@@ -4,10 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Editor de Documentos</title>
+
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
   <link rel="stylesheet" href="editDocument.css">
 </head>
 <body>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a href="#" class="navbar-logo">DocEditor</a>
+      <ul class="navbar-menu">
+        <li><a href="#">Inicio</a></li>
+        <li><a href="#">Características</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="editor-container">
     <h1>Editor de Documentos</h1>
     <div id="toolbar"></div>
@@ -18,6 +32,11 @@
     <input type="file" id="upload-input" accept=".html" onchange="uploadContent(event)">
     <label for="upload-input" class="upload-label">Cargar Documento</label>
   </div>
+
+  <!-- Pie de página -->
+  <footer class="footer">
+    <p>&copy; 2024 DocEditor - Todos los derechos reservados</p>
+  </footer>
 
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
   <script src="editDocument.js"></script>
