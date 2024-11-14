@@ -11,11 +11,11 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('Sobre_Nosotros.html')
 
 @app.route('/services')
 def services():
-    return render_template('service.html')
+    return render_template('Servicios.html')
 
 @app.route('/team')
 def team():

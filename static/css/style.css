@@ -1,21 +1,10 @@
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-}
-
 header {
   background-color: #004080;
-  color: #fff;
   padding: 20px 0;
+  color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
 .container {
   width: 90%;
   max-width: 1200px;
@@ -24,32 +13,41 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 15px;
-}
-
 .nav-links a {
   color: #fff;
+  margin: 0 15px;
   text-decoration: none;
   font-size: 1rem;
-  transition: color 0.3s;
 }
-
-.nav-links a:hover {
-  color: #ffdd40;
-}
-
 .login {
   padding: 10px 20px;
+  background-color: #ffdd40;
+  border: none;
+  border-radius: 5px;
+  color: #004080;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Estilo para el banner */
+.banner {
+  background-image: url('/static/images/banner.jpg'); /* Ruta de la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+}
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.banner .cta-button {
+  padding: 15px 30px;
   background-color: #ffdd40;
   color: #004080;
   border: none;
@@ -59,207 +57,6 @@ header {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
-.login:hover {
+.banner .cta-button:hover {
   background-color: #e6c635;
-}
-/* Estilos para la sección de servicios */
-.servicios {
-  width: 90%;
-  max-width: 1200px;
-  margin: 50px auto;
-  text-align: center;
-}
-.servicios h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #004080;
-}
-.servicios-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.img-servicios img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-.text-servicios {
-  flex: 1;
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.6;
-}
-/* Estilos adaptativos para pantallas pequeñas */
-@media (max-width: 768px) {
-  .servicios-content {
-    flex-direction: column;
-  }
-}
-/* Estilo para el enlace "Ver más" */
-.ver-mas {
-  display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #004080;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-.ver-mas:hover {
-  background-color: #003060;
-  transform: scale(1.05);
-}
-
-.ver-mas:active {
-  background-color: #002040;
-}
- /* Estilos para la sección "Sobre nosotros" */
- .nosotros {
-  width: 90%;
-  max-width: 1200px;
-  margin: 50px auto;
-  text-align: center;
-}
-.nosotros h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #004080;
-}
-.nosotros-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.parrafo-noso {
-  flex: 1;
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.6;
-  text-align: left;
-}
-.parrafo-noso p {
-  margin-bottom: 20px;
-}
-.img-nosotros img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-/* Estilo para el botón "Ver más" */
-.boton-nosotros {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #004080;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  transition: background-color 0.3s, transform 0.2s;
-}
-.boton-nosotros:hover {
-  background-color: #003060;
-  transform: scale(1.05);
-}
-.boton-nosotros:active {
-  background-color: #002040;
-}
-
-/* Adaptabilidad para pantallas pequeñas */
-@media (max-width: 768px) {
-  .nosotros-content {
-    flex-direction: column;
-  }
-}
-
-
-
-.por-que-elegirnos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-repeat: no-repeat;
-  background-image: url(/static/images/contactp.jpg);
-  background-size: cover;
-  background-position: center;
-  color: #010101;
-  padding: 100px 20px;
-  text-align: center;
-  shape-margin: 20px;
-}
-
-.contenido {
-  background-color: #fff; /* Fondo blanco */
-  color: #333; /* Color de texto oscuro para contraste */
-  padding: 40px;
-  text-align: center;
-  border-radius: 10px;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
-}
-
-
-.contenido h1 {
-  font-size: 2rem;
-  margin-bottom: 10px;
-}
-
-.contenido h2 {
-  font-size: 1.2rem;
-  font-weight: normal;
-  margin-bottom: 20px;
-  color: #ccc;
-}
-
-.contenido ul {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0;
-  text-align: left;
-}
-
-.contenido ul li {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  font-size: 1rem;
-}
-
-.contenido ul li::before {
-  content: "✔️";
-  margin-right: 10px;
-  font-size: 1.2rem;
-  color: #ffdd40;
-}
-
-.boton-contacto {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #fff;
-  color: #000;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-  margin-top: 20px;
-  transition: background-color 0.3s, transform 0.3s;
-}
-
-.boton-contacto:hover {
-  background-color: #ffdd40;
-  transform: scale(1.05);
-}
-
-.boton-contacto::after {
-  content: " ➔";
-  font-weight: normal;
 }

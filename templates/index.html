@@ -1,133 +1,55 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo en Uno</title>
-  <link rel="stylesheet" href="/static/css/style.css">
-  <style>
-    /* Estilo para el header */
-    header {
-      background-color: #004080;
-      padding: 20px 0;
-      color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .nav-links a {
-      color: #fff;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-    .login {
-      padding: 10px 20px;
-      background-color: #ffdd40;
-      border: none;
-      border-radius: 5px;
-      color: #004080;
-      font-weight: bold;
-      cursor: pointer;
-    }
+{% extends "base.html" %}
 
-    /* Estilo para el banner */
-    .banner {
-      background-image: url('/static/images/banner.jpg'); /* Ruta de la imagen de fondo */
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    .banner h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .banner p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    .banner .cta-button {
-      padding: 15px 30px;
-      background-color: #ffdd40;
-      color: #004080;
-      border: none;
-      border-radius: 5px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .banner .cta-button:hover {
-      background-color: #e6c635;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="container">
-      <a href="index.html" class="logo">
-        <img src="/static/images/impresora.png" alt="Logo Todo en Uno" style="height: 40px;">
-      </a>
-      <nav class="nav-links">
-        <a href="Sobre_Nosotros.html">Nosotros</a>
-        <a href="Servicios.html">Servicios</a>
-        <a href="contact.html">Contacto</a>
-        <a href="faq.html">Faq</a>
-      </nav>
-      <button class="login">Ingresar</button>
-    </div>
-  </header>
+{% block title %}Inicio - Todo en Uno{% endblock %}
 
-  <!-- Banner -->
-  <section class="banner">
-    <h1>Gestión Integral de Documentos</h1>
-    <p>Todo lo que necesitas en un solo lugar: crea, edita, almacena y programa impresiones de manera fácil y segura.</p>
-    <button class="cta-button">Comienza Ahora</button>
-  </section>
-  <section class="servicios">
-    <h1>Nuestros Servicios</h1>
-    <div class="servicios-content">
-      <div class="img-servicios">
-        <img src="/static/images/impresora.png" alt="Imagen de Impresora">
-      </div>
-      <div class="text-servicios">
-        <p>La satisfacción de nuestros clientes al recibir la calidad que se merecen, en cada uno de los proyectos en los que hemos colaborado. Día a día nos esmeramos en cada una de nuestras áreas para mantener e incrementar los estándares de producción que las industrias de las Artes Gráficas requieren.</p>
-        <a href="/templates/Servicios.html" class="ver-mas">Ver más</a>
-      </div>
+{% block content %}
+<!-- Banner Section -->
+<section class="banner">
+  <h1>Gestión Integral de Documentos</h1>
+  <p>Todo lo que necesitas en un solo lugar: crea, edita, almacena y programa impresiones de manera fácil y segura.</p>
+  <button class="cta-button">Comienza Ahora</button>
+</section>
+
+<!-- Servicios Section -->
+<section class="servicios">
+  <h1>Nuestros Servicios</h1>
+  <div class="servicios-content">
+    <div class="img-servicios">
+      <img src="{{ url_for('static', filename='images/impresora.png') }}" alt="Imagen de Impresora">
     </div>
-  </section>
-  <section class="nosotros">
-    <h1>Sobre Nosotros</h1>
-    <div class="nosotros-content">
-      <div class="parrafo-noso">
-        <p>GB IMPRESIONES Grupo Multidisciplinario: es una empresa que por más de una década se ha dedicado a las Artes Gráficas, cumpliendo más de 35 Años de servicio. Con cada uno de nuestros clientes, buscamos la mejor colaboración posible: siempre adecuándonos a sus necesidades para brindarles un servicio y producto con la calidad que merecen.</p>
-        <a href="/templates/Sobre_Nosotros.html" class="boton-nosotros">Ver más</a>
-      </div>
-      <div class="img-nosotros">
-        <img src="/static/images/nosotros.jpg" alt="Imagen sobre nosotros">
-      </div>
+    <div class="text-servicios">
+      <p>La satisfacción de nuestros clientes al recibir la calidad que se merecen, en cada uno de los proyectos en los que hemos colaborado. Día a día nos esmeramos en cada una de nuestras áreas para mantener e incrementar los estándares de producción que las industrias de las Artes Gráficas requieren.</p>
+      <a href="{{ url_for('services') }}" class="ver-mas">Ver más</a>
     </div>
-  </section>
-  <section class="por-que-elegirnos">
-    <div class="contenido">
-      <h1>POR QUÉ ELEGIRNOS</h1>
-      <h2>Somos Los Mejores</h2>
-      <ul>
-        <li>Puntualidad en la entrega.</li>
-        <li>Los costos más competitivos del mercado.</li>
-        <li>No solo es un trabajo más, es un proyecto que refleja tu marca.</li>
-        <li>Siempre dispuestos a brindar soluciones inmediatas.</li>
-      </ul>
-      <a href="#" class="boton-contacto">Contactanos</a>
+  </div>
+</section>
+
+<!-- Sobre Nosotros Section -->
+<section class="nosotros">
+  <h1>Sobre Nosotros</h1>
+  <div class="nosotros-content">
+    <div class="parrafo-noso">
+      <p>GB IMPRESIONES Grupo Multidisciplinario: es una empresa que por más de una década se ha dedicado a las Artes Gráficas, cumpliendo más de 35 Años de servicio. Con cada uno de nuestros clientes, buscamos la mejor colaboración posible: siempre adecuándonos a sus necesidades para brindarles un servicio y producto con la calidad que merecen.</p>
+      <a href="{{ url_for('about') }}" class="boton-nosotros">Ver más</a>
     </div>
-  </section>
-</body>
-</html>
+    <div class="img-nosotros">
+      <img src="{{ url_for('static', filename='images/nosotros.jpg') }}" alt="Imagen sobre nosotros">
+    </div>
+  </div>
+</section>
+
+<!-- Por Qué Elegirnos Section -->
+<section class="por-que-elegirnos">
+  <div class="contenido">
+    <h1>POR QUÉ ELEGIRNOS</h1>
+    <h2>Somos Los Mejores</h2>
+    <ul>
+      <li>Puntualidad en la entrega.</li>
+      <li>Los costos más competitivos del mercado.</li>
+      <li>No solo es un trabajo más, es un proyecto que refleja tu marca.</li>
+      <li>Siempre dispuestos a brindar soluciones inmediatas.</li>
+    </ul>
+    <a href="{{ url_for('contact') }}" class="boton-contacto">Contactanos</a>
+  </div>
+</section>
+{% endblock %}
