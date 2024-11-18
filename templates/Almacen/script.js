@@ -1,77 +1,21 @@
-// Función para subir un archivo
-function uploadFile() {
-    const fileInput = document.getElementById('file-input');
-    const file = fileInput.files[0];
+from flask import Flask, request, render_template, redirect, url_for
+import os
 
-    if (!file) {
-        alert("Por favor selecciona un archivo");
-        return;
-    }
+app = Flask(__name__)
+UPLOAD_FOLDER = 'uploads'  # Carpeta donde se guardarán los archivos
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-    const formData = new FormData();
-    formData.append('file', file);
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return "No file part", 400
+    file = request.files['file']
+    if file.filename == '':
+        return "No selected file", 400
+    if file:
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(filepath)
+        return redirect(url_for('index'))  # Redirigir al inicio tras la subida
 
-    fetch('/upload', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert(data.message);
-        fileInput.value = '';  // Limpiar el input de archivo
-    })
-    .catch(error => {
-        alert('Error al subir el archivo: ' + error);
-    });
-}
-
-// Función para listar los archivos
-function listFiles() {
-    fetch('/files')
-    .then(response => response.json())
-    .then(data => {
-        const fileList = document.getElementById('file-list');
-        fileList.innerHTML = '';
-
-        data.forEach(file => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `Archivo: ${file.name} - Última Modificación: ${new Date(file.updated).toLocaleString()}`;
-            fileList.appendChild(listItem);
-        });
-    })
-    .catch(error => {
-        alert('Error al listar los archivos: ' + error);
-    });
-}
-
-// Función para descargar un archivo
-function downloadFile() {
-    const fileName = document.getElementById('download-input').value;
-
-    if (!fileName) {
-        alert("Por favor ingresa el nombre del archivo");
-        return;
-    }
-
-    fetch(`/download/${fileName}`)
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Archivo no encontrado');
-        }
-        return response.blob();
-    })
-    .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.style.display = 'none';
-        a.href = url;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-        alert('Error al descargar el archivo: ' + error);
-    });
-}
-
+if __name__ == '__main__':
+    app.run(debug=True)
