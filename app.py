@@ -1,9 +1,13 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+from flask import request, jsonify
+from conexion import get_db
+from models import Usuario
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@localhost:3306/mydatabase'
-db = SQLAlchemy(app)
+app.secret_key = 'tu_secreto'  # Necesario para mensajes flash
+
 
 @app.route('/')
 def home():
@@ -28,6 +32,12 @@ def contact():
 @app.route('/almacen')
 def almacen():
     return render_template('Almacen/indexAlmacen.html')
+
+
+@app.route('/login')
+def login():
+    return render_template('Autenticacion/login.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1>Crear Cuenta</h1>
+
+        <!-- Formulario de Registro -->
+        <div id="registerForm">
+            <input type="text" id="registerName" placeholder="Nombre completo" required>
+            <input type="email" id="registerEmail" placeholder="Correo electrónico" required>
+            <input type="password" id="registerPassword" placeholder="Contraseña" required>
+            <input type="password" id="registerConfirmPassword" placeholder="Confirmar contraseña" required>
+            <button onclick="register()">Registrarse</button>
+            <p id="registerMessage"></p>
+        </div>
+
+        <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+    </div>
+
+    <script>
+
+        async function register() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value; // No implementado, solo ejemplo
+            const role = "usuario"; // Puedes modificar el rol según tu lógica
+        
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `nombre=${name}&email=${email}&rol=${role}`
+            });
+        
+            const data = await response.json();
+            const messageElement = document.getElementById('registerMessage');
+        
+            if (response.ok) {
+                messageElement.textContent = data.message;
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = data.error;
+                messageElement.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
