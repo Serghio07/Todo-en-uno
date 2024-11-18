@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editor DOCX</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.tiny.cloud/1/85s8vdwt6rzak0pp7ei9m9xcmk9g05zvcndhwx4k2qrl3i1k/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Editor de Documentos DOCX</h1>
+    <div class="actions">
+      <input type="file" id="upload-docx" accept=".docx">
+      <button id="download-docx">Descargar Documento</button>
+    </div>
+    <textarea id="editor"></textarea>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.0.6/pizzip.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docxtemplater@3.29.2/build/docxtemplater.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
