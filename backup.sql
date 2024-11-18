@@ -172,12 +172,12 @@ CREATE TABLE `usuario` (
   `nombre` varchar(50) NOT NULL,
   `email` varchar(120) NOT NULL,
   `rol` varchar(20) NOT NULL,
+  `saldo` float NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `ix_usuario_id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
 --
 -- Dumping data for table `usuario`
 --
