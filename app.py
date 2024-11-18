@@ -26,10 +26,26 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 # Ruta principal: Listar archivos
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
     search_query = request.args.get('search', '')  # Obtener el término de búsqueda
+    
     cur = mysql.connection.cursor()
+    
+    # Si hay un término de búsqueda, ejecuta la consulta con LIKE
+    if search_query:
+        # Hacer la búsqueda por nombre usando LIKE (insensible a mayúsculas/minúsculas)
+        cur.execute("SELECT * FROM archivos WHERE nombre LIKE %s", ('%' + search_query + '%',))
+    else:
+        # Si no hay término de búsqueda, mostrar todos los archivos
+        cur.execute("SELECT * FROM archivos")
+        
+    archivos = cur.fetchall()
+    cur.close()
+    
+    # Pasar los archivos y la query de búsqueda a la plantilla
+    return render_template('Almacen/indexAlmacen.html', archivos=archivos, search_query=search_query)
+
     
     # Buscar archivos por nombre si se pasa un término de búsqueda
     if search_query:
@@ -58,8 +74,8 @@ def upload_file():
 
         # Guardar información del archivo en la base de datos
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO archivos (nombre, tipo, tamano, ruta) VALUES (%s, %s, %s, %s)",
-                    (filename, file.content_type, os.path.getsize(filepath), filepath))
+        cur.execute("INSERT INTO archivos (nombre, tipo, tamano, ruta, fecha_subida) VALUES (%s, %s, %s, %s, NOW())",
+            (filename, file.content_type, os.path.getsize(filepath), filepath))
         mysql.connection.commit()
         cur.close()
 
@@ -78,6 +94,29 @@ def download_file(filename):
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_file(id):
     cur = mysql.connection.cursor()
+    
+    # Obtener la información del archivo a eliminar
+    cur.execute("SELECT * FROM archivos WHERE id = %s", (id,))
+    archivo = cur.fetchone()
+    
+    if archivo:
+        # Eliminar el archivo de la base de datos
+        cur.execute("DELETE FROM archivos WHERE id = %s", (id,))
+        mysql.connection.commit()
+        
+        # Verifica si la ruta del archivo está en el índice correcto
+        ruta_archivo = archivo[3]  # Asegúrate de que esto sea la ruta del archivo
+        
+        if os.path.exists(ruta_archivo):  # Verifica si el archivo realmente existe
+            os.remove(ruta_archivo)  # Elimina el archivo físico
+            flash('Archivo eliminado exitosamente', 'success')
+        else:
+            flash('El archivo no existe en el servidor', 'danger')
+        
+        cur.close()
+        
+    return redirect(url_for('index'))
+
     
     # Obtener la información del archivo a eliminar
     cur.execute("SELECT * FROM archivos WHERE id = %s", (id,))
