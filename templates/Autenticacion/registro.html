@@ -26,5 +26,31 @@
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
     <script src="auth.js"></script>
+    <script>
+
+        async function register() {
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value; // No implementado, solo ejemplo
+            const role = "usuario"; // Puedes modificar el rol según tu lógica
+        
+            const response = await fetch('/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `nombre=${name}&email=${email}&rol=${role}`
+            });
+        
+            const data = await response.json();
+            const messageElement = document.getElementById('registerMessage');
+        
+            if (response.ok) {
+                messageElement.textContent = data.message;
+                messageElement.style.color = "green";
+            } else {
+                messageElement.textContent = data.error;
+                messageElement.style.color = "red";
+            }
+        }
+    </script>
 </body>
 </html>

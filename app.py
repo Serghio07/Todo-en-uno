@@ -9,6 +9,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@local
 app.config['JWT_SECRET_KEY'] = 'your_jwt_secret_key'  # Clave para JWT
 db = SQLAlchemy(app)
 jwt = JWTManager(app)
+from flask import request, jsonify
+from conexion import get_db
+from models import Usuario
+from flask import Flask, render_template, request, redirect, url_for, flash
+
+app = Flask(__name__)
+app.secret_key = 'tu_secreto'  # Necesario para mensajes flash
 
 # Inicializar Firebase
 cred = credentials.Certificate('path/to/your/firebase_credentials.json')
@@ -19,39 +26,28 @@ firebase_admin.initialize_app(cred)
 def home():
     return render_template('index.html')
 
-# Ruta de contacto
+@app.route('/about')
+def about():
+    return render_template('Sobre_Nosotros.html')
+
+@app.route('/services')
+def services():
+    return render_template('Servicios.html')
+
+@app.route('/team')
+def team():
+    return render_template('team.html')
+
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
-# Ruta de registro de usuario
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        try:
-            user = auth.create_user(email=email, password=password)
-            return jsonify({"message": "Usuario registrado exitosamente", "uid": user.uid})
-        except Exception as e:
-            return jsonify({"error": str(e)}), 400
-    return render_template('register.html')
 
-# Ruta de inicio de sesión
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        try:
-            user = auth.get_user_by_email(email)
-            # Aquí deberías verificar la contraseña; Firebase no lo permite directamente en el backend.
-            access_token = create_access_token(identity={"email": email})
-            return jsonify(access_token=access_token)
-        except Exception as e:
-            return jsonify({"error": str(e)}), 400
-    return render_template('login.html')
+@app.route('/almacen')
+def almacen():
+    return render_template('Almacen/indexAlmacen.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-
