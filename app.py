@@ -1,17 +1,17 @@
-from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from flask import request, jsonify
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
+from auth import auth_bp  # Importar el blueprint
 from conexion import get_db
-from models import Usuario
-from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
+
 app.secret_key = 'tu_secreto'  # Necesario para mensajes flash
 
+# Registrar el blueprint antes de app.run()
+app.register_blueprint(auth_bp, url_prefix='/auth')
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('Autenticacion/login.html')
 
 @app.route('/about')
 def about():
@@ -33,11 +33,12 @@ def contact():
 def almacen():
     return render_template('Almacen/indexAlmacen.html')
 
-
 @app.route('/login')
 def login():
     return render_template('Autenticacion/login.html')
-
+@app.route('/register')
+def register():
+    return render_template('Autenticacion/registro.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
