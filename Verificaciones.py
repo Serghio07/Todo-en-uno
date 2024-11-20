@@ -1,30 +1,53 @@
 from flask import Flask, request, jsonify
-from conexion import get_db
-from models import Usuario
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token
+from flask_bcrypt import Bcrypt
 
+# Inicializar aplicaciones
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///usuarios.db'  # Cambia esto según tu configuración de base de datos
+app.config['JWT_SECRET_KEY'] = 'mi_clave_secreta'  # Cambia esta clave por una más segura
+db = SQLAlchemy(app)
+jwt = JWTManager(app)
+bcrypt = Bcrypt(app)
 
-@app.route('/api/usuario', methods=['POST'])
-def crear_usuario():
-    data = request.json  # Datos enviados en el cuerpo de la solicitud (JSON)
-    
-    # Verifica que los datos necesarios estén presentes
-    nombre = data.get('nombre')
-    email = data.get('email')
-    rol = data.get('rol')
-    
-    if not (nombre and email and rol):
-        return jsonify({"error": "Faltan datos necesarios"}), 400
-    
-    # Crear una instancia del modelo Usuario
-    nuevo_usuario = Usuario(nombre=nombre, email=email, rol=rol)
-    
-    # Guardar en la base de datos
-    with get_db() as db:
-        db.add(nuevo_usuario)
-        db.commit()
-    
-    return jsonify({"mensaje": "Usuario creado exitosamente"}), 201
 
-if __name__ == '__main__':
-    app.run(debug=True)
+# Endpoint de login
+@app.route('/login', methods=['POST'])
+def login():
+    # Obtener datos del cuerpo de la solicitud
+    email = request.json.get('email', None)
+    password = request.json.get('password', None)
+
+    if not email or not password:
+        return jsonify({"msg": "Email y contraseña son requeridos"}), 400
+
+    # Buscar al usuario en la base de datos
+    usuario = Usuario.query.filter_by(email=email).first()
+    
+    if usuario is None:
+        return jsonify({"msg": "Correo electrónico o contraseña incorrectos"}), 401
+    
+    # Verificar la contraseña
+    if not bcrypt.check_password_hash(usuario.password, password):
+        return jsonify({"msg": "Correo electrónico o contraseña incorrectos"}), 401
+
+    # Generar el token JWT
+    access_token = create_access_token(identity={'id': usuario.id, 'email': usuario.email})
+    
+    return jsonify({
+        'msg': 'Inicio de sesión exitoso',
+        'access_token': access_token,
+        'usuario': {
+            'id': usuario.id,
+            'nombre': usuario.nombre,
+            'email': usuario.email,
+            'rol': usuario.rol
+        }
+    })
+
+# Inicializar la base de datos (solo para este ejemplo)
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
