@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo en Uno</title>
-  <link rel="stylesheet" href="/static/css/nosotros.css">
+  <title>Sobre Nosotros</title>
+  <!-- Enlace al archivo CSS utilizando url_for -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nosotros.css') }}">
   <style>
     /* Estilo para el header */
     header {
@@ -46,44 +47,33 @@
     .login:hover {
       background-color: #e6c635;
     }
-    /* Estilo para el banner */
-    .banner {
-      background-image: url('/static/images/banner.jpg'); /* Ruta de la imagen de fondo */
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    .banner h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .banner p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
+   
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
     <div class="container">
-      <a href="index.html" class="logo">
-        <img src="/static/images/impresora.png" alt="Logo Todo en Uno">
+      <a href="{{ url_for('home') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/impresora.png') }}" alt="Logo Todo en Uno">
       </a>
       <nav class="nav-links">
-        <a href="Sobre_Nosotros.html">Nosotros</a>
-        <a href="Servicios.html">Servicios</a>
-        <a href="contact.html">Contacto</a>
-        <a href="faq.html">Faq</a>
+        <a href="{{ url_for('about') }}">Nosotros</a>
+        <a href="{{ url_for('services') }}">Servicios</a>
+        <a href="{{ url_for('contact') }}">Contacto</a>
+        <a href="{{ url_for('faq') }}">Faq</a>
       </nav>
       <button class="login">Ingresar</button>
     </div>
   </header>
+
+  <!-- Banner -->
   <section class="banner">
     <h1>Nosotros</h1>
     <p>Todo lo que necesitas en un solo lugar: crea, edita, almacena y programa impresiones de manera fácil y segura.</p>
   </section>
+
+  <!-- Sección Nosotros -->
   <section class="nosotros">
     <div class="text-nosotros">
       <h1>¿QUIÉN ES?</h1>
@@ -93,9 +83,11 @@
       <p>Nuestras labores están encausadas a lograr un crecimiento tanto empresarial como social; bajo las mejores normas de calidad, innovación y capacitación, llevándonos en cada etapa de nuestra historia (pasada y futura) como un referente de compromiso dentro de las Artes Gráficas, así como con cada uno de nuestros colaboradores.</p>
     </div>
     <div class="img-nosotros">
-      <img src="/static/images/nosotros1.jpg" alt="Imagen sobre nosotros">
+      <img src="{{ url_for('static', filename='images/nosotros1.jpg') }}" alt="Imagen sobre nosotros">
     </div>
   </section>
+
+  <!-- Sección Misión -->
   <section class="section-container mission">
     <div class="text-content">
       <h1>Misión</h1>
@@ -103,7 +95,7 @@
       <p>Trabajamos con pasión y dedicación para ser una empresa líder en el sector, comprometida con la innovación y la mejora continua.</p>
     </div>
     <div class="img-content">
-      <img src="/static/images/mision.jpg" alt="Imagen de Misión">
+      <img src="{{ url_for('static', filename='images/mision.jpg') }}" alt="Imagen de Misión">
     </div>
   </section>
 
@@ -115,7 +107,7 @@
       <p>Nuestra visión es crecer de manera sostenible, apoyando el desarrollo de nuestros colaboradores y contribuyendo positivamente a nuestra comunidad.</p>
     </div>
     <div class="img-content">
-      <img src="/static/images/vision.jpeg" alt="Imagen de Visión">
+      <img src="{{ url_for('static', filename='images/vision.jpeg') }}" alt="Imagen de Visión">
     </div>
   </section>
 </body>

@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todo en Uno</title>
-  <link rel="stylesheet" href="/static/css/servicios.css">
+  <title>Servicios</title>
+  <!-- Enlace al archivo CSS utilizando url_for -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/servicios.css') }}">
   <style>
     /* Estilo para el header */
     header {
@@ -48,36 +49,21 @@
     }
 
     /* Estilo para el banner */
-    .banner {
-      background-image: url('/static/images/banner.jpg'); /* Ruta de la imagen de fondo */
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    .banner h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    .banner p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
+   
   </style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container">
-      <a href="index.html" class="logo">
-        <img src="/static/images/impresora.png" alt="Logo Todo en Uno">
+      <a href="{{ url_for('home') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/impresora.png') }}" alt="Logo Todo en Uno">
       </a>
       <nav class="nav-links">
-        <a href="Sobre_Nosotros.html">Nosotros</a>
-        <a href="Servicios.html">Servicios</a>
-        <a href="contact.html">Contacto</a>
-        <a href="faq.html">Faq</a>
+        <a href="{{ url_for('about') }}">Nosotros</a>
+        <a href="{{ url_for('services') }}">Servicios</a>
+        <a href="{{ url_for('contact') }}">Contacto</a>
+        <a href="{{ url_for('faq') }}">Faq</a>
       </nav>
       <button class="login">Ingresar</button>
     </div>
@@ -85,82 +71,22 @@
 
   <!-- Banner -->
   <section class="banner">
-    <h1>Nosotros</h1>
+    <h1>Servicios</h1>
     <p>Todo lo que necesitas en un solo lugar: crea, edita, almacena y programa impresiones de manera fácil y segura.</p>
   </section>
 
+  <!-- Sección de Servicios -->
   <section class="servi">
-    <!-- Card 1 -->
+    <!-- Cards de Servicios -->
+    {% for i in range(1, 9) %}
     <div class="card">
-      <img src="/static/images/serv1.jpg" alt="Servicio 1">
+      <img src="{{ url_for('static', filename='images/serv' ~ i ~ '.jpg') }}" alt="Servicio {{ i }}">
       <div class="card-content">
-        <h3>Servicio 1</h3>
-        <p>Descripción breve del servicio 1.</p>
+        <h3>Servicio {{ i }}</h3>
+        <p>Descripción breve del servicio {{ i }}.</p>
       </div>
     </div>
-
-    <!-- Card 2 -->
-    <div class="card">
-      <img src="/static/images/serv2.jpg" alt="Servicio 2">
-      <div class="card-content">
-        <h3>Servicio 2</h3>
-        <p>Descripción breve del servicio 2.</p>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="card">
-      <img src="/static/images/serv3.jpg" alt="Servicio 3">
-      <div class="card-content">
-        <h3>Servicio 3</h3>
-        <p>Descripción breve del servicio 3.</p>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="card">
-      <img src="/static/images/serv4.jpg" alt="Servicio 4">
-      <div class="card-content">
-        <h3>Servicio 4</h3>
-        <p>Descripción breve del servicio 4.</p>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="card">
-      <img src="/static/images/serv5.jpg" alt="Servicio 5">
-      <div class="card-content">
-        <h3>Servicio 5</h3>
-        <p>Descripción breve del servicio 5.</p>
-      </div>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="card">
-      <img src="/static/images/serv6.jpg" alt="Servicio 6">
-      <div class="card-content">
-        <h3>Servicio 6</h3>
-        <p>Descripción breve del servicio 6.</p>
-      </div>
-    </div>
-
-    <!-- Card 7 -->
-    <div class="card">
-      <img src="/static/images/serv7.jpg" alt="Servicio 7">
-      <div class="card-content">
-        <h3>Servicio 7</h3>
-        <p>Descripción breve del servicio 7.</p>
-      </div>
-    </div>
-
-    <!-- Card 8 -->
-    <div class="card">
-      <img src="/static/images/serv8.jpg" alt="Servicio 8">
-      <div class="card-content">
-        <h3>Servicio 8</h3>
-        <p>Descripción breve del servicio 8.</p>
-      </div>
-    </div>
+    {% endfor %}
   </section>
 </body>
 </html>

@@ -1,5 +1,21 @@
 
 /* Estilos para la sección de servicios */
+.banner {
+  background-image: url('/static/images/banner.jpg'); /* Ruta de la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+}
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
 .servi {
     width: 90%;
     max-width: 1200px;

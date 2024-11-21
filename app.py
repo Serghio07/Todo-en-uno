@@ -9,25 +9,21 @@ db = SQLAlchemy(app)
 def home():
     return render_template('index.html')
 
-@app.route('/about')
+@app.route('/Sobre_Nosotros')
 def about():
     return render_template('Sobre_Nosotros.html')
 
-@app.route('/services')
+@app.route('/Servicios')
 def services():
     return render_template('Servicios.html')
-
-@app.route('/team')
-def team():
-    return render_template('team.html')
 
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
 
-@app.route('/almacen')
-def almacen():
-    return render_template('Almacen/indexAlmacen.html')
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')  # Crea faq.html en templates
 
 if __name__ == '__main__':
     app.run(debug=True)
