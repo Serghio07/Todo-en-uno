@@ -21,20 +21,21 @@
                     <!-- Mostrar elementos según el rol del usuario -->
                     {% if session['role'] == 'Sin Registro' %}
                         <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Suscripción</a></li>
-                        <li><a href="{{ url_for('user_bp.software') }}">Software</a></li>
+                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>
+                        <li><a href="{{ url_for('user_bp.software') }}">Informacion</a></li>
 
                     {% elif session['role'] == 'FreeUser' %}
                         <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Mis Redes</a></li>
-                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Suscripción</a></li>
-                        <li><a href="{{ url_for('user_bp.software') }}">Software</a></li>
+                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Documentos</a></li>
+                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>
+                        <li><a href="{{ url_for('user_bp.software') }}">Informacion</a></li>
 
                     {% elif session['role'] == 'PremiumUser' %}
                         <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Mis Redes</a></li>
-                        <li><a href="{{ url_for('user_bp.informes') }}">Informes Detallados</a></li>
-                        <li><a href="{{ url_for('user_bp.software') }}">Software</a></li>
+                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Documentos</a></li>
+                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>
+                        <li><a href="{{ url_for('user_bp.informes') }}">Historial</a></li>
+                        <li><a href="{{ url_for('user_bp.software') }}">Informacion</a></li>
 
                     {% elif session['role'] == 'Admin' %}
                         <li><a href="{{ url_for('admin_bp.gestion_inventarios') }}">Gestión Inventarios</a></li>
