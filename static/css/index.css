@@ -1,0 +1,225 @@
+/* Sección Hero */
+body {
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+    margin: 0;  
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+.hero {
+    background-image: url('/static/img/empresa.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+.hero-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    animation: fadeIn 2s ease-in;
+}
+
+.hero h2 {
+    font-size: 3rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin: 20px 0;
+}
+
+.button {
+    background-color: #1DB954;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #17a34a;
+}
+
+/* Animación de Fade */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Sección de Servicios */
+.servicios {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.servicios h2 {
+    margin-bottom: 40px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+}
+
+.service-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.service-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* Sección Misión & Visión */
+.mision-vision {
+    display: flex;
+    justify-content: space-around;
+    padding: 50px 0;
+    background-color: #fff;
+    text-align: center;
+}
+
+.mision, .vision {
+    width: 40%;
+}
+
+.mision h2, .vision h2 {
+    color: #1DB954;
+    margin-bottom: 20px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+}
+
+/* Sección Testimonios */
+.testimonios {
+    background-color: #f9f9f9;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.testimonios h2 {
+    margin-bottom: 40px;
+    font-family: 'Arial', sans-serif; /* Uniformidad en la fuente */
+}
+
+.testimonial-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.testimonial-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Sección de Contacto */
+/* Formulario de Contacto */
+.formulario-contacto {
+    padding: 50px 0;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #ddd;
+    position: relative;
+}
+
+.formulario-contacto h2 {
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.formulario-contacto form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.formulario-contacto form:hover {
+    transform: translateY(-5px); /* Efecto de elevación */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Sombra más fuerte al pasar el mouse */
+}
+
+.formulario-contacto label {
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+    color: #555;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    transition: border-color 0.3s ease;
+}
+
+.formulario-contacto input:focus,
+.formulario-contacto textarea:focus {
+    border-color: #1DB954; /* Bordes verdes al enfocar */
+    outline: none;
+}
+
+.formulario-contacto textarea {
+    resize: none;
+}
+
+.btn-enviar {
+    background-color: #1DB954;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    font-weight: bold;
+}
+
+.btn-enviar:hover {
+    background-color: #17a34a;
+    transform: scale(1.05); /* Efecto de agrandar el botón al pasar el mouse */
+}
