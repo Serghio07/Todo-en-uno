@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros</title>
+  <!-- Enlace al archivo CSS utilizando url_for -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nosotros.css') }}">
+  <style>
+    /* Estilo para el header */
+    header {
+      background-color: #004080;
+      padding: 20px 0;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;
+    }
+    .nav-links a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .nav-links a:hover {
+      color: #ffdd40;
+    }
+    .login {
+      padding: 10px 20px;
+      background-color: #ffdd40;
+      border: none;
+      border-radius: 5px;
+      color: #004080;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .login:hover {
+      background-color: #e6c635;
+    }
+   
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="{{ url_for('home') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/impresora.png') }}" alt="Logo Todo en Uno">
+      </a>
+      <nav class="nav-links">
+        <a href="{{ url_for('about') }}">Nosotros</a>
+        <a href="{{ url_for('services') }}">Servicios</a>
+        <a href="{{ url_for('contact') }}">Contacto</a>
+        <a href="{{ url_for('faq') }}">Faq</a>
+      </nav>
+      <button class="login">Ingresar</button>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h1>Nosotros</h1>
+    <p>Todo lo que necesitas en un solo lugar: crea, edita, almacena y programa impresiones de manera fácil y segura.</p>
+  </section>
+
+  <!-- Sección Nosotros -->
+  <section class="nosotros">
+    <div class="text-nosotros">
+      <h1>¿QUIÉN ES?</h1>
+      <p>GB IMPRESIONES Grupo Multidisciplinario: es una empresa que por más de una década se ha dedicado a las Artes Gráficas, cumpliendo más de 35 Años de servicio.</p>
+      <p>Con cada uno de nuestros clientes, buscamos la mejor colaboración posible: siempre adecuándonos a sus necesidades; para brindarles un servicio y producto con la calidad que merecen.</p>
+      <p>A la par, en GB Impresiones confiamos en cada uno de nuestros colaboradores, es así como a lo largo de nuestra historia, hemos procurado brindarles un ambiente adecuado, cordial y seguro para lograr la realización de los proyectos asignados por nuestros clientes.</p>
+      <p>Nuestras labores están encausadas a lograr un crecimiento tanto empresarial como social; bajo las mejores normas de calidad, innovación y capacitación, llevándonos en cada etapa de nuestra historia (pasada y futura) como un referente de compromiso dentro de las Artes Gráficas, así como con cada uno de nuestros colaboradores.</p>
+    </div>
+    <div class="img-nosotros">
+      <img src="{{ url_for('static', filename='images/nosotros1.jpg') }}" alt="Imagen sobre nosotros">
+    </div>
+  </section>
+
+  <!-- Sección Misión -->
+  <section class="section-container mission">
+    <div class="text-content">
+      <h1>Misión</h1>
+      <p>Nuestra misión es brindar soluciones gráficas de alta calidad que se adapten a las necesidades de nuestros clientes, garantizando satisfacción y resultados excepcionales en cada proyecto.</p>
+      <p>Trabajamos con pasión y dedicación para ser una empresa líder en el sector, comprometida con la innovación y la mejora continua.</p>
+    </div>
+    <div class="img-content">
+      <img src="{{ url_for('static', filename='images/mision.jpg') }}" alt="Imagen de Misión">
+    </div>
+  </section>
+
+  <!-- Sección Visión -->
+  <section class="section-container vision">
+    <div class="text-content">
+      <h1>Visión</h1>
+      <p>Ser una empresa de referencia en el ámbito de las Artes Gráficas, reconocida por su excelencia, innovación y responsabilidad social.</p>
+      <p>Nuestra visión es crecer de manera sostenible, apoyando el desarrollo de nuestros colaboradores y contribuyendo positivamente a nuestra comunidad.</p>
+    </div>
+    <div class="img-content">
+      <img src="{{ url_for('static', filename='images/vision.jpeg') }}" alt="Imagen de Visión">
+    </div>
+  </section>
+</body>
+</html>

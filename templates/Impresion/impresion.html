@@ -8,6 +8,215 @@
 </head>
 <body>
 
+<!-- Navbar -->     
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="#" class="navbar-logo">Impresiones que Impresionan</a>
+        <ul class="navbar-menu">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="documentos.html">Documentos</a></li>
+            <li><a href="almacenamiento.html">Almacenamiento</a></li>
+            <li><a href="impresion.html" class="active">Impresión</a></li>
+            <li><a href="pagos.html">Pagos</a></li>
+            <li><a href="perfil.html">Perfil</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Main Section: Impresión -->
+<main class="main-content">
+    <h1>Programación de Impresiones</h1>
+    <p>Sube un documento y selecciona las opciones para programar tu impresión.</p>
+
+    <!-- Formulario de Impresión -->
+    <form id="printForm" action="/schedulePrint" method="POST">
+        <label for="fileUpload">Subir documento:</label>
+        <input type="file" id="fileUpload" name="documento" required>
+
+        <label for="printDate">Fecha de impresión:</label>
+        <input type="date" id="printDate" name="fecha" required>
+
+        <label for="copies">Número de copias:</label>
+        <input type="number" id="copies" name="copias" min="1" value="1" required>
+
+        <label for="color">Color:</label>
+        <select id="color" name="color">
+            <option value="blancoNegro">Blanco y Negro</option>
+            <option value="color">Color</option>
+        </select>
+
+        <!-- Estimación del costo -->
+        <p><strong>Costo estimado:</strong> <span id="costPreview">Bs 0.50</span></p>
+
+        <button type="submit">Programar Impresión</button>
+    </form>
+
+    <!-- Vista previa de la impresión -->
+    <section id="previewSection">
+        <h2>Vista previa de la programación</h2>
+        <div id="preview">
+            <p><strong>Archivo seleccionado:</strong> <span id="filePreview">Ninguno</span></p>
+            <p><strong>Fecha de impresión:</strong> <span id="datePreview">No seleccionada</span></p>
+            <p><strong>Número de copias:</strong> <span id="copiesPreview">1</span></p>
+            <p><strong>Color:</strong> <span id="colorPreview">Blanco y Negro</span></p>
+        </div>
+    </section>
+
+    <!-- Historial de Impresiones -->
+    <section id="printHistory">
+        <h2>Historial de Impresiones</h2>
+        <table id="historyTable">
+            <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                    <th>Tamaño</th>
+                    <th>Páginas</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Documento 1</td>
+                    <td>Completado</td>
+                    <td>2024-10-31</td>
+                    <td>2 MB</td>
+                    <td>10</td>
+                    <td>
+                        <button class="edit-btn" data-id="1">Editar</button>
+                        <button class="delete-btn" data-id="1">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Documento 2</td>
+                    <td>Completado</td>
+                    <td>2024-11-01</td>
+                    <td>1.5 MB</td>
+                    <td>8</td>
+                    <td>
+                        <button class="edit-btn" data-id="2">Editar</button>
+                        <button class="delete-btn" data-id="2">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Modal de Edición -->
+    <div id="editModal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h3>Editar Documento</h3>
+            <form id="editForm">
+                <label for="docName">Nombre del Documento:</label>
+                <input type="text" id="docName" name="docName" required>
+
+                <label for="docSize">Tamaño:</label>
+                <input type="text" id="docSize" name="docSize" required>
+
+                <label for="docPages">Páginas:</label>
+                <input type="number" id="docPages" name="docPages" required>
+
+                <label for="docDate">Fecha:</label>
+                <input type="date" id="docDate" name="docDate" required>
+
+                <button type="submit">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Opciones Avanzadas de Configuración -->
+    <section id="advancedOptions">
+        <h2>Opciones Avanzadas de Configuración</h2>
+        <form id="advancedForm">
+            <label for="paperSize">Tamaño del papel:</label>
+            <select id="paperSize" name="paperSize">
+                <option value="A4">A4</option>
+                <option value="Carta">Carta</option>
+                <option value="Oficio">Oficio</option>
+            </select>
+    
+            <label for="paperType">Tipo de papel:</label>
+            <select id="paperType" name="paperType">
+                <option value="mate">Mate</option>
+                <option value="brillante">Brillante</option>
+                <option value="reciclado">Reciclado</option>
+            </select>
+    
+            <label for="orientation">Orientación:</label>
+            <select id="orientation" name="orientation">
+                <option value="vertical">Vertical</option>
+                <option value="horizontal">Horizontal</option>
+            </select>
+    
+            <button type="button" id="applyOptions">Aplicar Configuración</button>
+        </form>
+    </section>
+
+    <!-- Previsualización del Documento -->
+    <section id="documentPreview">
+        <h2>Previsualización del Documento</h2>
+        <div id="docPreview">
+            <iframe id="pdfPreview" style="display:none; width: 100%; height: 500px;"></iframe>
+            <img id="imgPreview" style="display:none; max-width: 100%; max-height: 500px;" alt="Vista previa de imagen">
+            <p id="previewMessage">Previsualización no disponible para este archivo.</p>
+        </div>
+    </section>
+
+    <!-- Cola de Impresiones -->
+    <section id="printQueue">
+        <h2>Cola de Impresión</h2>
+        <table id="queueTable">
+            <thead>
+                <tr>
+                    <th>Documento</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Documento 1</td>
+                    <td>En proceso</td>
+                    <td><button class="cancel-btn">Cancelar</button></td>
+                </tr>
+                <tr>
+                    <td>Documento 2</td>
+                    <td>Programado para 2024-11-05</td>
+                    <td><button class="cancel-btn">Cancelar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <p>&copy; 2024 Impresiones que Impresionan. Todos los derechos reservados.</p>
+        <div class="footer-links">
+            <a href="terms.html">Términos y Condiciones</a>
+            <a href="privacy.html">Política de Privacidad</a>
+        </div>
+    </div>
+</footer>
+
+<script src="impresion.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programación de Impresiones</title>
+    <link rel="stylesheet" href="impresion.css">
+</head>
+<body>
+
 <!-- Navbar -->
 <nav class="navbar">
     <div class="navbar-container">

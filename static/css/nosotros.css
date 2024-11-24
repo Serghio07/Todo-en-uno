@@ -1,0 +1,106 @@
+/* Estilos para la sección "Nosotros" */
+.banner {
+  background-image: url('/static/images/banner.jpg'); /* Ruta de la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 100px 20px;
+  text-align: center;
+}
+.banner h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.banner p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.nosotros {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .text-nosotros {
+    flex: 1;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .text-nosotros h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #004080;
+  }
+
+  .text-nosotros p {
+    margin-bottom: 20px;
+  }
+
+  .img-nosotros {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-nosotros img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  /* Adaptabilidad para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .nosotros {
+      flex-direction: column;
+    }
+  }
+  /* Estilos generales para  secciones */
+  .section-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .text-content {
+    flex: 1;
+    font-size: 1.1rem;
+    color: #333;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  .text-content h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #004080;
+  }
+
+  .img-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  /* Adaptabilidad para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .section-container {
+      flex-direction: column;
+    }
+  }

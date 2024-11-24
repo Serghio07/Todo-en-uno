@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servicios</title>
+  <!-- Enlace al archivo CSS utilizando url_for -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/servicios.css') }}">
+  <style>
+    /* Estilo para el header */
+    header {
+      background-color: #004080;
+      padding: 20px 0;
+      color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo img {
+      height: 40px;
+    }
+    .nav-links a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .nav-links a:hover {
+      color: #ffdd40;
+    }
+    .login {
+      padding: 10px 20px;
+      background-color: #ffdd40;
+      border: none;
+      border-radius: 5px;
+      color: #004080;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .login:hover {
+      background-color: #e6c635;
+    }
+
+    /* Estilo para el banner */
+   
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="{{ url_for('home') }}" class="logo">
+        <img src="{{ url_for('static', filename='images/impresora.png') }}" alt="Logo Todo en Uno">
+      </a>
+      <nav class="nav-links">
+        <a href="{{ url_for('about') }}">Nosotros</a>
+        <a href="{{ url_for('services') }}">Servicios</a>
+        <a href="{{ url_for('contact') }}">Contacto</a>
+        <a href="{{ url_for('faq') }}">Faq</a>
+      </nav>
+      <button class="login">Ingresar</button>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <h1>Servicios</h1>
+    <p>Todo lo que necesitas en un solo lugar: crea, edita, almacena y programa impresiones de manera fácil y segura.</p>
+  </section>
+
+  <!-- Sección de Servicios -->
+  <section class="servi">
+    <!-- Cards de Servicios -->
+    {% for i in range(1, 9) %}
+    <div class="card">
+      <img src="{{ url_for('static', filename='images/serv' ~ i ~ '.jpg') }}" alt="Servicio {{ i }}">
+      <div class="card-content">
+        <h3>Servicio {{ i }}</h3>
+        <p>Descripción breve del servicio {{ i }}.</p>
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+</body>
+</html>
