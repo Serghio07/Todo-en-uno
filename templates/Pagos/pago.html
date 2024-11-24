@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Página de Pago</title>
+    <link rel="stylesheet" href="/static/css/pago.css">
+</head>
+<body>
+    <h1>Página de Pago</h1>
+    <button id="payButton">PAGO</button>
+
+    <!-- Modal de Autenticación -->
+    <div id="authModal" style="display:none;">
+        <form id="authForm">
+            <h2>Iniciar Sesión</h2>
+            <input type="email" id="email" placeholder="Correo" required>
+            <input type="password" id="password" placeholder="Contraseña" required>
+            <button type="submit">Iniciar sesión</button>
+        </form>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="confirmModal" style="display:none;">
+        <p>¿Confirma el pago de <span id="amount"></span>?</p>
+        <button id="confirmPayment">Confirmar</button>
+    </div>
+
+    <script src="/static/js/scripts.js"></script>
+</body>
+</html>
