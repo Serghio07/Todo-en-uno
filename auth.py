@@ -1,12 +1,15 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, session, redirect, url_for, flash, render_template, jsonify
 from conexion import get_db
 from models import Usuario
 from werkzeug.security import check_password_hash, generate_password_hash
 import jwt
 import datetime
 
-# Crear el blueprint
-auth_bp = Blueprint('auth', __name__)
+
+
+# Crear el Blueprint
+auth_bp = Blueprint('auth_bp', __name__)
+
 
 # Clave secreta para firmar los tokens (usa una más robusta en producción y mantenla segura)
 SECRET_KEY = "tu_clave_secreta_segura"
@@ -98,3 +101,13 @@ def register():
 
     finally:
         db_session.close()
+
+# Ruta para manejar el cierre de sesión
+@auth_bp.route('/logout')
+def logout():
+    session.pop('user', None)
+    session.pop('email', None)
+    session.pop('role', None)
+    session.pop('name', None)
+    flash("Has cerrado sesión correctamente", "success")
+    return redirect(url_for('autenticacion_bp.login'))

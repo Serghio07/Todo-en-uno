@@ -20,47 +20,43 @@
                     <li><a href="{{ url_for('home') }}">Inicio</a></li>
                     <!-- Mostrar elementos según el rol del usuario -->
                     {% if session['role'] == 'Sin Registro' %}
-                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
-                        <li><a href="{{ url_for('version_freemium') }}">Suscripcion</a></li>
-                        <li><a href="{{ url_for('software') }}">Software</a></li>
+                        <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
+                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Suscripción</a></li>
+                        <li><a href="{{ url_for('user_bp.software') }}">Software</a></li>
 
                     {% elif session['role'] == 'FreeUser' %}
-                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
-                        <li><a href="{{ url_for('version_freemium') }}">Suscripcion</a></li>
-                        <li><a href="{{ url_for('software') }}">Software</a></li>
+                        <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
+                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Mis Redes</a></li>
+                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Suscripción</a></li>
+                        <li><a href="{{ url_for('user_bp.software') }}">Software</a></li>
 
                     {% elif session['role'] == 'PremiumUser' %}
-                    <li><a href="{{ url_for('soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_panel_control') }}">Mis Redes</a></li>
-                        <li><a href="{{ url_for('informes') }}">Informes Detallados</a></li>
-                        <li><a href="{{ url_for('software') }}">Software</a></li>
+                        <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
+                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Mis Redes</a></li>
+                        <li><a href="{{ url_for('user_bp.informes') }}">Informes Detallados</a></li>
+                        <li><a href="{{ url_for('user_bp.software') }}">Software</a></li>
 
                     {% elif session['role'] == 'Admin' %}
-                        <li><a href="{{ url_for('gestion_inventarios') }}">Gestión Inventarios</a></li>
-                        <li><a href="{{ url_for('panel_control') }}">Gestión Redes Clientes</a></li>
-                        <li><a href="{{ url_for('gestion_software') }}">Gestión Software</a></li>
-                        <li><a href="{{ url_for('informe_seguridad') }}">Informe de Seguridad</a></li>
-                        <li><a href="{{ url_for('modulo_contable') }}">Modulo Contable</a></li>
+                        <li><a href="{{ url_for('admin_bp.gestion_inventarios') }}">Gestión Inventarios</a></li>
+                        <li><a href="{{ url_for('admin_bp.panel_control') }}">Gestión Redes Clientes</a></li>
+                        <li><a href="{{ url_for('admin_bp.gestion_software') }}">Gestión Software</a></li>
+                        <li><a href="{{ url_for('admin_bp.informe_seguridad') }}">Informe de Seguridad</a></li>
+                        <li><a href="{{ url_for('admin_bp.modulo_contable') }}">Módulo Contable</a></li>
                     {% endif %}
 
                     <!-- Mostrar Cerrar Sesión si el usuario está autenticado -->
-                    <!-- Mostrar Cerrar Sesión si el usuario está autenticado -->
-                    {% if 'role' in session %}
-                    <li class="dropdown">
-                        <a href="#" class="dropbtn">{{ session['name'] }} <span class="caret">▼</span></a>
-                        <div class="dropdown-content">
-                            <a href="{{ url_for('InfoUsuario') }}">Info Usuario</a>
-                            <a href="{{ url_for('canjear') }}">Canjear Código</a>
-                            <a href="{{ url_for('autenticacion_bp.logout') }}">Cerrar Sesión</a>
-                        </div>
-                    </li>
-                    
+                    {% if 'role' in session and session['role'] != 'Sin Registro' %}
+                        <li class="dropdown">
+                            <a href="#" class="dropbtn">{{ session['name'] }} <span class="caret">▼</span></a>
+                            <div class="dropdown-content">
+                                <a href="{{ url_for('user_bp.InfoUsuario') }}">Info Usuario</a>
+                                <a href="{{ url_for('user_bp.canjear') }}">Canjear Código</a>
+                                <a href="{{ url_for('auth_bp.logout') }}">Cerrar Sesión</a>
+                            </div>
+                        </li>
                     {% else %}
-                    <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+                            <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
                     {% endif %}
-
                 </ul>
             </nav>
         </div>

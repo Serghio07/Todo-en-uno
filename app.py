@@ -1,57 +1,49 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-from auth import auth_bp  # Importar el blueprint
-from conexion import get_db
-from flask import Flask, render_template, request, jsonify
+import logging
+from flask import Flask, session, render_template, redirect, url_for
 from models.pagos import db
-from services.usuarioS import verify_user
-from services.pagoS import process_payment
+from auth import auth_bp
+from admin import admin_bp
+from user import user_bp
 
 app = Flask(__name__)
-
-app.secret_key = 'tu_secreto'  # Necesario para mensajes flash
-
-# Registrar el blueprint antes de app.run()
-app.register_blueprint(auth_bp, url_prefix='/auth')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@localhost:3306/mydatabase'
+app.secret_key = 'tu_secreto'
 db.init_app(app)
+
+# Configuración de logs
+logging.basicConfig(
+    level=logging.INFO,  # Nivel de logs
+    format='%(asctime)s - %(levelname)s - %(message)s',  # Formato
+    handlers=[
+        logging.FileHandler("app.log"),  # Archivo donde se guardan los logs
+        logging.StreamHandler()  # Mostrar logs en la consola
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Registrar Blueprints
+app.register_blueprint(auth_bp)
+app.register_blueprint(admin_bp)
+app.register_blueprint(user_bp)
+
+@app.before_request
+def set_default_role():
+    if 'role' not in session:
+        session['role'] = 'Sin Registro'
+    # Registrar el rol actual en los logs
+    logger.info(f"Rol actual del usuario: {session.get('role')}")
 
 @app.route('/')
 def home():
-    
     return render_template('index.html')
-
-@app.route('/Sobre_Nosotros')
-def about():
-    return render_template('Sobre_Nosotros.html')
-
-@app.route('/Servicios')
-def services():
-    return render_template('Servicios.html')
-
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
-@app.route('/faq')
-def faq():
-    return render_template('faq.html')
-
-@app.route('/verify_user', methods=['POST'])
-def verify_user_route():
-    data = request.json
-    return verify_user(data)
-
-@app.route('/process_payment', methods=['POST'])
-def process_payment_route():
-    data = request.json
-    return process_payment(data)
 
 @app.route('/login')
 def login():
     return render_template('Autenticacion/login.html')
+
 @app.route('/register')
 def register():
-    return render_template('Autenticacion/registro.html')
+    return render_template('Autenticacion/register.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
