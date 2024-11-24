@@ -8,6 +8,7 @@ class Usuario(Base):
     id = Column(Integer, primary_key=True, index=True)
     nombre = Column(String(50), nullable=False)
     email = Column(String(120), unique=True, nullable=False)
+    password = Column(String(255), nullable=False)  # Nuevo campo para la contraseña
     rol = Column(String(20), nullable=False)
 
     # Relaciones

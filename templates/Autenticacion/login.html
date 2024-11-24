@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesLogin.css') }}">
+</head>
+<body>
+    <div class="auth-container fade-in">
+        <h1>Iniciar Sesión</h1>
+        
+        <!-- Formulario de Inicio de Sesión -->
+        <div id="loginForm">
+            <input type="email" id="loginEmail" placeholder="Correo electrónico" required>
+            <input type="password" id="loginPassword" placeholder="Contraseña" required>
+            <button onclick="login()">Iniciar Sesión</button>
+            <p id="loginMessage"></p>
+        </div>
+
+        <p>¿No tienes una cuenta? 
+            <a href="{{ url_for('register') }}">Regístrate aquí</a>
+        </p>
+    </div>
+
+    <script>
+        async function login() {
+            // Obtener valores de los campos
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const messageElement = document.getElementById('loginMessage');
+
+            // Validar que los campos no estén vacíos
+            if (!email || !password) {
+                messageElement.textContent = "Por favor, completa todos los campos.";
+                messageElement.style.color = "red";
+                return;
+            }
+
+            try {
+                // Realizar la solicitud al endpoint de login
+                const response = await fetch('http://127.0.0.1:5000/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                // Procesar la respuesta
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Guardar el token en localStorage
+                    localStorage.setItem('authToken', data.token);
+
+                    // Mostrar mensaje de éxito
+                    messageElement.textContent = "Inicio de sesión exitoso. Redirigiendo...";
+                    messageElement.style.color = "green";
+
+                    // Redirigir a otra página (por ejemplo, dashboard.html)
+                    setTimeout(() => {
+                        window.location.href = '/contact';
+                    }, 2000);
+                } else {
+                    // Mostrar el mensaje de error del servidor
+                    messageElement.textContent = data.error || "Error al iniciar sesión.";
+                    messageElement.style.color = "red";
+                }
+            } catch (error) {
+                // Mostrar mensaje de error en caso de fallo en la solicitud
+                messageElement.textContent = "Error de conexión al servidor.";
+                messageElement.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

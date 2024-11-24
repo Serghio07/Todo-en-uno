@@ -1,0 +1,99 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #4c5b61, #283044);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes buttonHover {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Container styling */
+.auth-container {
+    width: 320px;
+    padding: 30px;
+    padding-right: 50px;
+    background-color: #f8f9fa;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+    animation: fadeIn 1s ease;
+}
+
+.auth-container h1 {
+    font-size: 26px;
+    color: #283044;
+    margin-bottom: 25px;
+}
+
+/* Input styling */
+.auth-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+}
+
+.auth-container input:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    outline: none;
+}
+
+/* Button styling */
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.auth-container button:hover {
+    background-color: #43a047;
+    animation: buttonHover 0.4s ease;
+}
+
+/* Error message */
+.auth-container p {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: 12px;
+}
+
+/* Link styling */
+.auth-container a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}
+
+/* Fade-in effect for container */
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}

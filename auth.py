@@ -1,0 +1,100 @@
+from flask import Blueprint, request, jsonify
+from conexion import get_db
+from models import Usuario
+from werkzeug.security import check_password_hash, generate_password_hash
+import jwt
+import datetime
+
+# Crear el blueprint
+auth_bp = Blueprint('auth', __name__)
+
+# Clave secreta para firmar los tokens (usa una más robusta en producción y mantenla segura)
+SECRET_KEY = "tu_clave_secreta_segura"
+
+@auth_bp.route('/login', methods=['POST'])
+def login():
+    # Obtener los datos enviados en el formulario o JSON
+    email = request.json.get('email') if request.is_json else request.form.get('email')
+    password = request.json.get('password') if request.is_json else request.form.get('password')
+
+    if not email or not password:
+        return jsonify({"error": "Email y contraseña son requeridos"}), 400
+
+    # Conectar a la base de datos
+    db_session = next(get_db())
+
+    try:
+        # Buscar el usuario por email
+        usuario = db_session.query(Usuario).filter_by(email=email).first()
+
+        if not usuario:
+            return jsonify({"error": "Usuario no encontrado"}), 404
+
+        # Verificar la contraseña usando hashing
+        if not check_password_hash(usuario.password, password):
+            return jsonify({"error": "Contraseña incorrecta"}), 401
+
+        # Generar el token JWT
+        token = jwt.encode({
+            "user_id": usuario.id,
+            "email": usuario.email,
+            "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=2)  # Token expira en 2 horas
+        }, SECRET_KEY, algorithm="HS256")
+
+        # Si todo está bien
+        return jsonify({
+            "message": "Inicio de sesión exitoso",
+            "token": token,
+            "user": {
+                "id": usuario.id,
+                "nombre": usuario.nombre,
+                "email": usuario.email,
+                "rol": usuario.rol
+            }
+        }), 200
+
+    except Exception as e:
+        return jsonify({"error": f"Error del servidor: {str(e)}"}), 500
+
+    finally:
+        db_session.close()
+
+@auth_bp.route('/register', methods=['POST'])
+def register():
+    # Obtener los datos enviados en el formulario o JSON
+    email = request.json.get('email') if request.is_json else request.form.get('email')
+    password = request.json.get('password') if request.is_json else request.form.get('password')
+    nombre = request.json.get('nombre') if request.is_json else request.form.get('nombre')
+    rol = request.json.get('rol') if request.is_json else request.form.get('rol', 'user')  # Default role to 'user'
+
+    if not email or not password or not nombre:
+        return jsonify({"error": "Email, contraseña y nombre son requeridos"}), 400
+
+    db_session = next(get_db())
+
+    try:
+        usuario_existente = db_session.query(Usuario).filter_by(email=email).first()
+        if usuario_existente:
+            return jsonify({"error": "El usuario ya existe"}), 409
+
+        hashed_password = generate_password_hash(password)
+
+        nuevo_usuario = Usuario(email=email, password=hashed_password, nombre=nombre, rol=rol)
+        db_session.add(nuevo_usuario)
+        db_session.commit()
+
+        return jsonify({
+            "message": "Registro exitoso",
+            "user": {
+                "id": nuevo_usuario.id,
+                "nombre": nuevo_usuario.nombre,
+                "email": nuevo_usuario.email,
+                "rol": nuevo_usuario.rol
+            }
+        }), 201
+
+    except Exception as e:
+        return jsonify({"error": f"Error del servidor: {str(e)}"}), 500
+
+    finally:
+        db_session.close()
