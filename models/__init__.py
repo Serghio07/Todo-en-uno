@@ -1,2 +1,2 @@
-from .user import Usuario
-from .payment import Pago
+from .usuarios import Usuario
+from .pagos import Pago
