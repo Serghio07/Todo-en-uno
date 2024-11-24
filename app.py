@@ -17,11 +17,8 @@ db.init_app(app)
 
 @app.route('/')
 def home():
-    return render_template('Autenticacion/login.html')
+    
     return render_template('index.html')
-@app.route('/login')
-def login():
-    return render_template('team.html')
 
 @app.route('/Sobre_Nosotros')
 def about():
