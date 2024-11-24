@@ -1,0 +1,206 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5EFEB;
+    color: #2F4156;
+    margin: 0;
+    padding: 0;
+}
+
+/* Título */
+h1, h3 {
+    color: #2F4156;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Mensajes flash */
+.alert {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.alert-dismissible .close {
+    font-size: 1.5rem;
+}
+
+/* Formulario de búsqueda */
+.form-search {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.input-search {
+    padding: 10px;
+    font-size: 1rem;
+    width: 200px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-search {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #567CD8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-search:hover {
+    background-color: #2F4156;
+}
+
+/* Formulario de carga de archivos */
+.form-upload {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.input-file {
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 25px;
+}
+
+.btn-upload {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #567CD8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-upload:hover {
+    background-color: #2F4156;
+}
+
+/* Tabla de archivos */
+.table-container {
+    margin-top: 20px;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #F5EFE0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #2F4156;
+    color: white;
+}
+
+.table tr:nth-child(odd) {
+    background-color: #C8D9E6;
+}
+
+.table tr:nth-child(even) {
+    background-color: #E3EFF8;
+}
+
+.table tr:hover {
+    background-color: #567CD8;
+    color: white;
+}
+
+.btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-bottom: 10%;
+    margin-top: 10%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-info {
+    background-color: #567CD8;
+    color: white;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #2F4156;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #FF4C4C;
+    color: white;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #D43F3F;
+    transform: scale(1.05);
+}
+/* Espaciado entre botones de Descargar y Eliminar */
+.btn-info {
+    margin-right: 10px; /* Agregar espacio a la derecha del botón de Descargar */
+}
+
+/* Estilo general de los mensajes flash */
+.flash-message {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #C8D9E6;
+    border-radius: 8px;
+    border: 1px solid #567CD8;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #2F4156;
+}
+
+.flash-message .icon {
+    margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.flash-message .message-text {
+    flex-grow: 1;
+}
+
+/* Estilo del ícono de sobre */
+.flash-message .icon i {
+    font-size: 20px;
+    color: #567CD8;
+}
+
+/* Estilo para cuando el mensaje tiene la clase 'alert-success' */
+.flash-message.success {
+    background-color: #D4EDDA;
+    border-color: #28A745;
+}
+
+.flash-message.success .icon i {
+    color: #28A745;
+}
+
+/* Estilo para cuando el mensaje tiene la clase 'alert-danger' */
+.flash-message.error {
+    background-color: #F8D7DA;
+    border-color: #DC3545;
+}
+
+.flash-message.error .icon i {
+    color: #DC3545;
+}

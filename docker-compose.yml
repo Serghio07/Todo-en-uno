@@ -3,16 +3,16 @@ version: '3.8'
 services:
   db:
     image: mysql:8.0
-    container_name: SQLSERVER
+    container_name: mysql_server
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword    # Contraseña para el usuario root
-      MYSQL_USER: myuser                  # Usuario de la base de datos
-      MYSQL_PASSWORD: mypassword          # Contraseña del usuario
-      MYSQL_DATABASE: mydatabase          # Nombre de la base de datos
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+      MYSQL_DATABASE: mydatabase
     ports:
-      - "3306:3306"                       # Puerto de MySQL
+      - "3306:3306" # Cambia a 3307:3306 si 3306 ya está ocupado en el host
     volumes:
-      - mysql_data:/var/lib/mysql         # Persistencia de datos
+      - mysql_data:/var/lib/mysql
 
 volumes:
   mysql_data:

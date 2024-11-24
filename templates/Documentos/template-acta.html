@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acta de Reunión - Plantilla</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+<body>
+    <div class="editor-container">
+        <h2>Plantilla: Acta de Reunión</h2>
+        <div id="editor">
+            <!-- Contenido editable del acta -->
+            <h3>Acta de Reunión</h3>
+            <p>Fecha: [Fecha]</p>
+            <p>Hora: [Hora]</p>
+            <p>Participantes: [Lista de participantes]</p>
+            <h4>Orden del Día</h4>
+            <p>1. Tema 1</p>
+            <p>2. Tema 2</p>
+            <h4>Desarrollo</h4>
+            <p>Describa el desarrollo de la reunión...</p>
+            <h4>Conclusiones</h4>
+            <p>Resumen de las conclusiones alcanzadas...</p>
+        </div>
+    </div>
+
+    <script>
+        var quill = new Quill('#editor', { theme: 'snow' });
+    </script>
+</body>
+</html>
