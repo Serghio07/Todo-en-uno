@@ -1,9 +1,12 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@localhost:3306/mydatabase'
 db = SQLAlchemy(app)
+
+
 
 @app.route('/')
 def home():
@@ -23,7 +26,9 @@ def contact():
 
 @app.route('/Almacen')
 def almacen():
+    print("Buscando plantilla indexAlmacen.html")
     return render_template('indexAlmacen.html')
+
 
 @app.route('/faq')
 def faq():
