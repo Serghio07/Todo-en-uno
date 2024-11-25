@@ -17,6 +17,7 @@ class Usuario(db.Model):
     hashed_password = db.Column(db.String(255), nullable=False)
     nombre = db.Column(db.String(255), nullable=False)
     rol = db.Column(db.String(50), default='user')
+    saldo = db.Column(db.String(50), default='user')
     documentos = db.relationship('Documento', backref='usuario', lazy=True)
     transacciones = db.relationship('Transaccion', backref='usuario', lazy=True)
     programaciones = db.relationship('ProgramacionImpresion', backref='usuario', lazy=True)
