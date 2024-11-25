@@ -32,6 +32,9 @@ def set_default_role():
     if 'role' not in session:
         session['role'] = 'Sin Registro'
     
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def home():
