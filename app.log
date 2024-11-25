@@ -1058,3 +1058,7 @@
 2024-11-25 17:17:59,744 - INFO - 127.0.0.1 - - [25/Nov/2024 17:17:59] "POST /auth/login HTTP/1.1" 200 -
 2024-11-25 17:18:01,781 - INFO - Rol actual del usuario: Sin Registro
 2024-11-25 17:18:01,783 - INFO - 127.0.0.1 - - [25/Nov/2024 17:18:01] "[33mGET /contact HTTP/1.1[0m" 404 -
+2024-11-25 17:18:24,000 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\app.py', reloading
+2024-11-25 17:18:24,189 - INFO -  * Restarting with stat
+2024-11-25 17:18:26,156 - WARNING -  * Debugger is active!
+2024-11-25 17:18:26,171 - INFO -  * Debugger PIN: 140-725-854
