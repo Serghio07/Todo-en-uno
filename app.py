@@ -1,5 +1,7 @@
 import logging
 from flask import Flask, session, render_template, redirect, url_for
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 from models.pagos import db
 from auth import auth_bp
 from admin import admin_bp
@@ -14,6 +16,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@localhost:3306/mydatabase'
 app.secret_key = 'tu_secreto'
 db.init_app(app)
+
+
 
 # Configuración de logs
 logging.basicConfig(
