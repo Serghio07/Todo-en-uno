@@ -1,4 +1,4 @@
-import logging
+
 from flask import Flask, session, render_template, redirect, url_for
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
@@ -31,8 +31,7 @@ app.register_blueprint(almacen_bp, url_prefix='/almacen')
 def set_default_role():
     if 'role' not in session:
         session['role'] = 'Sin Registro'
-    # Registrar el rol actual en los logs
-    logger.info(f"Rol actual del usuario: {session.get('role')}")
+    
 
 @app.route('/')
 def home():
