@@ -52,7 +52,9 @@ def register():
 def pago():
     return render_template('Pagos/pago.html')  # Ruta relativa dentro de 'templates'
 
-
+@app.route('/impresion')
+def impresion():
+    return render_template('impresion/impresion.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
