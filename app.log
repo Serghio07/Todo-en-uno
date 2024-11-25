@@ -665,3 +665,78 @@
 2024-11-25 00:43:27,469 - INFO - 127.0.0.1 - - [25/Nov/2024 00:43:27] "[36mGET /static/js/register.js HTTP/1.1[0m" 304 -
 2024-11-25 00:43:34,343 - INFO - Rol actual del usuario: Sin Registro
 2024-11-25 00:43:34,567 - INFO - 127.0.0.1 - - [25/Nov/2024 00:43:34] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-25 12:09:29,693 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-25 12:09:29,695 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-25 12:09:29,702 - INFO -  * Restarting with stat
+2024-11-25 12:09:31,852 - WARNING -  * Debugger is active!
+2024-11-25 12:09:31,872 - INFO -  * Debugger PIN: 764-318-845
+2024-11-25 12:09:32,241 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:32,301 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:32] "GET / HTTP/1.1" 200 -
+2024-11-25 12:09:32,952 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:32,955 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:32,959 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:32] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-25 12:09:32,965 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:32,972 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:32,977 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:32,992 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:32,997 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:32] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-25 12:09:33,001 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:33,002 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:33] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-25 12:09:33,004 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:33] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-25 12:09:33,009 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:33] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-25 12:09:33,378 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:33] "GET /static/css/navbar.css HTTP/1.1" 200 -
+2024-11-25 12:09:33,458 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:33] "GET /static/css/index.css HTTP/1.1" 200 -
+2024-11-25 12:09:33,472 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:33,476 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:33] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-25 12:09:33,586 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:33,588 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:33] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-25 12:09:35,427 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:35,446 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:35] "GET /user/software HTTP/1.1" 200 -
+2024-11-25 12:09:35,468 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:35,472 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:35,475 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:35] "GET /static/css/stylesAlmacen.css HTTP/1.1" 200 -
+2024-11-25 12:09:35,479 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:35] "GET /static/js/scriptAlmacen.js HTTP/1.1" 200 -
+2024-11-25 12:09:43,878 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:09:43,925 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:43] "[35m[1mPOST /almacen/archivo HTTP/1.1[0m" 500 -
+2024-11-25 12:09:43,950 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:43] "[36mGET /almacen/archivo?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-11-25 12:09:43,963 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:43] "[36mGET /almacen/archivo?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-11-25 12:09:44,053 - INFO - 127.0.0.1 - - [25/Nov/2024 12:09:44] "GET /almacen/archivo?__debugger__=yes&cmd=resource&f=console.png&s=3isRP8TaFHvp0jg0croH HTTP/1.1" 200 -
+2024-11-25 12:19:15,733 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-25 12:19:15,734 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-25 12:19:15,737 - INFO -  * Restarting with stat
+2024-11-25 12:19:16,544 - WARNING -  * Debugger is active!
+2024-11-25 12:19:16,549 - INFO -  * Debugger PIN: 764-318-845
+2024-11-25 12:19:19,478 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,509 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "GET / HTTP/1.1" 200 -
+2024-11-25 12:19:19,675 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,676 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,680 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,682 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-25 12:19:19,684 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,687 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,689 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-25 12:19:19,691 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,693 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-25 12:19:19,698 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-25 12:19:19,701 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,706 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-25 12:19:19,795 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2024-11-25 12:19:19,796 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[36mGET /static/css/navbar.css HTTP/1.1[0m" 304 -
+2024-11-25 12:19:19,801 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:19,802 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:19] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-25 12:19:30,745 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:30,756 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:30] "GET /user/software HTTP/1.1" 200 -
+2024-11-25 12:19:30,777 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:30,787 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:30,791 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:30] "[36mGET /static/css/stylesAlmacen.css HTTP/1.1[0m" 304 -
+2024-11-25 12:19:30,808 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:30] "[36mGET /static/js/scriptAlmacen.js HTTP/1.1[0m" 304 -
+2024-11-25 12:19:37,776 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:37,957 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:37] "[32mPOST /almacen/archivo HTTP/1.1[0m" 302 -
+2024-11-25 12:19:37,966 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:38,033 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:38] "GET /almacen/ HTTP/1.1" 200 -
+2024-11-25 12:19:38,052 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:38,056 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:38] "[36mGET /static/css/stylesAlmacen.css HTTP/1.1[0m" 304 -
+2024-11-25 12:19:38,057 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 12:19:38,061 - INFO - 127.0.0.1 - - [25/Nov/2024 12:19:38] "[36mGET /static/js/scriptAlmacen.js HTTP/1.1[0m" 304 -
