@@ -27,62 +27,44 @@
 {% endif %}
 {% endwith %}
 
+         <!-- Formulario de búsqueda -->
+            <form method="GET" action="{{ url_for('almacen.get_archivos') }}" class="form-search">
+                <input type="text" name="search" placeholder="Buscar archivo" value="{{ search_query }}" class="input-search">
+                <button type="submit" class="btn-search">Buscar</button>
+            </form>
 
-        <!-- Formulario de búsqueda -->
-        <form method="GET" action="{{ url_for('index') }}" class="form-search">
-            <input type="text" name="search" placeholder="Buscar archivo" value="{{ search_query }}" class="input-search">
-            <button type="submit" class="btn-search">Buscar</button>
-        </form>
-
-        <!-- Formulario de carga de archivos -->
-        <h3>SUBIR UN ARCHIVO</h3>
-        <form action="{{ url_for('upload_file') }}" method="POST" enctype="multipart/form-data" class="form-upload">
-            <label for="file">Selecciona un archivo:</label>
-            <input type="file" name="file" id="file" required class="input-file">
-            <button type="submit" class="btn-upload">Subir archivo</button>
-        </form>
+            <!-- Formulario de carga de archivos -->
+            <form action="{{ url_for('almacen.upload_archivo') }}" method="POST" enctype="multipart/form-data" class="form-upload">
+                <label for="file">Selecciona un archivo:</label>
+                <input type="file" name="file" id="file" required class="input-file">
+                <button type="submit" class="btn-upload">Subir archivo</button>
+            </form>
 
         <!-- Tabla de archivos -->
-        <h3 class="text-center text-primary">ARCHIVOS DISPONIBLES</h3>
-        <div class="table-container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Tipo</th>
-                        <th>Tamaño (KB)</th>
-                        <th>Ruta</th>
-                        <th>Fecha de Subida</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for archivo in archivos %}
-                        <tr>
-                            <td>{{ archivo[0] }}</td>  <!-- ID -->
-                            <td>{{ archivo[1] }}</td>  <!-- Nombre -->
-                            <td>{{ archivo[2] }}</td>  <!-- Tipo -->
-                            <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
-                            <td>{{ url_for('static', filename='uploads/' + archivo[4]) }}</td>  <!-- Ruta completa -->
-                            <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
-                            <td>
-                                <!-- Enlace para descargar el archivo -->
-                                <a href="{{ url_for('download_file', filename=archivo[1]) }}" class="btn btn-info">Descargar</a>
-                                <!-- Formulario para eliminar archivo -->
-                                <form action="{{ url_for('delete_file', id=archivo[0]) }}" method="POST" style="display:inline;">
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este archivo?')">Eliminar</button>
-                                </form>
-                            </td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <td colspan="7" class="text-center">No se encontraron archivos</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<tbody>
+    {% for archivo in archivos %}
+        <tr>
+            <td>{{ archivo[0] }}</td>  <!-- ID -->
+            <td>{{ archivo[1] }}</td>  <!-- Nombre -->
+            <td>{{ archivo[2] }}</td>  <!-- Tipo -->
+            <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
+            <td>{{ url_for('static', filename='uploads/' + archivo[4]) }}</td>  <!-- Ruta completa -->
+            <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
+            <td>
+                <!-- Enlace para descargar el archivo -->
+                <a href="{{ url_for('almacen.download_file', filename=archivo[1]) }}" class="btn btn-info">Descargar</a>
+                <!-- Formulario para eliminar archivo -->
+                <form action="{{ url_for('almacen.delete_archivo', id=archivo[0]) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este archivo?')">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="7" class="text-center">No se encontraron archivos</td>
+        </tr>
+    {% endfor %}
+</tbody>
     </div>
 
     <script src="{{ url_for('static', filename='js/scriptAlmacen.js') }}"></script>

@@ -12,7 +12,7 @@ def InfoUsuario():
 
 @user_bp.route('/software')
 def software():
-    return render_template('F_user/Software.html')
+    return render_template('Almacen/indexAlmacen.html')
 
 @user_bp.route('/soporte')
 def soporte():

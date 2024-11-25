@@ -4,6 +4,11 @@ from models.pagos import db
 from auth import auth_bp
 from admin import admin_bp
 from user import user_bp
+from almacen import almacen_bp  
+
+
+# Registrar el blueprint en la aplicación principal
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@localhost:3306/mydatabase'
@@ -25,6 +30,7 @@ logger = logging.getLogger(__name__)
 app.register_blueprint(auth_bp)
 app.register_blueprint(admin_bp)
 app.register_blueprint(user_bp)
+app.register_blueprint(almacen_bp, url_prefix='/almacen')
 
 @app.before_request
 def set_default_role():

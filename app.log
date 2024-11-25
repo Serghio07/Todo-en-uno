@@ -275,3 +275,85 @@
 2024-11-24 18:54:17,544 - INFO - 127.0.0.1 - - [24/Nov/2024 18:54:17] "GET /login HTTP/1.1" 200 -
 2024-11-24 18:54:17,635 - INFO - Rol actual del usuario: Sin Registro
 2024-11-24 18:54:17,741 - INFO - 127.0.0.1 - - [24/Nov/2024 18:54:17] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 22:37:35,970 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-24 22:37:36,030 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-24 22:37:36,042 - INFO -  * Restarting with stat
+2024-11-24 22:37:44,400 - WARNING -  * Debugger is active!
+2024-11-24 22:37:44,449 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 22:37:44,664 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:44,785 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:44] "GET / HTTP/1.1" 200 -
+2024-11-24 22:37:44,983 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:44,986 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:44] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-24 22:37:44,991 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:44,996 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:45,002 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:45,007 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:45] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-24 22:37:45,010 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:45,026 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:45] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-24 22:37:45,342 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:45] "GET /static/css/navbar.css HTTP/1.1" 200 -
+2024-11-24 22:37:45,456 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:45] "GET /static/css/index.css HTTP/1.1" 200 -
+2024-11-24 22:37:46,276 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:46,281 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:46] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-24 22:37:46,288 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:46,296 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:46] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-24 22:37:46,331 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:37:46,336 - INFO - 127.0.0.1 - - [24/Nov/2024 22:37:46] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-24 22:40:24,126 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:40:24,252 - INFO - 127.0.0.1 - - [24/Nov/2024 22:40:24] "[35m[1mGET /user/software HTTP/1.1[0m" 500 -
+2024-11-24 22:40:24,549 - INFO - 127.0.0.1 - - [24/Nov/2024 22:40:24] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-11-24 22:40:24,553 - INFO - 127.0.0.1 - - [24/Nov/2024 22:40:24] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-11-24 22:40:24,631 - INFO - 127.0.0.1 - - [24/Nov/2024 22:40:24] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 22:41:57,251 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\user.py', reloading
+2024-11-24 22:41:57,853 - INFO -  * Restarting with stat
+2024-11-24 22:42:06,177 - WARNING -  * Debugger is active!
+2024-11-24 22:42:06,259 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 22:43:43,636 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\user.py', reloading
+2024-11-24 22:43:44,090 - INFO -  * Restarting with stat
+2024-11-24 22:43:51,184 - WARNING -  * Debugger is active!
+2024-11-24 22:43:51,245 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 22:44:11,210 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:44:11,297 - INFO - 127.0.0.1 - - [24/Nov/2024 22:44:11] "[35m[1mGET /user/software HTTP/1.1[0m" 500 -
+2024-11-24 22:44:11,713 - INFO - 127.0.0.1 - - [24/Nov/2024 22:44:11] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-11-24 22:44:11,966 - INFO - 127.0.0.1 - - [24/Nov/2024 22:44:11] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-11-24 22:44:12,117 - INFO - 127.0.0.1 - - [24/Nov/2024 22:44:12] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 22:46:32,542 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\user.py', reloading
+2024-11-24 22:46:32,763 - INFO -  * Restarting with stat
+2024-11-24 22:46:36,518 - WARNING -  * Debugger is active!
+2024-11-24 22:46:36,565 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 22:46:37,412 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:46:37,540 - INFO - 127.0.0.1 - - [24/Nov/2024 22:46:37] "[35m[1mGET /user/software HTTP/1.1[0m" 500 -
+2024-11-24 22:46:38,001 - INFO - 127.0.0.1 - - [24/Nov/2024 22:46:38] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-11-24 22:46:38,003 - INFO - 127.0.0.1 - - [24/Nov/2024 22:46:38] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-11-24 22:46:38,033 - INFO - 127.0.0.1 - - [24/Nov/2024 22:46:38] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 22:46:38,095 - INFO - 127.0.0.1 - - [24/Nov/2024 22:46:38] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 22:51:46,155 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:51:46,421 - INFO - 127.0.0.1 - - [24/Nov/2024 22:51:46] "[35m[1mGET /user/software HTTP/1.1[0m" 500 -
+2024-11-24 22:51:46,490 - INFO - 127.0.0.1 - - [24/Nov/2024 22:51:46] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-11-24 22:51:46,494 - INFO - 127.0.0.1 - - [24/Nov/2024 22:51:46] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-11-24 22:51:46,657 - INFO - 127.0.0.1 - - [24/Nov/2024 22:51:46] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 22:51:46,731 - INFO - 127.0.0.1 - - [24/Nov/2024 22:51:46] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 22:52:07,896 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 22:52:08,159 - INFO - 127.0.0.1 - - [24/Nov/2024 22:52:08] "[35m[1mGET /user/software HTTP/1.1[0m" 500 -
+2024-11-24 22:52:08,252 - INFO - 127.0.0.1 - - [24/Nov/2024 22:52:08] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-11-24 22:52:08,402 - INFO - 127.0.0.1 - - [24/Nov/2024 22:52:08] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-11-24 22:52:08,493 - INFO - 127.0.0.1 - - [24/Nov/2024 22:52:08] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 22:52:08,856 - INFO - 127.0.0.1 - - [24/Nov/2024 22:52:08] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 23:16:26,111 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:16:26,168 - INFO - 127.0.0.1 - - [24/Nov/2024 23:16:26] "[35m[1mGET /user/software HTTP/1.1[0m" 500 -
+2024-11-24 23:16:26,204 - INFO - 127.0.0.1 - - [24/Nov/2024 23:16:26] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2024-11-24 23:16:26,207 - INFO - 127.0.0.1 - - [24/Nov/2024 23:16:26] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2024-11-24 23:16:26,269 - INFO - 127.0.0.1 - - [24/Nov/2024 23:16:26] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 23:16:26,313 - INFO - 127.0.0.1 - - [24/Nov/2024 23:16:26] "[36mGET /user/software?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 23:21:26,050 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\app.py', reloading
+2024-11-24 23:21:26,184 - INFO -  * Restarting with stat
+2024-11-24 23:21:27,314 - WARNING -  * Debugger is active!
+2024-11-24 23:21:27,326 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:21:29,486 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:21:29,519 - INFO - 127.0.0.1 - - [24/Nov/2024 23:21:29] "GET /user/software HTTP/1.1" 200 -
+2024-11-24 23:21:29,542 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:21:29,549 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:21:29,707 - INFO - 127.0.0.1 - - [24/Nov/2024 23:21:29] "GET /static/js/scriptAlmacen.js HTTP/1.1" 200 -
+2024-11-24 23:21:29,759 - INFO - 127.0.0.1 - - [24/Nov/2024 23:21:29] "GET /static/css/stylesAlmacen.css HTTP/1.1" 200 -
+2024-11-24 23:21:29,768 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:21:29,769 - INFO - 127.0.0.1 - - [24/Nov/2024 23:21:29] "[33mGET /api/archivos HTTP/1.1[0m" 404 -
