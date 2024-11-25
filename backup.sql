@@ -16,6 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `adads`
+--
+
+DROP TABLE IF EXISTS `adads`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `adads` (
+  `idadads` int NOT NULL,
+  PRIMARY KEY (`idadads`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `adads`
+--
+
+LOCK TABLES `adads` WRITE;
+/*!40000 ALTER TABLE `adads` DISABLE KEYS */;
+/*!40000 ALTER TABLE `adads` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `almacenamiento`
 --
 
@@ -119,7 +141,7 @@ CREATE TABLE `pago` (
   KEY `usuario_id` (`usuario_id`),
   KEY `ix_pago_id` (`id`),
   CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +150,7 @@ CREATE TABLE `pago` (
 
 LOCK TABLES `pago` WRITE;
 /*!40000 ALTER TABLE `pago` DISABLE KEYS */;
+INSERT INTO `pago` VALUES (1,500,'2024-11-18 23:02:06','tarjeta',1),(2,500,'2024-11-25 23:09:04','tarjeta',4),(3,4000,'2024-11-25 23:17:35','tarjeta',4),(4,9.99,'2024-11-25 23:34:47','tarjeta',4),(5,19.99,'2024-11-25 23:35:19','tarjeta',4);
 /*!40000 ALTER TABLE `pago` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,6 +184,32 @@ LOCK TABLES `plantilla` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(80) NOT NULL,
+  `email` varchar(120) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `usuario`
 --
 
@@ -173,10 +222,11 @@ CREATE TABLE `usuario` (
   `email` varchar(120) NOT NULL,
   `rol` varchar(20) NOT NULL,
   `saldo` float NOT NULL DEFAULT '0',
+  `password` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
   KEY `ix_usuario_id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,6 +235,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Diego Morón','diego@example.com','cliente',0,'$pbkdf2-sha256$29000$...'),(2,'Maria López','maria@example.com','cliente',300,'$pbkdf2-sha256$29000$...'),(3,'Juan Pérez','juan@example.com','admin',700,'$pbkdf2-sha256$29000$...'),(4,'Diego lol','diego1@example.com','cliente',70.02,'password123');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,4 +277,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-25  3:28:25
+-- Dump completed on 2024-11-25 23:45:03
