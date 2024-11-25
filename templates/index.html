@@ -10,8 +10,8 @@
     <!-- Hero Section -->
     <section id="inicio" class="hero">
         <div class="hero-text">
-            <h2>Gestión Eléctrica Inteligente para el Futuro</h2>
-            <p>Optimizamos el uso de la energía en tu red eléctrica con soluciones avanzadas y personalizadas.</p>
+            <h2>impresiones - todo en uno</h2>
+            <p>"Optimizamos el rendimiento de tus impresoras con soluciones avanzadas y personalizadas para maximizar su eficiencia y prolongar su vida útil."</p>
             <a href="#servicios" class="button">Descubre más</a>
         </div>
     </section>
@@ -21,49 +21,112 @@
         <h2>Nuestros Servicios</h2>
         <div class="service-cards">
             <div class="service-card">
-                <img src="{{ url_for('static', filename='img/monitoreo.png') }}" alt="Monitoreo de Redes">
-                <h3>Monitoreo de Redes</h3>
-                <p>Control en tiempo real del consumo y el estado de las redes eléctricas.</p>
+                <img src="{{ url_for('static', filename='images/serv1.jpg') }}" alt="Diagnóstico de Impresoras">
+                <h3>Diagnóstico de Impresoras</h3>
+                <p>Identificamos y solucionamos problemas técnicos en tus equipos de impresión.</p>
             </div>
             <div class="service-card">
-                <img src="{{ url_for('static', filename='img/eficiencia.jpg') }}" alt="Optimización de Consumo">
-                <h3>Optimización de Consumo</h3>
-                <p>Implementamos estrategias que ayudan a reducir el consumo y mejorar la eficiencia.</p>
+                <img src="{{ url_for('static', filename='images/serv2.jpg') }}" alt="Mantenimiento Preventivo">
+                <h3>Mantenimiento Preventivo</h3>
+                <p>Prolonga la vida útil de tus impresoras con un mantenimiento regular y especializado.</p>
             </div>
             <div class="service-card">
-                <img src="{{ url_for('static', filename='img/opti.jpg') }}" alt="Mantenimiento Predictivo">
-                <h3>Mantenimiento Predictivo</h3>
-                <p>Prevenimos fallos anticipando las necesidades de mantenimiento de tus sistemas eléctricos.</p>
+                <img src="{{ url_for('static', filename='images/serv3.jpg') }}" alt="Optimización de Rendimiento">
+                <h3>Optimización de Rendimiento</h3>
+                <p>Mejoramos la eficiencia y velocidad de impresión de tus equipos.</p>
+            </div>
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/serv4.jpg') }}" alt="Recarga de Tóner y Cartuchos">
+                <h3>Recarga de Tóner y Cartuchos</h3>
+                <p>Ofrecemos recargas y reemplazos de calidad para tus impresoras.</p>
+            </div>
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='images/serv5.jpg') }}" alt="Venta de Impresoras y Accesorios">
+                <h3>Venta de Impresoras y Accesorios</h3>
+                <p>Encuentra impresoras de última generación y todos los accesorios que necesitas.</p>
             </div>
         </div>
     </section>
+    
+    
 
-    <!-- Misión y Visión -->
-    <section id="mision-vision" class="mision-vision">
-        <div class="mision">
+   <!-- Misión y Visión -->
+   <section id="mision-vision" class="mision-vision">
+    <div class="mision">
+        <div class="content-mision">
             <h2>Misión</h2>
-            <p>Proveer soluciones de gestión eléctrica que optimicen el consumo energético y garanticen la sostenibilidad de las redes a largo plazo.</p>
+            <p>
+                Proveer servicios de impresión de alta calidad, asegurando soluciones personalizadas y eficaces para
+                satisfacer las necesidades de nuestros clientes. Nos comprometemos a utilizar tecnologías innovadoras
+                que optimicen procesos, minimicen el impacto ambiental y ofrezcan un servicio rápido, confiable y asequible.
+            </p>
+            <p>
+                Nuestra misión es ser el aliado estratégico en impresión tanto para empresas como para particulares, 
+                brindando productos que combinan calidad excepcional y costos competitivos, desde tarjetas de presentación hasta impresiones industriales.
+            </p>
         </div>
-        <div class="vision">
+        <div class="mision-img">
+            <img src="{{ url_for('static', filename='images/nosotros1.jpg') }}" alt="Misión">
+        </div>
+    </div>
+    <div class="vision">
+        <div class="vision-img">
+            <img src="{{ url_for('static', filename='images/vision.jpeg') }}" alt="Visión">
+        </div>
+        <div class="content-vision">
             <h2>Visión</h2>
-            <p>Ser la empresa líder en soluciones eléctricas inteligentes, facilitando el uso eficiente de la energía en las industrias globales.</p>
+            <p>
+                Ser reconocidos como líderes en soluciones de impresión innovadoras, sostenibles y de alta calidad en el mercado global.
+                Aspiramos a transformar la manera en que las empresas y personas gestionan sus necesidades de impresión, 
+                ofreciendo un servicio único que combina tecnología de vanguardia y atención al cliente de excelencia.
+            </p>
+            <p>
+                Imaginamos un futuro donde nuestras soluciones sean sinónimo de eficiencia y creatividad, marcando un
+                estándar de excelencia en la industria. Queremos posicionarnos como una empresa verde, reduciendo el impacto
+                ambiental a través de procesos más sostenibles y productos reciclables.
+            </p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Testimonios -->
-    <section id="testimonios" class="testimonios">
-        <h2>Lo que Dicen Nuestros Clientes</h2>
-        <div class="testimonial-cards">
-            <div class="testimonial-card">
-                <p>"GestorElectric nos ha ayudado a reducir nuestro consumo eléctrico en un 20%, con un monitoreo eficiente y constante."</p>
-                <h4>- Juan Pérez, CEO de EnergíaGlobal</h4>
+
+
+   <!-- Testimonios -->
+   <section id="testimonios" class="testimonios">
+    <h2>Lo que Dicen Nuestros Clientes</h2>
+    <div class="testimonial-cards">
+        <div class="testimonial-card">
+            <div class="testimonial-image">
+                <img src="{{ url_for('static', filename='images/contactp.jpg') }}" alt="Carlos Rodríguez">
             </div>
-            <div class="testimonial-card">
-                <p>"Gracias a sus soluciones de mantenimiento predictivo, hemos evitado múltiples fallos costosos en nuestra red."</p>
-                <h4>- María González, Directora Técnica de RedElectrica</h4>
+            <div class="testimonial-content">
+                <p>"Gracias a ImpresionesExpress, logramos reducir el tiempo de entrega de nuestros documentos y la calidad siempre supera nuestras expectativas."</p>
+                <h4>- Carlos Rodríguez, Gerente de OficinaPro</h4>
             </div>
         </div>
-    </section>
+        <div class="testimonial-card">
+            <div class="testimonial-image">
+                <img src="{{ url_for('static', filename='images/serv7.jpg') }}" alt="Ana Martínez">
+            </div>
+            <div class="testimonial-content">
+                <p>"La rapidez y profesionalismo en la impresión de materiales promocionales nos permitió sobresalir en nuestro evento corporativo."</p>
+                <h4>- Ana Martínez, Directora de Eventos Creativos</h4>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testimonial-image">
+                <img src="{{ url_for('static', filename='images/serv8.jpg') }}" alt="Luis Gómez">
+            </div>
+            <div class="testimonial-content">
+                <p>"ImpresionesExpress no solo entrega calidad, sino también soluciones personalizadas que se adaptan perfectamente a nuestras necesidades."</p>
+                <h4>- Luis Gómez, Propietario de PrintWorld</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 
     
 {% endblock %}

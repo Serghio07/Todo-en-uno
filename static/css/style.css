@@ -62,15 +62,16 @@ header {
 }
 /* Sección de servicios */
 .servicios {
- 
   padding: 50px 20px;
   text-align: center;
+  overflow: hidden; /* Evitar que elementos animados desborden */
 }
 
 .servicios h1 {
   font-size: 2rem;
   color: #004080;
   margin-bottom: 20px;
+  animation: fadeInDown 1s ease-out; /* Animación de entrada del título */
 }
 
 .servicios-content {
@@ -81,17 +82,24 @@ header {
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
+  animation: fadeIn 1s ease-out forwards; /* Animación de entrada */
 }
 
 .img-servicios img {
   max-width: 100%;
   height: auto;
   border-radius: 10px;
+  opacity: 0;
+  transform: scale(0.9);
+  animation: fadeInUp 1s ease-out forwards;
 }
 
 .text-servicios {
   flex: 1;
   text-align: left;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: fadeInLeft 1s ease-out forwards;
 }
 
 .text-servicios p {
@@ -109,11 +117,12 @@ header {
   padding: 10px 20px;
   border-radius: 5px;
   font-weight: bold;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .text-servicios .ver-mas:hover {
   background-color: #003060;
+  transform: scale(1.05);
 }
 
 /* Ajuste de columnas */
@@ -132,6 +141,49 @@ header {
 
   .text-servicios {
     text-align: center;
+  }
+}
+
+/* Keyframes para animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 
