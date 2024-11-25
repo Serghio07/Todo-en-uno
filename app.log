@@ -877,3 +877,173 @@
 2024-11-25 16:39:29,036 - INFO - 127.0.0.1 - - [25/Nov/2024 16:39:29] "GET /static/js/register.js HTTP/1.1" 200 -
 2024-11-25 16:39:32,335 - INFO - Rol actual del usuario: Sin Registro
 2024-11-25 16:39:32,683 - INFO - 127.0.0.1 - - [25/Nov/2024 16:39:32] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-25 16:45:51,339 - WARNING -  * Debugger is active!
+2024-11-25 16:45:51,352 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 16:46:11,789 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-25 16:46:11,790 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-25 16:46:11,806 - INFO -  * Restarting with watchdog (windowsapi)
+2024-11-25 16:46:12,548 - WARNING -  * Debugger is active!
+2024-11-25 16:46:12,554 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 16:46:19,033 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,057 - INFO -  * Detected change in 'C:\\Program Files\\Python310\\Lib\\encodings\\unicode_escape.py', reloading
+2024-11-25 16:46:19,084 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "GET / HTTP/1.1" 200 -
+2024-11-25 16:46:19,122 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,144 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,150 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-25 16:46:19,151 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,173 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,183 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-25 16:46:19,184 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,187 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-25 16:46:19,199 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,200 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-25 16:46:19,212 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,213 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-25 16:46:19,277 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "GET /static/css/navbar.css HTTP/1.1" 200 -
+2024-11-25 16:46:19,310 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "GET /static/css/index.css HTTP/1.1" 200 -
+2024-11-25 16:46:19,328 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:19,330 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:19] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-25 16:46:20,216 - INFO -  * Restarting with watchdog (windowsapi)
+2024-11-25 16:46:20,989 - WARNING -  * Debugger is active!
+2024-11-25 16:46:20,995 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 16:46:27,378 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:27,386 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:27] "GET /user/software HTTP/1.1" 200 -
+2024-11-25 16:46:27,420 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:27,422 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 16:46:27,525 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:27] "GET /static/css/stylesAlmacen.css HTTP/1.1" 200 -
+2024-11-25 16:46:27,525 - INFO - 127.0.0.1 - - [25/Nov/2024 16:46:27] "GET /static/js/scriptAlmacen.js HTTP/1.1" 200 -
+2024-11-25 17:06:01,086 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:06:01,087 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:06:01,089 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:06:01,090 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:06:01,778 - INFO -  * Restarting with watchdog (windowsapi)
+2024-11-25 17:06:02,567 - WARNING -  * Debugger is active!
+2024-11-25 17:06:02,574 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 17:06:07,597 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:07,632 - INFO -  * Detected change in 'C:\\Users\\diego\\AppData\\Roaming\\Python\\Python310\\site-packages\\flask\\app.py', reloading
+2024-11-25 17:06:07,639 - INFO -  * Detected change in 'C:\\Users\\diego\\AppData\\Roaming\\Python\\Python310\\site-packages\\flask\\templating.py', reloading
+2024-11-25 17:06:07,649 - INFO -  * Detected change in 'C:\\Users\\diego\\AppData\\Roaming\\Python\\Python310\\site-packages\\jinja2\\environment.py', reloading
+2024-11-25 17:06:07,660 - INFO -  * Detected change in 'C:\\Users\\diego\\AppData\\Roaming\\Python\\Python310\\site-packages\\werkzeug\\routing\\map.py', reloading
+2024-11-25 17:06:07,681 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:07] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2024-11-25 17:06:07,899 - INFO -  * Restarting with watchdog (windowsapi)
+2024-11-25 17:06:08,588 - WARNING -  * Debugger is active!
+2024-11-25 17:06:08,595 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 17:06:08,696 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:08] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2024-11-25 17:06:08,752 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:08] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2024-11-25 17:06:28,919 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,937 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "GET / HTTP/1.1" 200 -
+2024-11-25 17:06:28,956 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,957 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,960 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-25 17:06:28,961 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,963 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,965 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[36mGET /static/css/navbar.css HTTP/1.1[0m" 304 -
+2024-11-25 17:06:28,966 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,968 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-25 17:06:28,969 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2024-11-25 17:06:28,970 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,973 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,973 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-25 17:06:28,976 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-25 17:06:28,977 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-25 17:06:28,985 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:28,987 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:28] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-25 17:06:31,327 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:31,331 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:31] "GET /user/catalogo HTTP/1.1" 200 -
+2024-11-25 17:06:31,365 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:31,366 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:31] "[33mGET /static/css/catalogo.css HTTP/1.1[0m" 404 -
+2024-11-25 17:06:32,951 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:32,953 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:32] "[33mGET /static/html/pago.html HTTP/1.1[0m" 404 -
+2024-11-25 17:06:38,526 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:06:38,529 - INFO - 127.0.0.1 - - [25/Nov/2024 17:06:38] "[33mGET /static/html/pago.html HTTP/1.1[0m" 404 -
+2024-11-25 17:07:07,233 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:07:07,236 - INFO - 127.0.0.1 - - [25/Nov/2024 17:07:07] "GET /user/catalogo HTTP/1.1" 200 -
+2024-11-25 17:07:07,259 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:07:07,261 - INFO - 127.0.0.1 - - [25/Nov/2024 17:07:07] "[33mGET /static/css/catalogo.css HTTP/1.1[0m" 404 -
+2024-11-25 17:07:08,517 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:07:08,518 - INFO - 127.0.0.1 - - [25/Nov/2024 17:07:08] "[33mGET /templates/Pagos/pago.html HTTP/1.1[0m" 404 -
+2024-11-25 17:07:10,666 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:07:10,668 - INFO - 127.0.0.1 - - [25/Nov/2024 17:07:10] "GET /user/catalogo HTTP/1.1" 200 -
+2024-11-25 17:07:10,695 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:07:10,696 - INFO - 127.0.0.1 - - [25/Nov/2024 17:07:10] "[33mGET /static/css/catalogo.css HTTP/1.1[0m" 404 -
+2024-11-25 17:08:32,686 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:08:32,687 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:08:32,687 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:08:33,164 - INFO -  * Restarting with watchdog (windowsapi)
+2024-11-25 17:08:33,886 - WARNING -  * Debugger is active!
+2024-11-25 17:08:33,891 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 17:09:00,596 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:09:00,601 - INFO - 127.0.0.1 - - [25/Nov/2024 17:09:00] "GET /user/catalogo HTTP/1.1" 200 -
+2024-11-25 17:09:00,636 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:09:00,637 - INFO - 127.0.0.1 - - [25/Nov/2024 17:09:00] "[33mGET /static/css/catalogo.css HTTP/1.1[0m" 404 -
+2024-11-25 17:09:06,310 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:09:06,312 - INFO - 127.0.0.1 - - [25/Nov/2024 17:09:06] "[33mGET /pagos/pago HTTP/1.1[0m" 404 -
+2024-11-25 17:09:09,413 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:09:09,414 - INFO - 127.0.0.1 - - [25/Nov/2024 17:09:09] "[33mGET /pagos/pago HTTP/1.1[0m" 404 -
+2024-11-25 17:09:20,173 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:09:20,175 - INFO - 127.0.0.1 - - [25/Nov/2024 17:09:20] "[33mGET /pagos/pago HTTP/1.1[0m" 404 -
+2024-11-25 17:09:44,923 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:09:44,924 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:09:44,924 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\user.py', reloading
+2024-11-25 17:09:45,397 - INFO -  * Restarting with watchdog (windowsapi)
+2024-11-25 17:09:46,283 - WARNING -  * Debugger is active!
+2024-11-25 17:09:46,289 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 17:10:04,183 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\app.py', reloading
+2024-11-25 17:10:04,184 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\app.py', reloading
+2024-11-25 17:10:04,185 - INFO -  * Detected change in 'C:\\Users\\diego\\OneDrive\\Documentos\\GitHub\\Todo-en-uno\\app.py', reloading
+2024-11-25 17:10:05,232 - INFO -  * Restarting with watchdog (windowsapi)
+2024-11-25 17:10:06,194 - WARNING -  * Debugger is active!
+2024-11-25 17:10:06,204 - INFO -  * Debugger PIN: 125-996-337
+2024-11-25 17:10:33,875 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:33,879 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:33] "GET /user/catalogo HTTP/1.1" 200 -
+2024-11-25 17:10:33,913 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:33,915 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:33] "[33mGET /static/css/catalogo.css HTTP/1.1[0m" 404 -
+2024-11-25 17:10:35,183 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:35,186 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:35] "GET /pagos/pago HTTP/1.1" 200 -
+2024-11-25 17:10:35,199 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:35,200 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:35,309 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:35] "GET /static/css/pago.css HTTP/1.1" 200 -
+2024-11-25 17:10:35,309 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:35] "GET /static/js/scripts.js HTTP/1.1" 200 -
+2024-11-25 17:10:46,860 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:46,861 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:46] "[33mGET /user HTTP/1.1[0m" 404 -
+2024-11-25 17:10:49,282 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,298 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "GET / HTTP/1.1" 200 -
+2024-11-25 17:10:49,321 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,322 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,322 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,323 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,324 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,325 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-25 17:10:49,326 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,327 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-25 17:10:49,327 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[36mGET /static/css/navbar.css HTTP/1.1[0m" 304 -
+2024-11-25 17:10:49,329 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-25 17:10:49,329 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2024-11-25 17:10:49,330 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-25 17:10:49,341 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,344 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-25 17:10:49,346 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:49,350 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:49] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-25 17:10:54,095 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:54,106 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:54] "GET /user/software HTTP/1.1" 200 -
+2024-11-25 17:10:54,140 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:54,141 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:54,143 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:54] "[36mGET /static/css/stylesAlmacen.css HTTP/1.1[0m" 304 -
+2024-11-25 17:10:54,143 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:54] "[36mGET /static/js/scriptAlmacen.js HTTP/1.1[0m" 304 -
+2024-11-25 17:10:57,525 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:57,526 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:57] "GET /user/catalogo HTTP/1.1" 200 -
+2024-11-25 17:10:57,566 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:10:57,567 - INFO - 127.0.0.1 - - [25/Nov/2024 17:10:57] "[33mGET /static/css/catalogo.css HTTP/1.1[0m" 404 -
+2024-11-25 17:11:00,292 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:11:00,294 - INFO - 127.0.0.1 - - [25/Nov/2024 17:11:00] "GET /pagos/pago HTTP/1.1" 200 -
+2024-11-25 17:11:00,309 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:11:00,311 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:11:00,314 - INFO - 127.0.0.1 - - [25/Nov/2024 17:11:00] "[36mGET /static/js/scripts.js HTTP/1.1[0m" 304 -
+2024-11-25 17:11:00,315 - INFO - 127.0.0.1 - - [25/Nov/2024 17:11:00] "[36mGET /static/css/pago.css HTTP/1.1[0m" 304 -
+2024-11-25 17:11:05,250 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:11:05,251 - INFO - 127.0.0.1 - - [25/Nov/2024 17:11:05] "GET /pagos/pago HTTP/1.1" 200 -
+2024-11-25 17:11:05,269 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:11:05,270 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 17:11:05,272 - INFO - 127.0.0.1 - - [25/Nov/2024 17:11:05] "[36mGET /static/css/pago.css HTTP/1.1[0m" 304 -
+2024-11-25 17:11:05,272 - INFO - 127.0.0.1 - - [25/Nov/2024 17:11:05] "[36mGET /static/js/scripts.js HTTP/1.1[0m" 304 -
