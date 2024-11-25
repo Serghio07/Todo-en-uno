@@ -16,7 +16,7 @@
             <img src="{{ url_for('static', filename='images/impresora.png') }}" alt="Logo" class="logo" width="70" height="70">
             <h1>Todo en uno</h1>
             <nav>
-                <ul class="nav-links">
+                <ul id="authLinks" class="nav-links">
                     <li><a href="{{ url_for('home') }}">Inicio</a></li>
                     <!-- Mostrar elementos según el rol del usuario -->
                     {% if session['role'] == 'Sin Registro' %}
@@ -78,4 +78,6 @@
 
     {% block extra_js %}{% endblock %}
 </body>
+<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+
 </html>
