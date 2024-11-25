@@ -3,29 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Impresión</title>
+    <title>Impresión de Documentos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/impresion.css') }}">
 </head>
 <body>
-    <h1>Formulario de Impresión</h1>
-    <form action="/formulario_impresion" method="POST">
-        <label for="fecha_programada">Fecha Programada:</label>
-        <input type="datetime-local" id="fecha_programada" name="fecha_programada" required><br><br>
-        
-        <label for="estado">Estado:</label>
-        <select id="estado" name="estado" required>
-            <option value="Pendiente">Pendiente</option>
-            <option value="Completado">Completado</option>
-            <option value="Cancelado">Cancelado</option>
-        </select><br><br>
-        
-        <label for="numero_copias">Número de Copias:</label>
-        <input type="number" id="numero_copias" name="numero_copias" required><br><br>
-        
-        <label for="documento_id">ID del Documento:</label>
-        <input type="number" id="documento_id" name="documento_id" required><br><br>
-        
-        <button type="submit">Guardar Impresión</button>
-    </form>
+    <div class="container">
+        <!-- Título principal -->
+        <h1>Impresión de Documentos</h1>
+
+        <!-- Sección Buscar Documento -->
+        <div class="buscar-documento">
+            <h2>Buscar Documento</h2>
+            <form action="/buscar_documento" method="GET">
+                <div class="form-group">
+                    <label for="documento_nombre">Nombre del Documento:</label>
+                    <input type="text" id="documento_nombre" name="documento_nombre" placeholder="Escribe el nombre del documento" required>
+                </div>
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <!-- Sección Formulario de Impresión -->
+        <h2>Formulario de Impresión</h2>
+        <form action="/formulario_impresion" method="POST">
+            <div class="form-group">
+                <label for="fecha_programada">Fecha Programada:</label>
+                <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
+            </div>
+
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado" required>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Completado">Completado</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="numero_copias">Número de Copias:</label>
+                <input type="number" id="numero_copias" name="numero_copias" required>
+            </div>
+
+            <button type="submit">Guardar Impresión</button>
+        </form>
+    </div>
 </body>
 </html>

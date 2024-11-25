@@ -1,8 +1,5 @@
-import logging
-from venv import logger
-from flask import Flask,request, jsonify, session, render_template, redirect, url_for
-from services.pagoS import process_payment
-from services.usuarioS import verify_user
+
+from flask import Flask, session, render_template, redirect, url_for
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from models import db
@@ -39,8 +36,10 @@ app.register_blueprint(almacen_bp, url_prefix='/almacen')
 def set_default_role():
     if 'role' not in session:
         session['role'] = 'Sin Registro'
-    # Registrar el rol actual en los logs
-    logger.info(f"Rol actual del usuario: {session.get('role')}")
+    
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def home():
@@ -58,15 +57,9 @@ def register():
 def pago():
     return render_template('Pagos/pago.html')  # Ruta relativa dentro de 'templates'
 
-@app.route('/process_payment', methods=['POST'])
-def process_payment_route():
-    data = request.json
-    return process_payment(data)
-
-@app.route('/verify_user', methods=['POST'])
-def verify_user_route():
-    data = request.json
-    return verify_user(data)
+@app.route('/impresion')
+def impresion():
+    return render_template('impresion/impresion.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

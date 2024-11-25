@@ -5,6 +5,7 @@ import datetime
 from sqlalchemy.orm import Session
 from models import Usuario  # Tu modelo de usuario
 from conexion import get_db  # Importa la función para conectar a la BD
+from functools import wraps
 
 # Crear el Blueprint
 auth_bp = Blueprint('auth_bp', __name__)
@@ -28,9 +29,12 @@ def login():
 
         # Buscar el usuario por email
         usuario = db_session.query(Usuario).filter_by(email=email).first()
+        
 
         if not usuario:
             return jsonify({"error": "Usuario no encontrado"}), 404
+        
+        print(f"Usuario encontrado: {usuario.nombre}, Rol: {usuario.rol}")  # Verifica si los valores están correctos
 
         # Verificar la contraseña usando hashing
         if not check_password_hash(usuario.hashed_password, password):
@@ -40,8 +44,11 @@ def login():
         token = jwt.encode({
             "user_id": usuario.id,
             "email": usuario.email,
-            "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=2)  # Token expira en 2 horas
+            "nombre": usuario.nombre,  # Agrega nombre al token
+            "rol": usuario.rol,        # Agrega rol al token
+            "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=2)  # Expira en 2 horas
         }, SECRET_KEY, algorithm="HS256")
+
 
         # Si todo está bien
         return jsonify({
@@ -107,6 +114,40 @@ def register():
 
     finally:
         db_session.close()
+
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.headers.get('Authorization')  # Buscar el token en los headers
+
+        if not token:
+            return jsonify({"error": "Acceso denegado, token faltante"}), 401
+
+        try:
+            token = token.split(" ")[1]  # Eliminar la palabra "Bearer" si está presente
+            decoded_token = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        except jwt.ExpiredSignatureError:
+            return jsonify({"error": "El token ha expirado"}), 401
+        except jwt.InvalidTokenError:
+            return jsonify({"error": "Token inválido"}), 401
+
+        return f(decoded_token, *args, **kwargs)
+    return decorated
+
+@auth_bp.route('/verify_token', methods=['GET'])
+@token_required
+def verify_token(decoded_token):
+    print("Token decodificado:", decoded_token)  # Para verificar qué valores incluye el token
+    return jsonify({
+        "message": "Token válido",
+        "user": {
+            "id": decoded_token.get("user_id"),
+            "email": decoded_token.get("email"),
+            "rol": decoded_token.get("rol"),       # Verificar que este valor no sea nulo
+            "nombre": decoded_token.get("nombre")  # Verificar que este valor no sea nulo
+        }
+    }), 200
+
 
 
 

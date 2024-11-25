@@ -1,0 +1,39 @@
+/* Estilos para el Footer */
+footer {
+    background-color: #004080; /* Color de fondo */
+    color: #ffffff; /* Texto en blanco */
+    text-align: center;
+    padding: 20px 10px;
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9rem;
+    border-top: 5px solid #1DB954; /* Línea superior decorativa */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Sombra superior */
+}
+
+footer p {
+    margin: 5px 0; /* Espaciado entre párrafos */
+}
+
+footer p:last-child {
+    font-size: 0.8rem;
+    color: #cccccc; /* Texto secundario */
+}
+
+footer a {
+    color: #1DB954; /* Enlaces en verde */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff; /* Cambia a blanco al pasar el mouse */
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    footer {
+        font-size: 0.8rem;
+        padding: 15px 5px;
+    }
+}
