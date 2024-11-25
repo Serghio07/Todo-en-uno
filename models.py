@@ -1,6 +1,16 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from conexion import Base
+from flask_sqlalchemy import SQLAlchemy
+class Usuario(Base):
+    __tablename__ = 'usuario'
+    
+    id = Column(Integer, primary_key=True, index=True)
+    nombre = Column(String(50), nullable=False)
+    email = Column(String(120), unique=True, nullable=False)
+    password = Column(String(255), nullable=False)  # Nuevo campo para la contraseña
+    rol = Column(String(20), nullable=False)
+
 
 class Usuarios(Base):
     __tablename__ = 'usuarios'
