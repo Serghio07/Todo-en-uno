@@ -16,13 +16,13 @@ function renderArchivos(archivos) {
     tableBody.innerHTML = ""; // Limpiar la tabla
 
     if (archivos.length === 0) {
-        tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No se encontraron archivos</td></tr>`;
+        tableBody.innerHTML = <tr><td colspan="7" class="text-center">No se encontraron archivos</td></tr>;
         return;
     }
 
     archivos.forEach(archivo => {
         const row = document.createElement("tr");
-        row.innerHTML = `
+        row.innerHTML = 
             <td>${archivo[0]}</td>
             <td>${archivo[1]}</td>
             <td>${archivo[2]}</td>
@@ -33,7 +33,7 @@ function renderArchivos(archivos) {
                 <button onclick="descargarArchivo('${archivo[1]}')" class="btn btn-info">Descargar</button>
                 <button onclick="eliminarArchivo(${archivo[0]})" class="btn btn-danger">Eliminar</button>
             </td>
-        `;
+        ;
         tableBody.appendChild(row);
     });
 }
@@ -59,7 +59,7 @@ document.querySelector(".form-upload").addEventListener("submit", (e) => {
 function eliminarArchivo(id) {
     if (!confirm("¿Estás seguro de eliminar este archivo?")) return;
 
-    fetch(`/api/archivo/${id}`, {
+    fetch(/api/archivo/${id}, {
         method: 'DELETE',
     })
         .then(response => response.json())
@@ -68,4 +68,29 @@ function eliminarArchivo(id) {
             fetchArchivos();
         })
         .catch(error => console.error('Error al eliminar archivo:', error));
+}
+
+// Función para buscar archivos
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".btn-search").addEventListener("click", buscarArchivo);
+});
+
+function buscarArchivo() {
+    console.log("Botón de búsqueda clickeado."); // Debug
+    const searchQuery = document.querySelector("#searchInput").value.trim();
+
+    if (!searchQuery) {
+        alert("Por favor, ingrese un término de búsqueda.");
+        return;
+    }
+
+    fetch(/buscar_archivo?nombre=${encodeURIComponent(searchQuery)})
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Archivo no encontrado.");
+            }
+            return response.json();
+        })
+        .then(data => renderArchivos([data]))
+        .catch(error => alert(error.message));
 }
