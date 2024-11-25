@@ -46,6 +46,10 @@ def login():
 def register():
     return render_template('Autenticacion/registro.html')
 
+@app.route('/pagos/pago')
+def pago():
+    return render_template('Pagos/pago.html')  # Ruta relativa dentro de 'templates'
+
 
 
 if __name__ == '__main__':

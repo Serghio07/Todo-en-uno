@@ -22,6 +22,10 @@ def soporte():
 def version_freemium():
     return render_template('VersionFreemium.html')
 
+@user_bp.route('/catalogo')
+def catalogo():
+    return render_template('Pagos/catalogoPlanes.html')
+
 
 @user_bp.route('/panel_control')
 def user_panel_control():
