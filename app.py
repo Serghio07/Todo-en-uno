@@ -19,16 +19,7 @@ db.init_app(app)
 
 
 
-# Configuración de logs
-logging.basicConfig(
-    level=logging.INFO,  # Nivel de logs
-    format='%(asctime)s - %(levelname)s - %(message)s',  # Formato
-    handlers=[
-        logging.FileHandler("app.log"),  # Archivo donde se guardan los logs
-        logging.StreamHandler()  # Mostrar logs en la consola
-    ]
-)
-logger = logging.getLogger(__name__)
+
 
 # Registrar Blueprints
 app.register_blueprint(auth_bp, url_prefix='/auth')
