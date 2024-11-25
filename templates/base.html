@@ -10,62 +10,20 @@
 </head>
 <body>
 
-    <!-- Navbar dinámico -->
+    <!-- Navbar dinámico cargado desde JS -->
     <header>
         <div class="navbar-container">
             <img src="{{ url_for('static', filename='images/impresora.png') }}" alt="Logo" class="logo" width="70" height="70">
             <h1>Todo en uno</h1>
             <nav>
                 <ul id="authLinks" class="nav-links">
-                    <li><a href="{{ url_for('home') }}">Inicio</a></li>
-                    <!-- Mostrar elementos según el rol del usuario -->
-                    {% if session['role'] == 'Sin Registro' %}
-                        <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>
-                        <li><a href="{{ url_for('user_bp.software') }}">Informacion</a></li>
-                        <li><a href="{{ url_for('user_bp.catalogo') }}">Subscripciones</a></li>
-                        
-
-                    {% elif session['role'] == 'user' %}
-                        <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Documentos</a></li>
-                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>
-                        <li><a href="{{ url_for('user_bp.software') }}">Informacion</a></li>
-
-                    {% elif session['role'] == 'PremiumUser' %}
-                        <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
-                        <li><a href="{{ url_for('user_bp.user_panel_control') }}">Documentos</a></li>
-                        <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>
-                        <li><a href="{{ url_for('user_bp.informes') }}">Historial</a></li>
-                        <li><a href="{{ url_for('user_bp.software') }}">Informacion</a></li>
-
-                    {% elif session['role'] == 'Admin' %}
-                        <li><a href="{{ url_for('admin_bp.gestion_inventarios') }}">Gestión Inventarios</a></li>
-                        <li><a href="{{ url_for('admin_bp.panel_control') }}">Gestión Redes Clientes</a></li>
-                        <li><a href="{{ url_for('admin_bp.gestion_software') }}">Gestión Software</a></li>
-                        <li><a href="{{ url_for('admin_bp.informe_seguridad') }}">Informe de Seguridad</a></li>
-                        <li><a href="{{ url_for('admin_bp.modulo_contable') }}">Módulo Contable</a></li>
-                    {% endif %}
-
-                    <!-- Mostrar Cerrar Sesión si el usuario está autenticado -->
-                    {% if 'role' in session and session['role'] != 'Sin Registro' %}
-                        <li class="dropdown">
-                            <a href="#" class="dropbtn">{{ session['name'] }} <span class="caret">▼</span></a>
-                            <div class="dropdown-content">
-                                <a href="{{ url_for('user_bp.InfoUsuario') }}">Info Usuario</a>
-                                <a href="{{ url_for('user_bp.canjear') }}">Canjear Código</a>
-                                <a href="{{ url_for('auth_bp.logout') }}">Cerrar Sesión</a>
-                            </div>
-                        </li>
-                    {% else %}
-                            <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
-                    {% endif %}
+                    <!-- El contenido del navbar será manejado por navbar.js -->
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Contenido de la página -->
+    <!-- Contenido dinámico de la página -->
     <div class="content">
         {% block content %}{% endblock %}
     </div>
@@ -73,11 +31,9 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Todo en uno. Todos los derechos reservados.</p>
-        <p>&copy; 2024 Todo en uno. Todos los derechos reservados.</p>
     </footer>
 
     {% block extra_js %}{% endblock %}
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 </body>
-<script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
-
 </html>
