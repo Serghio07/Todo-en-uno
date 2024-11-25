@@ -1062,3 +1062,7 @@
 2024-11-25 17:18:24,189 - INFO -  * Restarting with stat
 2024-11-25 17:18:26,156 - WARNING -  * Debugger is active!
 2024-11-25 17:18:26,171 - INFO -  * Debugger PIN: 140-725-854
+2024-11-25 17:19:33,369 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\app.py', reloading
+2024-11-25 17:19:33,539 - INFO -  * Restarting with stat
+2024-11-25 17:19:35,710 - WARNING -  * Debugger is active!
+2024-11-25 17:19:35,732 - INFO -  * Debugger PIN: 140-725-854
