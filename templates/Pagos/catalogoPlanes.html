@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Planes</title>
-    <link rel="stylesheet" href="/static/css/catalogo.css">
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -119,23 +119,25 @@
     <script>
         function seleccionarPlan(plan, precio) {
             if (precio > 0) {
-                abrirModalPago();
+                abrirModalPago(precio);
             } else {
                 alert(`Has seleccionado el Plan ${plan}. ¡Disfruta tu almacenamiento gratuito!`);
             }
         }
 
-        function abrirModalPago() {
+        function abrirModalPago(precio) {
             const modal = document.getElementById('paymentModal');
             const overlay = document.getElementById('modalOverlay');
             const iframe = modal.querySelector('iframe');
 
-            iframe.src = "/pagos/pago"; // Nueva ruta para Flask
+            iframe.src = `/pagos/pago?monto=${precio}`; // Pasar el precio
             modal.style.display = 'block';
             overlay.style.display = 'block';
 
             overlay.onclick = cerrarModalPago;
         }
+
+
 
         function cerrarModalPago() {
             const modal = document.getElementById('paymentModal');

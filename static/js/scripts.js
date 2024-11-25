@@ -1,7 +1,9 @@
+// Abrir modal de autenticación
 document.getElementById("payButton").addEventListener("click", () => {
     document.getElementById("authModal").style.display = "block";
 });
 
+// Manejo del formulario de autenticación
 document.getElementById("authForm").addEventListener("submit", async (e) => {
     e.preventDefault();
     const email = document.getElementById("email").value;
@@ -19,11 +21,25 @@ document.getElementById("authForm").addEventListener("submit", async (e) => {
         }
 
         const data = await response.json();
+        console.log("Respuesta del servidor:", data); // Debugging
+
         if (data.valid) {
-            document.getElementById("amount").textContent = data.saldo;
             document.getElementById("authModal").style.display = "none";
             document.getElementById("confirmModal").style.display = "block";
-            window.localStorage.setItem("userId", data.user_id); // Almacena el ID del usuario
+
+            // Obtener el monto del pago desde la URL
+            const paymentAmount = parseFloat(new URLSearchParams(window.location.search).get('monto'));
+
+            // Mostrar el monto correcto en el modal de confirmación
+            if (!isNaN(paymentAmount)) {
+                document.getElementById("amount").textContent = `$${paymentAmount}`;
+            } else {
+                alert("No se encontró un monto válido para procesar.");
+                document.getElementById("confirmModal").style.display = "none";
+            }
+
+            // Guardar el ID del usuario en localStorage
+            window.localStorage.setItem("userId", data.user_id);
         } else {
             alert(data.error || "Credenciales inválidas");
         }
@@ -33,23 +49,24 @@ document.getElementById("authForm").addEventListener("submit", async (e) => {
     }
 });
 
+// Confirmar y procesar el pago
 document.getElementById("confirmPayment").addEventListener("click", async () => {
     const userId = localStorage.getItem("userId");
-    const amount = parseFloat(document.getElementById("amount").textContent);
-    const metodo = "tarjeta"; // Define el método de pago (puede ser dinámico)
+    const paymentAmount = parseFloat(new URLSearchParams(window.location.search).get('monto'));
+    const metodo = "tarjeta";
 
-    if (!userId || isNaN(amount)) {
+    if (!userId || isNaN(paymentAmount)) {
         alert("Error: Usuario no autenticado o monto inválido");
         return;
     }
 
     try {
-        console.log("Enviando datos a /process_payment:", { user_id: userId, amount, metodo });
+        console.log("Enviando datos a /process_payment:", { user_id: userId, amount: paymentAmount, metodo });
 
         const response = await fetch("/process_payment", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ user_id: userId, amount, metodo })
+            body: JSON.stringify({ user_id: userId, amount: paymentAmount, metodo }),
         });
 
         if (!response.ok) {
@@ -58,6 +75,7 @@ document.getElementById("confirmPayment").addEventListener("click", async () => 
 
         const data = await response.json();
         if (data.success) {
+            alert("Pago realizado con éxito.");
             window.location.href = "/result/success";
         } else {
             alert(data.error || "Error en el pago");

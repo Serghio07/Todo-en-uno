@@ -1,10 +1,9 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from models import db
 
 class Pago(db.Model):
     __tablename__ = 'pago'
-    id = db.Column(db.Integer, primary_key=True)
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     monto = db.Column(db.Float, nullable=False)
     fecha_pago = db.Column(db.DateTime, default=db.func.current_timestamp())
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
