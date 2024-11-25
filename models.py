@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
 from conexion import Base
-
+from flask_sqlalchemy import SQLAlchemy
 class Usuario(Base):
     __tablename__ = 'usuario'
     

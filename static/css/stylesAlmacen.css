@@ -55,6 +55,11 @@ h1, h3 {
 .btn-search:hover {
     background-color: #2F4156;
 }
+.btn-search {
+    cursor: pointer;
+    pointer-events: auto;
+}
+
 
 /* Formulario de carga de archivos */
 .form-upload {

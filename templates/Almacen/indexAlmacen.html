@@ -5,66 +5,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ALMACENAMIENTO DE ARCHIVOS</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesAlmacen.css') }}">
-
 </head>
 <body>
     <div class="container">
         <h1 class="mt-5">ALMACENAMIENTO DE ARCHIVOS</h1>
 
         <!-- Mensajes flash (éxito, error) -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-{% if messages %}
-    <div class="flash-message {% for category, message in messages %}{{ category }}{% endfor %}">
-        <div class="icon">
-            <i class="fas fa-envelope"></i>  <!-- Ícono de sobre -->
-        </div>
-        <div class="message-text">
-            {% for category, message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-        </div>
-    </div>
-{% endif %}
-{% endwith %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-message {% for category, message in messages %}{{ category }}{% endfor %}">
+                <div class="icon">
+                    <i class="fas fa-envelope"></i>  <!-- Ícono de sobre -->
+                </div>
+                <div class="message-text">
+                    {% for category, message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+        {% endwith %}
 
-         <!-- Formulario de búsqueda -->
-            <form method="GET" action="{{ url_for('almacen.get_archivos') }}" class="form-search">
-                <input type="text" name="search" placeholder="Buscar archivo" value="{{ search_query }}" class="input-search">
-                <button type="submit" class="btn-search">Buscar</button>
-            </form>
+        <!-- Formulario de búsqueda -->
+        <div class="form-search">
+            <input type="text" id="searchInput" class="input-search" placeholder="Buscar archivo">
+            <button class="btn-search">Buscar</button>
+        </div>
 
-            <!-- Formulario de carga de archivos -->
-            <form action="{{ url_for('almacen.upload_archivo') }}" method="POST" enctype="multipart/form-data" class="form-upload">
-                <label for="file">Selecciona un archivo:</label>
-                <input type="file" name="file" id="file" required class="input-file">
-                <button type="submit" class="btn-upload">Subir archivo</button>
-            </form>
+        <!-- Formulario de carga de archivos -->
+        <form action="{{ url_for('almacen.upload_archivo') }}" method="POST" enctype="multipart/form-data">
+            <label for="file">Seleccionar archivo:</label>
+            <input type="file" name="file" id="file" required>
+            <button type="submit">Subir archivo</button>
+        </form>
 
         <!-- Tabla de archivos -->
-<tbody>
-    {% for archivo in archivos %}
-        <tr>
-            <td>{{ archivo[0] }}</td>  <!-- ID -->
-            <td>{{ archivo[1] }}</td>  <!-- Nombre -->
-            <td>{{ archivo[2] }}</td>  <!-- Tipo -->
-            <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
-            <td>{{ url_for('static', filename='uploads/' + archivo[4]) }}</td>  <!-- Ruta completa -->
-            <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
-            <td>
-                <!-- Enlace para descargar el archivo -->
-                <a href="{{ url_for('almacen.download_file', filename=archivo[1]) }}" class="btn btn-info">Descargar</a>
-                <!-- Formulario para eliminar archivo -->
-                <form action="{{ url_for('almacen.delete_archivo', id=archivo[0]) }}" method="POST" style="display:inline;">
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este archivo?')">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-    {% else %}
-        <tr>
-            <td colspan="7" class="text-center">No se encontraron archivos</td>
-        </tr>
-    {% endfor %}
-</tbody>
+        <h2 class="mt-4">Archivos Subidos</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Tamaño</th>
+                    <th>Ruta</th>
+                    <th>Fecha de Subida</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for archivo in archivos %}
+                    <tr>
+                        <td>{{ archivo[0] }}</td>  <!-- ID -->
+                        <td>{{ archivo[1] }}</td>  <!-- Nombre -->
+                        <td>{{ archivo[2] }}</td>  <!-- Tipo -->
+                        <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
+                        <td><a href="{{ url_for('static', filename='uploads/' + archivo[4]) }}" target="_blank">Ver archivo</a></td>  <!-- Ruta completa -->
+                        <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
+                        <td>
+                            <!-- Enlace para descargar el archivo -->
+                            <a href="{{ url_for('almacen.download_file', filename=archivo[1]) }}" class="btn btn-info">Descargar</a>
+                            <!-- Formulario para eliminar archivo -->
+                            <form action="{{ url_for('almacen.delete_archivo', id=archivo[0]) }}" method="post">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center">No se encontraron archivos</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
     <script src="{{ url_for('static', filename='js/scriptAlmacen.js') }}"></script>
