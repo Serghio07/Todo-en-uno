@@ -23,8 +23,10 @@
                         <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>
                         <li><a href="{{ url_for('user_bp.software') }}">Informacion</a></li>
+                        <li><a href="{{ url_for('user_bp.catalogo') }}">Subscripciones</a></li>
+                        
 
-                    {% elif session['role'] == 'FreeUser' %}
+                    {% elif session['role'] == 'user' %}
                         <li><a href="{{ url_for('user_bp.soporte') }}">Soporte Técnico</a></li>
                         <li><a href="{{ url_for('user_bp.user_panel_control') }}">Documentos</a></li>
                         <li><a href="{{ url_for('user_bp.version_freemium') }}">Impresion</a></li>

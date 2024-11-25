@@ -20,7 +20,11 @@ def soporte():
 
 @user_bp.route('/version_freemium')
 def version_freemium():
-    return render_template('VersionFreemium.html')
+    return render_template('impresion/impresion.html')
+
+@user_bp.route('/catalogo')
+def catalogo():
+    return render_template('Pagos/catalogoPlanes.html')
 
 
 @user_bp.route('/panel_control')

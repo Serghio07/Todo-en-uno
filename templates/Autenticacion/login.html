@@ -60,8 +60,9 @@
 
                     // Redirigir a otra página (por ejemplo, dashboard.html)
                     setTimeout(() => {
-                        window.location.href = '/contact';
+                         window.location.href = '/';
                     }, 2000);
+
                 } else {
                     // Mostrar el mensaje de error del servidor
                     messageElement.textContent = data.error || "Error al iniciar sesión.";

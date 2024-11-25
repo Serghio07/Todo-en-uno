@@ -15,17 +15,17 @@ SECRET_KEY = "tu_clave_secreta_segura"
 # Ruta de inicio de sesión
 @auth_bp.route('/login', methods=['POST'])
 def login():
-    # Obtener los datos enviados en el formulario o JSON
-    email = request.json.get('email') if request.is_json else request.form.get('email')
-    password = request.json.get('password') if request.is_json else request.form.get('password')
-
-    if not email or not password:
-        return jsonify({"error": "Email y contraseña son requeridos"}), 400
-
-    # Conectar a la base de datos
-    db_session = next(get_db())
-
     try:
+        # Obtener los datos enviados en el formulario o JSON
+        email = request.json.get('email') if request.is_json else request.form.get('email')
+        password = request.json.get('password') if request.is_json else request.form.get('password')
+
+        if not email or not password:
+            return jsonify({"error": "Email y contraseña son requeridos"}), 400
+
+        # Conectar a la base de datos
+        db_session = next(get_db())
+
         # Buscar el usuario por email
         usuario = db_session.query(Usuario).filter_by(email=email).first()
 
@@ -33,7 +33,7 @@ def login():
             return jsonify({"error": "Usuario no encontrado"}), 404
 
         # Verificar la contraseña usando hashing
-        if not check_password_hash(usuario.password, password):
+        if not check_password_hash(usuario.hashed_password, password):
             return jsonify({"error": "Contraseña incorrecta"}), 401
 
         # Generar el token JWT
@@ -56,10 +56,12 @@ def login():
         }), 200
 
     except Exception as e:
-        return jsonify({"error": f"Error del servidor: {str(e)}"}), 500
+        print(f"Error en /login: {e}")
+        return jsonify({"error": "Error interno del servidor"}), 500
 
     finally:
-        db_session.close()
+        if 'db_session' in locals():
+            db_session.close()
 
 # Ruta de registro
 @auth_bp.route('/registro', methods=['POST'])
@@ -68,13 +70,14 @@ def register():
         print("Datos recibidos en /registro:", request.json)
         data = request.json
         email = data.get('email')
-        password = data.get('password')  # Contraseña enviada desde el frontend
+        password = data.get('password')
         nombre = data.get('nombre')
-        rol = data.get('rol', 'user')
+        rol = data.get('rol', 'user')  # Rol predeterminado
 
         if not email or not password or not nombre:
             return jsonify({"error": "Email, contraseña y nombre son requeridos"}), 400
 
+        # Conexión a la base de datos
         db_session = next(get_db())
 
         # Verificar si el usuario ya existe
@@ -82,9 +85,9 @@ def register():
         if usuario_existente:
             return jsonify({"error": "El usuario ya existe"}), 409
 
-        # Hashear la contraseña y asignarla al campo correcto
+        # Hashear contraseña y crear usuario
         hashed_password = generate_password_hash(password)
-        nuevo_usuario = Usuario(email=email, hashed_password=hashed_password, nombre=nombre, rol=rol)  # Ajuste aquí
+        nuevo_usuario = Usuario(email=email, hashed_password=hashed_password, nombre=nombre, rol=rol)
         db_session.add(nuevo_usuario)
         db_session.commit()
 
@@ -99,11 +102,12 @@ def register():
         }), 201
 
     except Exception as e:
-        print(f"Error en /registro: {e}")
+        print(f"Error en /registro: {e}")  # Agrega más detalles del error
         return jsonify({"error": f"Error del servidor: {str(e)}"}), 500
 
     finally:
         db_session.close()
+
 
 
 

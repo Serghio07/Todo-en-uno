@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Planes</title>
+    <link rel="stylesheet" href="/static/css/catalogo.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .plans {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+        .plan {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+        }
+        .plan h2 {
+            color: #007BFF;
+        }
+        .plan p {
+            color: #555;
+            margin: 10px 0;
+        }
+        .plan button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .plan button:hover {
+            background-color: #0056b3;
+        }
+        /* Modal */
+        #paymentModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            width: 80%;
+            height: 80%;
+        }
+        #paymentModal iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        #modalOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Catálogo de Planes</h1>
+        <div class="plans">
+            <!-- Plan Básico -->
+            <div class="plan">
+                <h2>Plan Básico</h2>
+                <p>Gratis</p>
+                <p>Almacenamiento para 10 documentos</p>
+                <button onclick="seleccionarPlan('básico', 0)">Seleccionar</button>
+            </div>
+            <!-- Plan Estándar -->
+            <div class="plan">
+                <h2>Plan Estándar</h2>
+                <p>$9.99/mes</p>
+                <p>Almacenamiento para 100 documentos</p>
+                <button onclick="seleccionarPlan('estándar', 9.99)">Seleccionar</button>
+            </div>
+            <!-- Plan Premium -->
+            <div class="plan">
+                <h2>Plan Premium</h2>
+                <p>$19.99/mes</p>
+                <p>Almacenamiento para 500 documentos</p>
+                <button onclick="seleccionarPlan('premium', 19.99)">Seleccionar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Pago -->
+    <div id="modalOverlay"></div>
+    <div id="paymentModal">
+        <iframe src=""></iframe>
+    </div>
+
+    <script>
+        function seleccionarPlan(plan, precio) {
+            if (precio > 0) {
+                abrirModalPago();
+            } else {
+                alert(`Has seleccionado el Plan ${plan}. ¡Disfruta tu almacenamiento gratuito!`);
+            }
+        }
+
+        function abrirModalPago() {
+            const modal = document.getElementById('paymentModal');
+            const overlay = document.getElementById('modalOverlay');
+            const iframe = modal.querySelector('iframe');
+
+            iframe.src = "/pagos/pago"; // Nueva ruta para Flask
+            modal.style.display = 'block';
+            overlay.style.display = 'block';
+
+            overlay.onclick = cerrarModalPago;
+        }
+
+        function cerrarModalPago() {
+            const modal = document.getElementById('paymentModal');
+            const overlay = document.getElementById('modalOverlay');
+            const iframe = modal.querySelector('iframe');
+
+            iframe.src = '';
+            modal.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #eaeef3;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Título principal */
+h1 {
+    color: #007BFF; /* Azul */
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+/* Títulos de secciones */
+.buscar-documento h2,
+form h2 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Estilos para Buscar Documento */
+.buscar-documento .form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #007BFF; /* Azul */
+    outline: none;
+}
+
+/* Estilo de los botones */
+button {
+    width: 100%;
+    background-color: #007BFF; /* Azul */
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #0056b3; /* Azul más oscuro */
+    transform: scale(1.03);
+}
+
+/* Espaciado entre secciones */
+.buscar-documento,
+form {
+    margin-top: 20px;
+}
+
+/* Estilo para los campos del formulario */
+.form-group {
+    margin-bottom: 20px;
+}

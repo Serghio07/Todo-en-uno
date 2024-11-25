@@ -1,5 +1,7 @@
-import logging
+
 from flask import Flask, session, render_template, redirect, url_for
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
 from models.pagos import db
 from auth import auth_bp
 from admin import admin_bp
@@ -15,16 +17,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@local
 app.secret_key = 'tu_secreto'
 db.init_app(app)
 
-# Configuración de logs
-logging.basicConfig(
-    level=logging.INFO,  # Nivel de logs
-    format='%(asctime)s - %(levelname)s - %(message)s',  # Formato
-    handlers=[
-        logging.FileHandler("app.log"),  # Archivo donde se guardan los logs
-        logging.StreamHandler()  # Mostrar logs en la consola
-    ]
-)
-logger = logging.getLogger(__name__)
+
+
+
 
 # Registrar Blueprints
 app.register_blueprint(auth_bp, url_prefix='/auth')
@@ -36,8 +31,10 @@ app.register_blueprint(almacen_bp, url_prefix='/almacen')
 def set_default_role():
     if 'role' not in session:
         session['role'] = 'Sin Registro'
-    # Registrar el rol actual en los logs
-    logger.info(f"Rol actual del usuario: {session.get('role')}")
+    
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
 @app.route('/')
 def home():
@@ -51,7 +48,13 @@ def login():
 def register():
     return render_template('Autenticacion/registro.html')
 
+@app.route('/pagos/pago')
+def pago():
+    return render_template('Pagos/pago.html')  # Ruta relativa dentro de 'templates'
 
+@app.route('/impresion')
+def impresion():
+    return render_template('impresion/impresion.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
