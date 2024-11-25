@@ -56,4 +56,20 @@ Luego de instalar docker asegurarse de que pulleaste los ultimos datos del githu
     docker exec my_mysql_db mysqldump -u myuser -pmypassword mydatabase > backup.sql
 
 
+3. Conectarte y borrar BD
+
+verifica BD
+docker ps
+
+docker exec -it mysql_server bash
+
+mysql -u root -p
+
+SELECT user, host, plugin FROM mysql.user;
+
+DROP DATABASE mydatabase;
+
+CREATE DATABASE mydatabase;
+
+SHOW DATABASES;
 

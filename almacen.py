@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template,session
 import os
 import mysql.connector
 from werkzeug.utils import secure_filename
@@ -55,18 +55,30 @@ def upload_archivo():
     filepath = os.path.join(UPLOADS_PATH, filename)  # Ruta completa del archivo
     file.save(filepath)
 
-    # Insertar información del archivo en la base de datos
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO archivos (nombre, tipo, tamano, ruta) VALUES (%s, %s, %s, %s)",
-        (filename, file.mimetype, os.path.getsize(filepath), os.path.join('uploads', filename))
-    )
-    conn.commit()
-    conn.close()
+    # Obtener usuario_id de la sesión
+    usuario_id = session.get('user_id')  # Asegúrate de que user_id esté en la sesión
 
-    flash('Archivo subido exitosamente', 'success')
-    return redirect(url_for('almacen.index_almacen'))
+    if not usuario_id:
+        flash('Usuario no autenticado. No se puede subir el archivo.', 'error')
+        return redirect(url_for('almacen.index_almacen'))
+
+    # Insertar información del archivo en la base de datos
+    try:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute(
+            "INSERT INTO archivos (nombre, tipo, tamano, ruta, usuario_id) VALUES (%s, %s, %s, %s, %s)",
+            (filename, file.mimetype, os.path.getsize(filepath), os.path.join('uploads', filename), usuario_id)
+        )
+        conn.commit()
+        conn.close()
+
+        flash('Archivo subido exitosamente', 'success')
+        return redirect(url_for('almacen.index_almacen'))
+    except Exception as e:
+        flash(f'Error al subir el archivo: {e}', 'error')
+        return redirect(url_for('almacen.index_almacen'))
+
 
 # Ruta para mostrar la página principal con los archivos
 # Esta ruta debe estar solo en almacen.py
