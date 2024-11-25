@@ -27,7 +27,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Registrar Blueprints
-app.register_blueprint(auth_bp)
+app.register_blueprint(auth_bp, url_prefix='/auth')
 app.register_blueprint(admin_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(almacen_bp, url_prefix='/almacen')
@@ -49,7 +49,7 @@ def login():
 
 @app.route('/register')
 def register():
-    return render_template('Autenticacion/register.html')
+    return render_template('Autenticacion/registro.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

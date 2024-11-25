@@ -357,3 +357,277 @@
 2024-11-24 23:21:29,759 - INFO - 127.0.0.1 - - [24/Nov/2024 23:21:29] "GET /static/css/stylesAlmacen.css HTTP/1.1" 200 -
 2024-11-24 23:21:29,768 - INFO - Rol actual del usuario: Sin Registro
 2024-11-24 23:21:29,769 - INFO - 127.0.0.1 - - [24/Nov/2024 23:21:29] "[33mGET /api/archivos HTTP/1.1[0m" 404 -
+2024-11-24 23:22:08,560 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:22:08,578 - INFO - 127.0.0.1 - - [24/Nov/2024 23:22:08] "GET / HTTP/1.1" 200 -
+2024-11-24 23:22:09,961 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:22:09,963 - INFO - 127.0.0.1 - - [24/Nov/2024 23:22:09] "GET /user/software HTTP/1.1" 200 -
+2024-11-24 23:22:10,005 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:22:10,008 - INFO - 127.0.0.1 - - [24/Nov/2024 23:22:10] "[36mGET /static/css/stylesAlmacen.css HTTP/1.1[0m" 304 -
+2024-11-24 23:22:10,012 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:22:10,016 - INFO - 127.0.0.1 - - [24/Nov/2024 23:22:10] "[36mGET /static/js/scriptAlmacen.js HTTP/1.1[0m" 304 -
+2024-11-24 23:22:10,039 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:22:10,041 - INFO - 127.0.0.1 - - [24/Nov/2024 23:22:10] "[33mGET /api/archivos HTTP/1.1[0m" 404 -
+2024-11-24 23:25:44,503 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:25:46,586 - INFO - 127.0.0.1 - - [24/Nov/2024 23:25:46] "[35m[1mGET /almacen/archivos?search=asd HTTP/1.1[0m" 500 -
+2024-11-24 23:25:46,723 - INFO - 127.0.0.1 - - [24/Nov/2024 23:25:46] "GET /almacen/archivos?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2024-11-24 23:25:46,725 - INFO - 127.0.0.1 - - [24/Nov/2024 23:25:46] "GET /almacen/archivos?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2024-11-24 23:25:46,749 - INFO - 127.0.0.1 - - [24/Nov/2024 23:25:46] "GET /almacen/archivos?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2024-11-24 23:25:46,808 - INFO - 127.0.0.1 - - [24/Nov/2024 23:25:46] "[36mGET /almacen/archivos?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 23:26:24,396 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:24,398 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:24] "GET /user/software HTTP/1.1" 200 -
+2024-11-24 23:26:24,429 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:24,431 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:24,433 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:24] "[36mGET /static/css/stylesAlmacen.css HTTP/1.1[0m" 304 -
+2024-11-24 23:26:24,434 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:24] "[36mGET /static/js/scriptAlmacen.js HTTP/1.1[0m" 304 -
+2024-11-24 23:26:24,461 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:24,463 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:24] "[33mGET /api/archivos HTTP/1.1[0m" 404 -
+2024-11-24 23:26:30,260 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,262 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "GET / HTTP/1.1" 200 -
+2024-11-24 23:26:30,296 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,299 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "[36mGET /static/css/navbar.css HTTP/1.1[0m" 304 -
+2024-11-24 23:26:30,300 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,302 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,303 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,305 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,307 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-24 23:26:30,310 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-24 23:26:30,312 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-24 23:26:30,313 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2024-11-24 23:26:30,332 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,336 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-24 23:26:30,337 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:30,339 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:30] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-24 23:26:31,711 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:31,797 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:31] "GET /login HTTP/1.1" 200 -
+2024-11-24 23:26:31,828 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:26:31,853 - INFO - 127.0.0.1 - - [24/Nov/2024 23:26:31] "GET /static/css/stylesLogin.css HTTP/1.1" 200 -
+2024-11-24 23:29:51,369 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:29:51,371 - INFO - 127.0.0.1 - - [24/Nov/2024 23:29:51] "GET /login HTTP/1.1" 200 -
+2024-11-24 23:29:51,419 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:29:51,421 - INFO - 127.0.0.1 - - [24/Nov/2024 23:29:51] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:29:53,230 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:29:53,241 - INFO - 127.0.0.1 - - [24/Nov/2024 23:29:53] "[35m[1mGET /register HTTP/1.1[0m" 500 -
+2024-11-24 23:29:53,364 - INFO - 127.0.0.1 - - [24/Nov/2024 23:29:53] "GET /register?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2024-11-24 23:29:53,364 - INFO - 127.0.0.1 - - [24/Nov/2024 23:29:53] "GET /register?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2024-11-24 23:29:53,376 - INFO - 127.0.0.1 - - [24/Nov/2024 23:29:53] "GET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2024-11-24 23:29:53,405 - INFO - 127.0.0.1 - - [24/Nov/2024 23:29:53] "[36mGET /register?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+2024-11-24 23:30:30,427 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\app.py', reloading
+2024-11-24 23:30:30,518 - INFO -  * Restarting with stat
+2024-11-24 23:30:31,957 - WARNING -  * Debugger is active!
+2024-11-24 23:30:31,971 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:30:32,003 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:30:32,009 - INFO - 127.0.0.1 - - [24/Nov/2024 23:30:32] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:30:32,034 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:30:32,142 - INFO - 127.0.0.1 - - [24/Nov/2024 23:30:32] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:30:57,343 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:30:57,344 - INFO - 127.0.0.1 - - [24/Nov/2024 23:30:57] "[33mPOST /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:36:57,431 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\auth.py', reloading
+2024-11-24 23:36:57,573 - INFO -  * Restarting with stat
+2024-11-24 23:36:58,704 - WARNING -  * Debugger is active!
+2024-11-24 23:36:58,715 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:37:09,912 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:37:09,914 - INFO - 127.0.0.1 - - [24/Nov/2024 23:37:09] "[33mPOST /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:37:11,791 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:37:11,797 - INFO - 127.0.0.1 - - [24/Nov/2024 23:37:11] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:37:11,812 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:37:11,889 - INFO - 127.0.0.1 - - [24/Nov/2024 23:37:11] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:37:16,630 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:37:16,631 - INFO - 127.0.0.1 - - [24/Nov/2024 23:37:16] "[33mPOST /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:39:55,798 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\Testing\\test.py', reloading
+2024-11-24 23:39:55,889 - INFO -  * Restarting with stat
+2024-11-24 23:39:56,980 - WARNING -  * Debugger is active!
+2024-11-24 23:39:56,991 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:40:55,491 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-24 23:40:55,492 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-24 23:40:55,496 - INFO -  * Restarting with stat
+2024-11-24 23:40:56,774 - WARNING -  * Debugger is active!
+2024-11-24 23:40:56,792 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:40:56,832 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:40:56,841 - INFO - 127.0.0.1 - - [24/Nov/2024 23:40:56] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:40:56,979 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:40:57,065 - INFO - 127.0.0.1 - - [24/Nov/2024 23:40:57] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:41:00,799 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:41:00,801 - INFO - 127.0.0.1 - - [24/Nov/2024 23:41:00] "[33mPOST /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:44:18,400 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\auth.py', reloading
+2024-11-24 23:44:18,502 - INFO -  * Restarting with stat
+2024-11-24 23:44:19,587 - WARNING -  * Debugger is active!
+2024-11-24 23:44:19,598 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:44:28,626 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:44:28,631 - INFO - 127.0.0.1 - - [24/Nov/2024 23:44:28] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:44:28,655 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:44:28,757 - INFO - 127.0.0.1 - - [24/Nov/2024 23:44:28] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:44:33,294 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:44:33,295 - INFO - 127.0.0.1 - - [24/Nov/2024 23:44:33] "[33mPOST /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:45:12,706 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:45:12,709 - INFO - 127.0.0.1 - - [24/Nov/2024 23:45:12] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:45:17,651 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:45:17,652 - INFO - 127.0.0.1 - - [24/Nov/2024 23:45:17] "[33mGET /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:46:28,002 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-24 23:46:28,003 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-24 23:46:28,006 - INFO -  * Restarting with stat
+2024-11-24 23:46:29,065 - WARNING -  * Debugger is active!
+2024-11-24 23:46:29,076 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:46:30,136 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,187 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "GET / HTTP/1.1" 200 -
+2024-11-24 23:46:30,245 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,248 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,249 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,250 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,253 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,255 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-24 23:46:30,256 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-24 23:46:30,257 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-24 23:46:30,402 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2024-11-24 23:46:30,404 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[36mGET /static/css/navbar.css HTTP/1.1[0m" 304 -
+2024-11-24 23:46:30,520 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,521 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-24 23:46:30,522 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,523 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:30,524 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-24 23:46:30,525 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:30] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-24 23:46:32,309 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:32,313 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:32] "GET /login HTTP/1.1" 200 -
+2024-11-24 23:46:32,359 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:32,361 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:32] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:46:34,838 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:34,841 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:34] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:46:34,873 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:34,875 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:34] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:46:38,566 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:46:38,567 - INFO - 127.0.0.1 - - [24/Nov/2024 23:46:38] "[33mPOST /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:47:51,214 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:47:51,216 - INFO - 127.0.0.1 - - [24/Nov/2024 23:47:51] "[33mGET /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:48:00,066 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:48:00,067 - INFO - 127.0.0.1 - - [24/Nov/2024 23:48:00] "[33mPOST /auth/register HTTP/1.1[0m" 404 -
+2024-11-24 23:51:37,520 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:51:37,536 - INFO - 127.0.0.1 - - [24/Nov/2024 23:51:37] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:51:37,558 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:51:37,560 - INFO - 127.0.0.1 - - [24/Nov/2024 23:51:37] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:51:37,569 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:51:37,593 - INFO - 127.0.0.1 - - [24/Nov/2024 23:51:37] "GET /static/js/register.js HTTP/1.1" 200 -
+2024-11-24 23:51:40,940 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:51:40,941 - INFO - 127.0.0.1 - - [24/Nov/2024 23:51:40] "[33mPOST /auth/registro HTTP/1.1[0m" 404 -
+2024-11-24 23:52:17,369 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\auth.py', reloading
+2024-11-24 23:52:17,496 - INFO -  * Restarting with stat
+2024-11-24 23:52:19,181 - WARNING -  * Debugger is active!
+2024-11-24 23:52:19,198 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:52:22,147 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:52:22,152 - INFO - 127.0.0.1 - - [24/Nov/2024 23:52:22] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:52:22,171 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:52:22,178 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:52:22,348 - INFO - 127.0.0.1 - - [24/Nov/2024 23:52:22] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:52:22,350 - INFO - 127.0.0.1 - - [24/Nov/2024 23:52:22] "[36mGET /static/js/register.js HTTP/1.1[0m" 304 -
+2024-11-24 23:52:25,801 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:52:25,802 - INFO - 127.0.0.1 - - [24/Nov/2024 23:52:25] "[33mPOST /auth/registro HTTP/1.1[0m" 404 -
+2024-11-24 23:53:58,979 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:53:58,980 - INFO - 127.0.0.1 - - [24/Nov/2024 23:53:58] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:53:59,001 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:53:59,002 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:53:59,003 - INFO - 127.0.0.1 - - [24/Nov/2024 23:53:59] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:53:59,023 - INFO - 127.0.0.1 - - [24/Nov/2024 23:53:59] "GET /static/js/register.js HTTP/1.1" 200 -
+2024-11-24 23:54:02,530 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:54:02,531 - INFO - 127.0.0.1 - - [24/Nov/2024 23:54:02] "[33mPOST /auth/registro HTTP/1.1[0m" 404 -
+2024-11-24 23:54:05,057 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:54:05,059 - INFO - 127.0.0.1 - - [24/Nov/2024 23:54:05] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:55:33,654 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\app.py', reloading
+2024-11-24 23:55:33,766 - INFO -  * Restarting with stat
+2024-11-24 23:55:35,072 - WARNING -  * Debugger is active!
+2024-11-24 23:55:35,089 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:55:40,650 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:55:40,655 - INFO - 127.0.0.1 - - [24/Nov/2024 23:55:40] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:55:40,677 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:55:40,684 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:55:40,842 - INFO - 127.0.0.1 - - [24/Nov/2024 23:55:40] "[36mGET /static/js/register.js HTTP/1.1[0m" 304 -
+2024-11-24 23:55:40,844 - INFO - 127.0.0.1 - - [24/Nov/2024 23:55:40] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:55:43,866 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:55:44,073 - INFO - 127.0.0.1 - - [24/Nov/2024 23:55:44] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-24 23:58:33,242 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\models.py', reloading
+2024-11-24 23:58:33,335 - INFO -  * Restarting with stat
+2024-11-24 23:58:34,510 - WARNING -  * Debugger is active!
+2024-11-24 23:58:34,524 - INFO -  * Debugger PIN: 140-725-854
+2024-11-24 23:58:36,316 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:58:36,322 - INFO - 127.0.0.1 - - [24/Nov/2024 23:58:36] "GET /register HTTP/1.1" 200 -
+2024-11-24 23:58:36,362 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:58:36,364 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:58:36,530 - INFO - 127.0.0.1 - - [24/Nov/2024 23:58:36] "[36mGET /static/js/register.js HTTP/1.1[0m" 304 -
+2024-11-24 23:58:36,532 - INFO - 127.0.0.1 - - [24/Nov/2024 23:58:36] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-24 23:58:39,745 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:58:39,989 - INFO - 127.0.0.1 - - [24/Nov/2024 23:58:39] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-24 23:58:59,313 - INFO - Rol actual del usuario: Sin Registro
+2024-11-24 23:58:59,490 - INFO - 127.0.0.1 - - [24/Nov/2024 23:58:59] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-24 23:59:54,498 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\auth.py', reloading
+2024-11-24 23:59:54,612 - INFO -  * Restarting with stat
+2024-11-24 23:59:55,797 - WARNING -  * Debugger is active!
+2024-11-24 23:59:55,808 - INFO -  * Debugger PIN: 140-725-854
+2024-11-25 00:00:10,817 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:00:11,006 - INFO - 127.0.0.1 - - [25/Nov/2024 00:00:11] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-25 00:04:19,817 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\models.py', reloading
+2024-11-25 00:04:19,903 - INFO -  * Restarting with stat
+2024-11-25 00:04:20,916 - WARNING -  * Debugger is active!
+2024-11-25 00:04:20,927 - INFO -  * Debugger PIN: 140-725-854
+2024-11-25 00:24:44,325 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-25 00:24:44,326 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-25 00:24:44,329 - INFO -  * Restarting with stat
+2024-11-25 00:24:45,769 - WARNING -  * Debugger is active!
+2024-11-25 00:24:45,785 - INFO -  * Debugger PIN: 140-725-854
+2024-11-25 00:24:48,490 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:24:48,500 - INFO - 127.0.0.1 - - [25/Nov/2024 00:24:48] "GET /register HTTP/1.1" 200 -
+2024-11-25 00:24:48,552 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:24:48,554 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:24:48,748 - INFO - 127.0.0.1 - - [25/Nov/2024 00:24:48] "[36mGET /static/js/register.js HTTP/1.1[0m" 304 -
+2024-11-25 00:24:48,754 - INFO - 127.0.0.1 - - [25/Nov/2024 00:24:48] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-25 00:24:53,038 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:24:53,088 - INFO - 127.0.0.1 - - [25/Nov/2024 00:24:53] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-25 00:28:18,598 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\models.py', reloading
+2024-11-25 00:28:18,756 - INFO -  * Restarting with stat
+2024-11-25 00:28:20,156 - WARNING -  * Debugger is active!
+2024-11-25 00:28:20,170 - INFO -  * Debugger PIN: 140-725-854
+2024-11-25 00:28:21,851 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:28:21,889 - INFO - 127.0.0.1 - - [25/Nov/2024 00:28:21] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-25 00:28:46,559 - INFO -  * Detected change in 'd:\\Gitproyects\\Todo-en-uno\\auth.py', reloading
+2024-11-25 00:28:46,681 - INFO -  * Restarting with stat
+2024-11-25 00:31:32,944 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-25 00:31:32,946 - INFO - [33mPress CTRL+C to quit[0m
+2024-11-25 00:31:32,951 - INFO -  * Restarting with stat
+2024-11-25 00:31:34,254 - WARNING -  * Debugger is active!
+2024-11-25 00:31:34,271 - INFO -  * Debugger PIN: 140-725-854
+2024-11-25 00:31:43,353 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,400 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "GET / HTTP/1.1" 200 -
+2024-11-25 00:31:43,441 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,444 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,447 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,448 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[33mGET /static/css/footer.css HTTP/1.1[0m" 404 -
+2024-11-25 00:31:43,450 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,455 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,456 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[33mGET /static/img/monitoreo.png HTTP/1.1[0m" 404 -
+2024-11-25 00:31:43,459 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[33mGET /static/img/eficiencia.jpg HTTP/1.1[0m" 404 -
+2024-11-25 00:31:43,613 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[36mGET /static/css/navbar.css HTTP/1.1[0m" 304 -
+2024-11-25 00:31:43,614 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[36mGET /static/css/index.css HTTP/1.1[0m" 304 -
+2024-11-25 00:31:43,698 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,700 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,701 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[33mGET /static/img/opti.jpg HTTP/1.1[0m" 404 -
+2024-11-25 00:31:43,702 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[33mGET /static/img/logo_rayo.png HTTP/1.1[0m" 404 -
+2024-11-25 00:31:43,704 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:43,705 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:43] "[33mGET /static/img/empresa.jpg HTTP/1.1[0m" 404 -
+2024-11-25 00:31:45,986 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:45,992 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:45] "GET /login HTTP/1.1" 200 -
+2024-11-25 00:31:46,026 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:46,028 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:46] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-25 00:31:47,917 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:47,920 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:47] "GET /register HTTP/1.1" 200 -
+2024-11-25 00:31:47,954 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:47,956 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:47,958 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:47] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-25 00:31:47,959 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:47] "[36mGET /static/js/register.js HTTP/1.1[0m" 304 -
+2024-11-25 00:31:51,433 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:31:51,471 - INFO - 127.0.0.1 - - [25/Nov/2024 00:31:51] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-25 00:33:44,072 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:33:44,074 - INFO - 127.0.0.1 - - [25/Nov/2024 00:33:44] "[36mGET /static/css/stylesLogin.css HTTP/1.1[0m" 304 -
+2024-11-25 00:34:28,502 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:34:28,680 - INFO - 127.0.0.1 - - [25/Nov/2024 00:34:28] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -
+2024-11-25 00:35:18,276 - INFO - Rol actual del usuario: Sin Registro
+2024-11-25 00:35:18,496 - INFO - 127.0.0.1 - - [25/Nov/2024 00:35:18] "[35m[1mPOST /auth/registro HTTP/1.1[0m" 500 -

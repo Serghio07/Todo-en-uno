@@ -16,73 +16,14 @@
             <input type="email" id="registerEmail" placeholder="Correo electrónico" required>
             <input type="password" id="registerPassword" placeholder="Contraseña" required>
             <input type="password" id="registerConfirmPassword" placeholder="Confirmar contraseña" required>
-            <button onclick="register()">Registrarse</button>
+            <button id="registerButton">Registrarse</button>
             <p id="registerMessage"></p>
         </div>
 
-        <p>¿Ya tienes una cuenta? <a href="{{ url_for('login')}}">Inicia sesión aquí</a></p>
+        <p>¿Ya tienes una cuenta? <a href="{{ url_for('auth_bp.login') }}">Inicia sesión aquí</a></p>
     </div>
 
-    <script>
-        async function register() {
-            // Obtener los valores del formulario
-            const name = document.getElementById('registerName').value.trim();
-            const email = document.getElementById('registerEmail').value.trim();
-            const password = document.getElementById('registerPassword').value.trim();
-            const confirmPassword = document.getElementById('registerConfirmPassword').value.trim();
-            const messageElement = document.getElementById('registerMessage');
-
-            // Validaciones en el frontend
-            if (!name || !email || !password || !confirmPassword) {
-                messageElement.textContent = "Todos los campos son obligatorios.";
-                messageElement.style.color = "red";
-                return;
-            }
-
-            if (password !== confirmPassword) {
-                messageElement.textContent = "Las contraseñas no coinciden.";
-                messageElement.style.color = "red";
-                return;
-            }
-
-            try {
-                // Realizar la solicitud al endpoint de registro
-                const response = await fetch('http://127.0.0.1:5000/auth/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nombre: name,
-                        email: email,
-                        password: password,
-                        rol: 'user' // Se puede cambiar según la lógica
-                    })
-                });
-
-                // Procesar la respuesta
-                const data = await response.json();
-
-                if (response.ok) {
-                    // Mostrar mensaje de éxito
-                    messageElement.textContent = data.message || "Registro exitoso.";
-                    messageElement.style.color = "green";
-
-                    // Redirigir al login después de unos segundos
-                    setTimeout(() => {
-                        window.location.href = '/login';
-                    }, 2000);
-                } else {
-                    // Mostrar el mensaje de error del servidor
-                    messageElement.textContent = data.error || "Error al registrarse.";
-                    messageElement.style.color = "red";
-                }
-            } catch (error) {
-                // Manejo de errores de conexión
-                messageElement.textContent = "Error de conexión al servidor.";
-                messageElement.style.color = "red";
-            }
-        }
-    </script>
+    <!-- Archivo JS externo -->
+    <script src="../static/js/register.js"></script>
 </body>
 </html>

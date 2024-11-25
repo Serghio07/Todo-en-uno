@@ -3,36 +3,45 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
 app = Flask(__name__)
+
+# Configuración de la base de datos
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@localhost:3306/mydatabase'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Tabla de Usuarios
+# Modelo de Usuarios
 class Usuario(db.Model):
     __tablename__ = 'usuarios'
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    rol = db.Column(db.String(20), nullable=False)  # Cliente, Admin, etc.
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    hashed_password = db.Column(db.String(255), nullable=False)
+    nombre = db.Column(db.String(255), nullable=False)
+    rol = db.Column(db.String(50), default='user')
     documentos = db.relationship('Documento', backref='usuario', lazy=True)
+    transacciones = db.relationship('Transaccion', backref='usuario', lazy=True)
+    programaciones = db.relationship('ProgramacionImpresion', backref='usuario', lazy=True)
 
-# Tabla de Documentos
+# Modelo de Documentos
 class Documento(db.Model):
     __tablename__ = 'documentos'
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
-    tipo = db.Column(db.String(50), nullable=False)  # Ej: Texto, Presentación
+    contenido = db.Column(db.Text, nullable=False)
+    tipo = db.Column(db.String(50), nullable=False)
     fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
     versiones = db.relationship('Version', backref='documento', lazy=True)
+    programaciones = db.relationship('ProgramacionImpresion', backref='documento', lazy=True)
 
-# Tabla de Plantillas
+# Modelo de Plantillas
 class Plantilla(db.Model):
     __tablename__ = 'plantillas'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    contenido = db.Column(db.Text, nullable=False)  # El contenido base de la plantilla
+    contenido = db.Column(db.Text, nullable=False)
+    documento_id = db.Column(db.Integer, db.ForeignKey('documentos.id'), nullable=False)
 
-# Tabla de Versiones (para el control de versiones)
+# Modelo de Versiones
 class Version(db.Model):
     __tablename__ = 'versiones'
     id = db.Column(db.Integer, primary_key=True)
@@ -41,7 +50,7 @@ class Version(db.Model):
     contenido = db.Column(db.Text, nullable=False)
     documento_id = db.Column(db.Integer, db.ForeignKey('documentos.id'), nullable=False)
 
-# Tabla de Transacciones (para pagos)
+# Modelo de Transacciones
 class Transaccion(db.Model):
     __tablename__ = 'transacciones'
     id = db.Column(db.Integer, primary_key=True)
@@ -50,15 +59,16 @@ class Transaccion(db.Model):
     tipo = db.Column(db.String(50), nullable=False)  # Ej: Pago por impresión, almacenamiento
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
-# Tabla de Programación de Impresión
+# Modelo de Programaciones de Impresión
 class ProgramacionImpresion(db.Model):
     __tablename__ = 'programacion_impresion'
     id = db.Column(db.Integer, primary_key=True)
-    documento_id = db.Column(db.Integer, db.ForeignKey('documentos.id'), nullable=False)
     fecha_impresion = db.Column(db.DateTime, nullable=False)
     estado = db.Column(db.String(20), default="Pendiente")  # Pendiente, Completo, Cancelado
+    documento_id = db.Column(db.Integer, db.ForeignKey('documentos.id'), nullable=False)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
-# Inicializar la base de datos
+# Crear todas las tablas
 with app.app_context():
     db.create_all()
+    print("Tablas creadas exitosamente.")

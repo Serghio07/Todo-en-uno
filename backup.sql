@@ -178,6 +178,7 @@ CREATE TABLE `usuario` (
   KEY `ix_usuario_id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Dumping data for table `usuario`
 --
@@ -225,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-11 23:28:16
+-- Dump completed on 2024-11-25  3:28:25
