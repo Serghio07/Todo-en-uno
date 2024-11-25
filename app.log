@@ -1730,3 +1730,5 @@
 2024-11-25 17:52:32,825 - INFO - 127.0.0.1 - - [25/Nov/2024 17:52:32] "[36mGET /static/images/contactp.jpg HTTP/1.1[0m" 304 -
 2024-11-25 17:52:32,840 - INFO - 127.0.0.1 - - [25/Nov/2024 17:52:32] "[36mGET /static/images/serv7.jpg HTTP/1.1[0m" 304 -
 2024-11-25 17:52:32,842 - INFO - 127.0.0.1 - - [25/Nov/2024 17:52:32] "[36mGET /static/images/serv8.jpg HTTP/1.1[0m" 304 -
+2024-11-25 17:58:58,172 - WARNING -  * Debugger is active!
+2024-11-25 17:58:58,173 - INFO -  * Debugger PIN: 796-978-865
