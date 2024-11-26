@@ -18,6 +18,11 @@
             <p id="loginMessage"></p>
         </div>
 
+        <!-- Botón para volver al inicio -->
+        <div class="return-home">
+            <button onclick="goHome()">Volver al Inicio</button>
+        </div>
+
         <p>¿No tienes una cuenta? 
             <a href="{{ url_for('register') }}">Regístrate aquí</a>
         </p>
@@ -73,6 +78,11 @@
                 messageElement.textContent = "Error de conexión al servidor.";
                 messageElement.style.color = "red";
             }
+        }
+
+        // Función para volver al home
+        function goHome() {
+            window.location.href = '/';
         }
     </script>
 </body>

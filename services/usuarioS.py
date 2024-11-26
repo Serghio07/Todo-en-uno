@@ -1,4 +1,5 @@
 from flask import jsonify
+from werkzeug.security import check_password_hash
 from models.usuarios import Usuario
 from models import db
 
@@ -17,14 +18,15 @@ def verify_user(data):
             print(f"Usuario encontrado: {user.email}")
         else:
             print("Usuario no encontrado")
+            return jsonify({"valid": False, "error": "Usuario no encontrado"}), 404
 
-        if user and user.password == password:
+        # Verificar la contraseña usando hashing
+        if check_password_hash(user.hashed_password, password):
             print("Contraseña válida")
             return jsonify({"valid": True, "user_id": user.id, "saldo": user.saldo}), 200
         else:
-            print(f"Contraseña almacenada: {user.password}")
             print("Contraseña inválida")
-        return jsonify({"valid": False, "error": "Credenciales inválidas"}), 404
+            return jsonify({"valid": False, "error": "Credenciales inválidas"}), 401
     except Exception as e:
         print(f"Error en verify_user: {e}")
         return jsonify({"valid": False, "error": "Error interno en el servidor"}), 500

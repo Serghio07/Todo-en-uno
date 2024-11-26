@@ -1,139 +1,113 @@
-from flask import Blueprint, jsonify, request, render_template,session
+from flask import Blueprint, jsonify, request, render_template, session, redirect, url_for, flash, send_from_directory
 import os
 import mysql.connector
 from werkzeug.utils import secure_filename
-from flask import current_app
-from flask import redirect, url_for, flash
-from flask import send_from_directory
+from auth import token_required
 
-
-# Crear el blueprint para Almacen
 almacen_bp = Blueprint('almacen', __name__)
 
-# Configuración para MySQL (ajusta estos datos según tu entorno)
+# Configuración de MySQL
 db_config = {
     'host': 'localhost',
     'user': 'myuser',
     'password': 'mypassword',
-    'database': 'mydatabase'  # Ajusta el nombre de la base de datos
+    'database': 'mydatabase'
 }
 
-# Conexión a la base de datos
-def get_db_connection():
-    return mysql.connector.connect(**db_config)
-
-# Función para obtener todos los archivos
-@almacen_bp.route('/archivos', methods=['GET'])
-def get_archivos():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM archivos")
-    archivos = cursor.fetchall()
-    conn.close()
-    return jsonify(archivos)
-
-# Ruta directa para la carpeta 'uploads' que está fuera de 'static'
 UPLOADS_PATH = os.path.join(os.getcwd(), 'uploads')
 
-# Verificar que la carpeta 'uploads' exista
 if not os.path.exists(UPLOADS_PATH):
     os.makedirs(UPLOADS_PATH)
 
-@almacen_bp.route('/archivo', methods=['POST'])
-def upload_archivo():
-    if 'file' not in request.files:
-        flash('No se envió ningún archivo', 'error')
-        return redirect(url_for('almacen.index_almacen'))
+def get_db_connection():
+    return mysql.connector.connect(**db_config)
 
-    file = request.files['file']
-    if file.filename == '':
-        flash('El archivo no tiene nombre', 'error')
-        return redirect(url_for('almacen.index_almacen'))
-
-    # Guardar el archivo en la carpeta 'uploads'
-    filename = secure_filename(file.filename)
-    filepath = os.path.join(UPLOADS_PATH, filename)  # Ruta completa del archivo
-    file.save(filepath)
-
-    # Obtener usuario_id de la sesión
-    usuario_id = session.get('user_id')  # Asegúrate de que user_id esté en la sesión
-
-    if not usuario_id:
-        flash('Usuario no autenticado. No se puede subir el archivo.', 'error')
-        return redirect(url_for('almacen.index_almacen'))
-
-    # Insertar información del archivo en la base de datos
-    try:
-        conn = get_db_connection()
-        cursor = conn.cursor()
-        cursor.execute(
-            "INSERT INTO archivos (nombre, tipo, tamano, ruta, usuario_id) VALUES (%s, %s, %s, %s, %s)",
-            (filename, file.mimetype, os.path.getsize(filepath), os.path.join('uploads', filename), usuario_id)
-        )
-        conn.commit()
-        conn.close()
-
-        flash('Archivo subido exitosamente', 'success')
-        return redirect(url_for('almacen.index_almacen'))
-    except Exception as e:
-        flash(f'Error al subir el archivo: {e}', 'error')
-        return redirect(url_for('almacen.index_almacen'))
-
-
-# Ruta para mostrar la página principal con los archivos
-# Esta ruta debe estar solo en almacen.py
+# Ruta para renderizar la página principal
 @almacen_bp.route('/', methods=['GET'])
-def index_almacen():
+@token_required
+def index_almacen(decoded_token):
+    usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM archivos")
+    cursor.execute("SELECT * FROM archivos WHERE usuario_id = %s", (usuario_id,))
     archivos = cursor.fetchall()
     conn.close()
     return render_template('almacen/indexAlmacen.html', archivos=archivos)
 
-
-# Ruta para buscar archivos por nombre
-@almacen_bp.route('/buscar_archivo', methods=['GET'])
-def buscar_archivo():
-    nombre = request.args.get('nombre')  # Parámetro enviado desde el frontend
+# Ruta para obtener archivos de un usuario
+@almacen_bp.route('/archivos', methods=['GET'])
+@token_required
+def get_archivos(decoded_token):
+    usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
     cursor = conn.cursor()
-
-    # Buscar archivo por nombre
-    query = "SELECT * FROM archivos WHERE nombre = %s"
-    cursor.execute(query, (nombre,))
-    archivo = cursor.fetchone()  # Obtiene solo un resultado
-
+    cursor.execute("SELECT * FROM archivos WHERE usuario_id = %s", (usuario_id,))
+    archivos = cursor.fetchall()
     conn.close()
+    archivos_data = [
+        {"id": archivo[0], "nombre": archivo[1], "tipo": archivo[2], "tamano": archivo[3], "ruta": archivo[4], "fecha_subida": archivo[5].strftime("%Y-%m-%d %H:%M:%S") if archivo[5] else "Sin fecha"}
+        for archivo in archivos
+    ]
+    return jsonify(archivos_data), 200
 
-    if archivo:
-        return jsonify({
-            "id": archivo[0],
-            "nombre": archivo[1],
-            "tipo": archivo[2],
-            "tamaño": archivo[3],
-            "ruta": archivo[4],
-            "fecha": archivo[5]
-        })
+# Ruta para subir un archivo
+@almacen_bp.route('/archivo', methods=['POST'])
+@token_required
+def upload_archivo(decoded_token):
+    file = request.files.get('file')
+    usuario_id = decoded_token.get('user_id')
+
+    if not file or file.filename == '':
+        return jsonify({"error": "Archivo no válido"}), 400
+
+    filename = secure_filename(file.filename)
+    filepath = os.path.join(UPLOADS_PATH, filename)
+    file.save(filepath)
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO archivos (nombre, tipo, tamano, ruta, usuario_id) VALUES (%s, %s, %s, %s, %s)",
+        (filename, file.mimetype, os.path.getsize(filepath), os.path.join('uploads', filename), usuario_id)
+    )
+    conn.commit()
+    conn.close()
+    return jsonify({"message": "Archivo subido exitosamente"}), 200
+
+# Ruta para buscar un archivo
+@almacen_bp.route('/buscar_archivo', methods=['GET'])
+@token_required
+def buscar_archivo(decoded_token):
+    usuario_id = decoded_token.get('user_id')
+    nombre = request.args.get('nombre')
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM archivos WHERE usuario_id = %s AND nombre LIKE %s", (usuario_id, f"%{nombre}%"))
+    archivos = cursor.fetchall()
+    conn.close()
+    if archivos:
+        return jsonify([{"id": archivo[0], "nombre": archivo[1]} for archivo in archivos]), 200
     else:
-        return jsonify({"error": "Archivo no encontrado"}), 404
-
-
+        return jsonify({"error": "No se encontraron archivos"}), 404
 
 # Ruta para descargar un archivo
 @almacen_bp.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
-    # Servir el archivo desde la carpeta 'uploads'
     return send_from_directory(UPLOADS_PATH, filename)
 
+# Ruta para eliminar un archivo
 @almacen_bp.route('/archivo/delete/<int:id>', methods=['POST'])
-def delete_archivo(id):
-    # Conexión a la base de datos para eliminar el archivo
+@token_required
+def delete_archivo(decoded_token, id):
+    usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
     cursor = conn.cursor()
+    cursor.execute("SELECT ruta FROM archivos WHERE id = %s AND usuario_id = %s", (id, usuario_id))
+    archivo = cursor.fetchone()
+    if not archivo:
+        return jsonify({"error": "Archivo no encontrado o sin permisos"}), 404
+    os.remove(archivo[0])  # Eliminar archivo del sistema
     cursor.execute("DELETE FROM archivos WHERE id = %s", (id,))
     conn.commit()
     conn.close()
-    
-    flash('Archivo eliminado correctamente', 'success')
-    return redirect(url_for('almacen.index_almacen'))
+    return jsonify({"message": "Archivo eliminado correctamente"}), 200

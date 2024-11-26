@@ -1,4 +1,3 @@
-
 from flask import Flask, session, render_template, redirect, url_for
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine

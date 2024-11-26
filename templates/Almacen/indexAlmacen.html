@@ -1,87 +1,89 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALMACENAMIENTO DE ARCHIVOS</title>
+{% extends "base.html" %}
+
+{% block title %}
+    Almacenamiento de Archivos
+{% endblock %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesAlmacen.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1 class="mt-5">ALMACENAMIENTO DE ARCHIVOS</h1>
+{% endblock %}
 
-        <!-- Mensajes flash (éxito, error) -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            <div class="flash-message {% for category, message in messages %}{{ category }}{% endfor %}">
-                <div class="icon">
-                    <i class="fas fa-envelope"></i>  <!-- Ícono de sobre -->
-                </div>
-                <div class="message-text">
-                    {% for category, message in messages %}
-                        <p>{{ message }}</p>
-                    {% endfor %}
-                </div>
+{% block content %}
+<div class="container">
+    <h1 class="mt-5">ALMACENAMIENTO DE ARCHIVOS</h1>
+
+    <!-- Mensajes flash (éxito, error) -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-message {% for category, message in messages %}{{ category }}{% endfor %}">
+            <div class="icon">
+                <i class="fas fa-envelope"></i>  <!-- Ícono de sobre -->
             </div>
-        {% endif %}
-        {% endwith %}
-
-        <!-- Formulario de búsqueda -->
-        <div class="form-search">
-            <input type="text" id="searchInput" class="input-search" placeholder="Buscar archivo">
-            <button class="btn-search">Buscar</button>
-        </div>
-
-        <!-- Formulario de carga de archivos -->
-        <form action="{{ url_for('almacen.upload_archivo') }}" method="POST" enctype="multipart/form-data">
-            <label for="file">Seleccionar archivo:</label>
-            <input type="file" name="file" id="file" required>
-            <button type="submit">Subir archivo</button>
-        </form>
-
-        <!-- Tabla de archivos -->
-        <h2 class="mt-4">Archivos Subidos</h2>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Tipo</th>
-                    <th>Tamaño</th>
-                    <th>Ruta</th>
-                    <th>Fecha de Subida</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for archivo in archivos %}
-                    <tr>
-                        <td>{{ archivo[0] }}</td>  <!-- ID -->
-                        <td>{{ archivo[1] }}</td>  <!-- Nombre -->
-                        <td>{{ archivo[2] }}</td>  <!-- Tipo -->
-                        <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
-                        <td><a href="{{ url_for('static', filename='uploads/' + archivo[4]) }}" target="_blank">Ver archivo</a></td>  <!-- Ruta completa -->
-                        <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
-                        <td>
-                            <!-- Enlace para descargar el archivo -->
-                            <a href="{{ url_for('almacen.download_file', filename=archivo[1]) }}" class="btn btn-info">Descargar</a>
-                            <!-- Formulario para eliminar archivo -->
-                            <form action="{{ url_for('almacen.delete_archivo', id=archivo[0]) }}" method="post">
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
-                            </form>
-                            
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="7" class="text-center">No se encontraron archivos</td>
-                    </tr>
+            <div class="message-text">
+                {% for category, message in messages %}
+                    <p>{{ message }}</p>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Formulario de búsqueda -->
+    <div class="form-search">
+        <input type="text" id="searchInput" class="input-search" placeholder="Buscar archivo">
+        <button class="btn-search">Buscar</button>
     </div>
 
-    <script src="{{ url_for('static', filename='js/scriptAlmacen.js') }}"></script>
+    <!-- Formulario de carga de archivos -->
+    <form action="{{ url_for('almacen.upload_archivo') }}" method="POST" enctype="multipart/form-data">
+        <label for="file">Seleccionar archivo:</label>
+        <input type="file" name="file" id="file" required>
+        <button type="submit">Subir archivo</button>
+    </form>
 
-</body>
-</html>
+    <!-- Tabla de archivos -->
+    <h2 class="mt-4">Archivos Subidos</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Tipo</th>
+                <th>Tamaño</th>
+                <th>Ruta</th>
+                <th>Fecha de Subida</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for archivo in archivos %}
+                <tr>
+                    <td>{{ archivo[0] }}</td>  <!-- ID -->
+                    <td>{{ archivo[1] }}</td>  <!-- Nombre -->
+                    <td>{{ archivo[2] }}</td>  <!-- Tipo -->
+                    <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
+                    <td><a href="{{ url_for('static', filename='uploads/' + archivo[4]) }}" target="_blank">Ver archivo</a></td>  <!-- Ruta completa -->
+                    <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
+                    <td>
+                        <!-- Enlace para descargar el archivo -->
+                        <a href="{{ url_for('almacen.download_file', filename=archivo[1]) }}" class="btn btn-info">Descargar</a>
+                        <!-- Formulario para eliminar archivo -->
+                        <form action="{{ url_for('almacen.delete_archivo', id=archivo[0]) }}" method="post">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7" class="text-center">No se encontraron archivos</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/scriptAlmacen.js') }}"></script>
+{% endblock %}
