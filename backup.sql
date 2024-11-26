@@ -16,112 +16,62 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `adads`
+-- Table structure for table `archivos`
 --
 
-DROP TABLE IF EXISTS `adads`;
+DROP TABLE IF EXISTS `archivos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `adads` (
-  `idadads` int NOT NULL,
-  PRIMARY KEY (`idadads`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `adads`
---
-
-LOCK TABLES `adads` WRITE;
-/*!40000 ALTER TABLE `adads` DISABLE KEYS */;
-/*!40000 ALTER TABLE `adads` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `almacenamiento`
---
-
-DROP TABLE IF EXISTS `almacenamiento`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `almacenamiento` (
+CREATE TABLE `archivos` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `espacio_utilizado` float NOT NULL,
-  `fecha_almacenamiento` datetime NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `tipo` varchar(255) NOT NULL,
+  `tamano` float NOT NULL,
+  `ruta` varchar(255) NOT NULL,
+  `fecha_subida` datetime DEFAULT NULL,
+  `usuario_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `ix_almacenamiento_id` (`id`)
+  KEY `usuario_id` (`usuario_id`),
+  CONSTRAINT `archivos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `almacenamiento`
+-- Dumping data for table `archivos`
 --
 
-LOCK TABLES `almacenamiento` WRITE;
-/*!40000 ALTER TABLE `almacenamiento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `almacenamiento` ENABLE KEYS */;
+LOCK TABLES `archivos` WRITE;
+/*!40000 ALTER TABLE `archivos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `archivos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `documento`
+-- Table structure for table `documentos`
 --
 
-DROP TABLE IF EXISTS `documento`;
+DROP TABLE IF EXISTS `documentos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `documento` (
+CREATE TABLE `documentos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(100) NOT NULL,
   `contenido` text NOT NULL,
   `tipo` varchar(50) NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  `usuario_id` int DEFAULT NULL,
-  `almacenamiento_id` int DEFAULT NULL,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `usuario_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
-  KEY `almacenamiento_id` (`almacenamiento_id`),
-  KEY `ix_documento_id` (`id`),
-  CONSTRAINT `documento_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`),
-  CONSTRAINT `documento_ibfk_2` FOREIGN KEY (`almacenamiento_id`) REFERENCES `almacenamiento` (`id`)
+  CONSTRAINT `documentos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `documento`
+-- Dumping data for table `documentos`
 --
 
-LOCK TABLES `documento` WRITE;
-/*!40000 ALTER TABLE `documento` DISABLE KEYS */;
-/*!40000 ALTER TABLE `documento` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `impresion`
---
-
-DROP TABLE IF EXISTS `impresion`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `impresion` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `fecha_programada` datetime NOT NULL,
-  `estado` varchar(20) NOT NULL,
-  `numero_copias` int NOT NULL,
-  `documento_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `documento_id` (`documento_id`),
-  KEY `ix_impresion_id` (`id`),
-  CONSTRAINT `impresion_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documento` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `impresion`
---
-
-LOCK TABLES `impresion` WRITE;
-/*!40000 ALTER TABLE `impresion` DISABLE KEYS */;
-/*!40000 ALTER TABLE `impresion` ENABLE KEYS */;
+LOCK TABLES `documentos` WRITE;
+/*!40000 ALTER TABLE `documentos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `documentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -134,14 +84,13 @@ DROP TABLE IF EXISTS `pago`;
 CREATE TABLE `pago` (
   `id` int NOT NULL AUTO_INCREMENT,
   `monto` float NOT NULL,
-  `fecha_pago` datetime NOT NULL,
+  `fecha_pago` datetime DEFAULT NULL,
+  `usuario_id` int NOT NULL,
   `metodo` varchar(20) NOT NULL,
-  `usuario_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
-  KEY `ix_pago_id` (`id`),
   CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,63 +99,92 @@ CREATE TABLE `pago` (
 
 LOCK TABLES `pago` WRITE;
 /*!40000 ALTER TABLE `pago` DISABLE KEYS */;
-INSERT INTO `pago` VALUES (1,500,'2024-11-18 23:02:06','tarjeta',1),(2,500,'2024-11-25 23:09:04','tarjeta',4),(3,4000,'2024-11-25 23:17:35','tarjeta',4),(4,9.99,'2024-11-25 23:34:47','tarjeta',4),(5,19.99,'2024-11-25 23:35:19','tarjeta',4);
 /*!40000 ALTER TABLE `pago` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `plantilla`
+-- Table structure for table `plantillas`
 --
 
-DROP TABLE IF EXISTS `plantilla`;
+DROP TABLE IF EXISTS `plantillas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `plantilla` (
+CREATE TABLE `plantillas` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `numero_version` varchar(100) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
   `contenido` text NOT NULL,
-  `fecha_creacion` datetime NOT NULL,
-  `documento_id` int DEFAULT NULL,
+  `documento_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `documento_id` (`documento_id`),
-  KEY `ix_plantilla_id` (`id`),
-  CONSTRAINT `plantilla_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documento` (`id`)
+  CONSTRAINT `plantillas_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documentos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `plantilla`
+-- Dumping data for table `plantillas`
 --
 
-LOCK TABLES `plantilla` WRITE;
-/*!40000 ALTER TABLE `plantilla` DISABLE KEYS */;
-/*!40000 ALTER TABLE `plantilla` ENABLE KEYS */;
+LOCK TABLES `plantillas` WRITE;
+/*!40000 ALTER TABLE `plantillas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `plantillas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `user`
+-- Table structure for table `programacion_impresion`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `programacion_impresion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
+CREATE TABLE `programacion_impresion` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(80) NOT NULL,
-  `email` varchar(120) NOT NULL,
+  `fecha_impresion` datetime NOT NULL,
+  `estado` varchar(20) DEFAULT NULL,
+  `documento_id` int NOT NULL,
+  `usuario_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  UNIQUE KEY `email` (`email`)
+  KEY `documento_id` (`documento_id`),
+  KEY `usuario_id` (`usuario_id`),
+  CONSTRAINT `programacion_impresion_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documentos` (`id`),
+  CONSTRAINT `programacion_impresion_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `programacion_impresion`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `programacion_impresion` WRITE;
+/*!40000 ALTER TABLE `programacion_impresion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `programacion_impresion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `transacciones`
+--
+
+DROP TABLE IF EXISTS `transacciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `transacciones` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fecha` datetime DEFAULT NULL,
+  `monto` float NOT NULL,
+  `tipo` varchar(50) NOT NULL,
+  `usuario_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`),
+  CONSTRAINT `transacciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `transacciones`
+--
+
+LOCK TABLES `transacciones` WRITE;
+/*!40000 ALTER TABLE `transacciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `transacciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -218,15 +196,14 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  `rol` varchar(20) NOT NULL,
-  `saldo` float NOT NULL DEFAULT '0',
-  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `hashed_password` varchar(255) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `rol` varchar(50) DEFAULT NULL,
+  `saldo` float DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`),
-  KEY `ix_usuario_id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -235,37 +212,35 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Diego Morón','diego@example.com','cliente',0,'$pbkdf2-sha256$29000$...'),(2,'Maria López','maria@example.com','cliente',300,'$pbkdf2-sha256$29000$...'),(3,'Juan Pérez','juan@example.com','admin',700,'$pbkdf2-sha256$29000$...'),(4,'Diego lol','diego1@example.com','cliente',70.02,'password123');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `versioncontrol`
+-- Table structure for table `versiones`
 --
 
-DROP TABLE IF EXISTS `versioncontrol`;
+DROP TABLE IF EXISTS `versiones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `versioncontrol` (
+CREATE TABLE `versiones` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `version` varchar(20) NOT NULL,
-  `fecha_version` datetime NOT NULL,
-  `comentario` text,
-  `documento_id` int DEFAULT NULL,
+  `numero_version` int NOT NULL,
+  `fecha_creacion` datetime DEFAULT NULL,
+  `contenido` text NOT NULL,
+  `documento_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `documento_id` (`documento_id`),
-  KEY `ix_versioncontrol_id` (`id`),
-  CONSTRAINT `versioncontrol_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documento` (`id`)
+  CONSTRAINT `versiones_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documentos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `versioncontrol`
+-- Dumping data for table `versiones`
 --
 
-LOCK TABLES `versioncontrol` WRITE;
-/*!40000 ALTER TABLE `versioncontrol` DISABLE KEYS */;
-/*!40000 ALTER TABLE `versioncontrol` ENABLE KEYS */;
+LOCK TABLES `versiones` WRITE;
+/*!40000 ALTER TABLE `versiones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `versiones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -277,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-11-25 23:45:03
+-- Dump completed on 2024-11-26  0:02:24
