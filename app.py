@@ -1,4 +1,6 @@
-from flask import Flask, session, render_template, redirect, url_for
+
+from flask import Flask, render_template,session, request, redirect, url_for, flash, send_from_directory
+
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 from models import db
@@ -12,6 +14,7 @@ from impresion import impresion_bp
 import logging
 import werkzeug
 import mimetypes
+import os
 mimetypes.add_type('application/javascript', '.mjs')
 logging.basicConfig(level=logging.DEBUG)
 
@@ -67,11 +70,22 @@ def pago():
 def impresion():
     return render_template('impresion/impresion.html')
 
+from flask import request, render_template
+import urllib.parse
 
 @app.route('/editor')
 def editor():
-    return render_template('Documentos/editor.html')
+    file_path = request.args.get('file')
 
+    # Decodificar la ruta para asegurarnos que los caracteres especiales son manejados correctamente
+    file_path = urllib.parse.unquote(file_path)
+
+    # Aquí debería ir el código para mostrar el archivo PDF usando PDF.js o lo que necesites
+    return render_template('Documentos/editor.html', file_path=file_path)
+
+@app.route('/uploads/<path:filename>')
+def uploaded_file(filename):
+    return send_from_directory('uploads', filename)
 
 if __name__ == '__main__':
     app.run(debug=True)

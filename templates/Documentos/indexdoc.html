@@ -9,69 +9,54 @@
 {% endblock %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plantillas de Documentos</title>
-</head>
-<body>
-    <!-- Navbar -->
-    <!-- Galería de Plantillas -->
-    <main>
-        <section class="templates-section">
-            <h2>Selecciona una plantilla para comenzar</h2>
-            <div class="templates-container">
-                <div class="template-card">
-                    <a href="/editor">
-                        <img src="../../static/images/ejcar.png." alt="Documento PDF">
-                        <p>Documento 1</p>
-                    </a>
-                </div>
-                <div class="template-card">
-                    <a href="/editor">
-                        <img src="../../static/images/ejcar.png" alt="Otro Documento">
-                        <p>Documento 2</p>
-                    </a>
-                </div>
-                <div class="template-card">
-                    <a href="/editor">
-                        <img src="../../static/images/ejcar.png" alt="Currículum">
-                        <p>Currículum</p>
-                    </a>
-                </div>
-                <div class="template-card">
-                    <a href="/editor">
-                        <img src="../../static/images/ejcar.png" alt="Propuesta de Proyecto">
-                        <p>Propuesta de Proyecto</p>
-                    </a>
-                </div>
-                <div class="template-card">
-                    <a href="/editor">
-                        <img src="../../static/images/ejcar.png" alt="Acta de Reunión">
-                        <p>Acta de Reunión</p>
-                    </a>
-                </div>
-                <div class="template-card">
-                    <a href="/editor">
-                        <img src="../../static/images/ejcar.png" alt="Plan de Trabajo">
-                        <p>Plan de Trabajo</p>
-                    </a>
-                </div>
-                <div class="template-card">
-                    <a href="/editor">
-                        <img src="../../static/images/ejcar.png" alt="Visor de PDF">
-                        <p>Visor de PDF</p>
-                    </a>
-                </div>
+<main>
+    <section class="templates-section">
+        <h2>Selecciona una plantilla para comenzar</h2>
+        <div class="templates-container">
+            <!-- Enlaces con parámetros dinámicos para cada plantilla -->
+            <div class="template-card">
+                <a href="{{ url_for('editor', file='uploads/jquispe_actividad1.pdf') }}">
+                    <img src="{{ url_for('static', filename='images/ejcar.png') }}" alt="Documento PDF">
+                    <p>Documento 1</p>
+                </a>
             </div>
-        </section>
-    </main>
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Plantillas de Documentos. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+            <div class="template-card">
+                <a href="{{ url_for('editor', file='uploads/IND_330_Unidad_9_-_Analisis_de_Sensibilidad.pdf') }}">
+                    <img src="{{ url_for('static', filename='images/ejcar2.png') }}" alt="Documento PDF">
+                    <p>Documento 2</p>
+                </a>
+            </div>
+            <div class="template-card">
+                <a href="{{ url_for('editor', file='uploads/COMANDOS%20CISCO.pdf') }}">
+                    <img src="{{ url_for('static', filename='images/ejcar3.png') }}" alt="Currículum">
+                    <p>Currículum 3</p>
+                </a>
+            </div>
+            <div class="template-card">
+                <a href="{{ url_for('editor', file='uploads/Comandos_Packet_tracer_2.pdf') }}">
+                    <img src="{{ url_for('static', filename='images/ejcar4.png') }}" alt="Propuesta de Proyecto">
+                    <p>Propuesta de Proyecto 4</p>
+                </a>
+            </div>
+            <div class="template-card">
+                <a href="{{ url_for('editor', file='uploads/comandos%20VPN%20acceso%20remoto%20cisco.pdf') }}">
+                    <img src="{{ url_for('static', filename='images/ejcar5.png') }}" alt="Acta de Reunión">
+                    <p>Acta de Reunión</p>
+                </a>
+            </div>
+            <div class="template-card">
+                <a href="{{ url_for('editor', file='uploads/jquispe_actividad1.pdf') }}">
+                    <img src="{{ url_for('static', filename='images/ejcar.png') }}" alt="Plan de Trabajo">
+                    <p>Plan de Trabajo</p>
+                </a>
+            </div>
+            <div class="template-card">
+                <a href="{{ url_for('editor', file='uploads/IND_330_Unidad_9_-_Analisis_de_Sensibilidad.pdf') }}">
+                    <img src="{{ url_for('static', filename='images/ejcar2.png') }}" alt="Visor de PDF">
+                    <p>Visor de PDF</p>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
 {% endblock %}
