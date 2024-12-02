@@ -11,6 +11,8 @@ from admin import admin_bp
 from user import user_bp
 from almacen import almacen_bp  
 from impresion import impresion_bp
+from almacen import almacen_bp
+from impresion import impresion_bp  
 import logging
 import werkzeug
 import mimetypes
@@ -36,6 +38,8 @@ app.register_blueprint(admin_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(almacen_bp, url_prefix='/almacen')
 app.register_blueprint(impresion_bp, url_prefix='/impresion')
+app.register_blueprint(impresion_bp, url_prefix='/impresion')
+
 
 @app.before_request
 def set_default_role():

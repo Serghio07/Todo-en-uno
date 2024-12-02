@@ -1,97 +1,141 @@
-/* Estilos generales */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #eaeef3;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+/* Estructura en dos columnas */
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* La tabla ocupa más espacio */
+    gap: 20px;
+    align-items: flex-start;
 }
 
-/* Contenedor principal */
-.container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+/* Tabla de documentos */
+.tabla-documentos {
     width: 100%;
-    text-align: center;
-}
-
-/* Título principal */
-h1 {
-    color: #007BFF; /* Azul */
-    font-size: 26px;
-    margin-bottom: 20px;
-}
-
-/* Títulos de secciones */
-.buscar-documento h2,
-form h2 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-/* Estilos para Buscar Documento */
-.buscar-documento .form-group {
-    margin-bottom: 15px;
-}
-
-label {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 5px;
-    display: block;
-}
-
-input[type="text"],
-input[type="datetime-local"],
-input[type="number"],
-select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
-}
-
-input:focus,
-select:focus {
-    border-color: #007BFF; /* Azul */
-    outline: none;
-}
-
-/* Estilo de los botones */
-button {
-    width: 100%;
-    background-color: #007BFF; /* Azul */
-    color: white;
-    font-size: 16px;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background-color: #0056b3; /* Azul más oscuro */
-    transform: scale(1.03);
-}
-
-/* Espaciado entre secciones */
-.buscar-documento,
-form {
+    border-collapse: collapse;
     margin-top: 20px;
 }
 
-/* Estilo para los campos del formulario */
-.form-group {
-    margin-bottom: 20px;
+.tabla-documentos th,
+.tabla-documentos td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
 }
+
+.tabla-documentos th {
+    background-color: #007BFF;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.tabla-documentos tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tabla-documentos tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Formularios */
+.formulario-impresion {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-impresion h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.formulario-impresion .form-group {
+    margin-bottom: 15px;
+}
+
+.formulario-impresion label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.formulario-impresion input,
+.formulario-impresion select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.formulario-impresion button {
+    width: 100%;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.formulario-impresion button:hover {
+    background-color: #0056b3;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 80%;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #333;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.table th {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+

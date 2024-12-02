@@ -1,117 +1,67 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programar Impresión</title>
+{% extends "base.html" %}
+
+{% block title %}
+    Impresión de Documentos
+{% endblock %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/impresion.css') }}">
-</head>
-<body>
-    <div class="container">
-        <!-- Mensajes Flash -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        <div class="flash-messages">
-            {% for category, message in messages %}
-            <div class="alert {{ category }}">{{ message }}</div>
-            {% endfor %}
-        </div>
-        {% endif %}
-        {% endwith %}
+{% endblock %}
 
-        <!-- Título principal -->
-        <h1>Gestión de Impresión</h1>
+{% block content %}
+<div class="container">
+    <h1>Impresión de Documentos</h1>
 
-        <!-- Buscar Documento -->
-        <section class="buscar-documento">
-            <h2>Buscar Documento</h2>
-            <form action="{{ url_for('impresion.buscar_documento') }}" method="GET">
-                <label for="documento_id">Seleccionar Documento:</label>
-                <select id="documento_id" name="documento_id" required>
-                    {% for doc in documentos %}
-                    <option value="{{ doc.id }}">{{ doc.titulo }}</option>
-                    {% endfor %}
-                </select>
-                <button type="submit">Buscar</button>
-            </form>
-        </section>
-
-        <!-- Resultados de búsqueda -->
-        <section class="resultados-documentos">
-            <h2>Resultados de Búsqueda</h2>
-            {% if documentos %}
-            <ul>
-                {% for doc in documentos %}
-                <li>
-                    <strong>{{ doc.titulo }}</strong> - {{ doc.tipo }}
-                    <form action="{{ url_for('impresion.programar_impresion_ruta') }}" method="POST" style="display:inline;">
-                        <input type="hidden" name="documento_id" value="{{ doc.id }}">
-                        <button type="submit">Programar Impresión</button>
-                    </form>
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <p>No se encontraron documentos.</p>
-            {% endif %}
-        </section>
-
-        <!-- Formulario de Impresión -->
-        <section class="formulario-impresion">
-            <h2>Formulario de Programación</h2>
-            <form action="{{ url_for('impresion.crear_programacion_ruta') }}" method="POST">
-                <div class="form-group">
-                    <label for="fecha_programada">Fecha Programada:</label>
-                    <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="estado">Estado:</label>
-                    <select id="estado" name="estado" required>
-                        <option value="Pendiente">Pendiente</option>
-                        <option value="Completado">Completado</option>
-                        <option value="Fallido">Fallido</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="numero_copias">Número de Copias:</label>
-                    <input type="number" id="numero_copias" name="numero_copias" min="1" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="tipo_impresion">Tipo de Impresión:</label>
-                    <select id="tipo_impresion" name="tipo_impresion" required>
-                        <option value="Simplex">Simplex</option>
-                        <option value="Dúplex">Dúplex</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="tamaño_papel">Tamaño del Papel:</label>
-                    <select id="tamaño_papel" name="tamaño_papel" required>
-                        <option value="A4">A4</option>
-                        <option value="Carta">Carta</option>
-                        <option value="Legal">Legal</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="color_impresion">Tipo de Color:</label>
-                    <select id="color_impresion" name="color_impresion" required>
-                        <option value="Color">Color</option>
-                        <option value="Blanco y Negro">Blanco y Negro</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="comentarios">Comentarios Adicionales:</label>
-                    <textarea id="comentarios" name="comentarios" rows="4"></textarea>
-                </div>
-
-                <button type="submit">Guardar Impresión</button>
-            </form>
-        </section>
+    <div class="documentos">
+        <h2>Documentos Disponibles</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Tipo</th>
+                    <th>Fecha de Creación</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="documentosBody">
+                <!-- Aquí se llenarán los documentos disponibles -->
+            </tbody>
+        </table>
     </div>
-</body>
-</html>
+
+    <div class="formulario-impresion">
+        <h2>Formulario de Impresión</h2>
+        <form id="formImpresion">
+            <div class="form-group">
+                <label for="documento">Documento Seleccionado:</label>
+                <input type="text" id="archivo_nombre" name="archivo_nombre" readonly>
+                <!-- Campo oculto para archivo_id -->
+                <input type="hidden" id="archivo_id" name="archivo_id">
+            </div>
+            <div class="form-group">
+                <label for="fecha_programada">Fecha Programada:</label>
+                <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
+            </div>
+            <div class="form-group">
+                <label for="estado">Estado:</label>
+                <select id="estado" name="estado" required>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Completado">Completado</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="numero_copias">Número de Copias:</label>
+                <input type="number" id="numero_copias" name="numero_copias" min="1" value="1" required>
+            </div>
+            <button type="submit">Guardar Impresión</button>
+        </form>        
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/impresion.js') }}"></script>
+{% endblock %}

@@ -5,6 +5,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     const fileInput = document.getElementById("file");
     const file = fileInput.files[0];
 
+
     if (!file) {
         alert("Por favor, selecciona un archivo para subir.");
         return;
@@ -23,23 +24,24 @@ document.querySelector("form").addEventListener("submit", async (e) => {
         const response = await fetch("/almacen/archivo", {
             method: "POST",
             headers: {
-                "Authorization": `Bearer ${token}` // Incluir el token en el encabezado
+                "Authorization": `Bearer ${token}`
             },
             body: formData
         });
 
         if (!response.ok) {
-            throw new Error("Error al subir el archivo");
+            const error = await response.json();
+            throw new Error(error.message || "Error al subir el archivo.");
         }
 
-        const data = await response.json();
         alert("Archivo subido con éxito.");
         window.location.reload();
     } catch (error) {
-        console.error("Error:", error);
+        console.error("Error al subir el archivo:", error);
         alert("Error al subir el archivo. Intenta nuevamente.");
     }
 });
+
 
 // Función para cargar archivos del usuario
 async function loadFiles() {
@@ -93,9 +95,9 @@ async function loadFiles() {
 }
 
 
-// Función para buscar archivos por nombre
+// Función para buscar archivos por nombre en tiempo real
 async function searchFile() {
-    const searchInput = document.getElementById("searchInput").value;
+    const searchInput = document.getElementById("searchInput").value.trim();
     const token = localStorage.getItem("authToken");
 
     if (!token) {
@@ -104,7 +106,7 @@ async function searchFile() {
     }
 
     try {
-        const response = await fetch(`/almacen/buscar_archivo?nombre=${searchInput}`, {
+        const response = await fetch(`/almacen/buscar_archivo?nombre=${encodeURIComponent(searchInput)}`, {
             method: "GET",
             headers: {
                 "Authorization": `Bearer ${token}`
@@ -115,29 +117,39 @@ async function searchFile() {
             throw new Error("Error al buscar el archivo.");
         }
 
-        const archivo = await response.json();
-        const filesTable = document.getElementById("filesTable");
-        filesTable.innerHTML = ""; // Limpiar la tabla
+        const data = await response.json();
+        const tableBody = document.querySelector("table tbody");
 
-        const row = `
-            <tr>
+        tableBody.innerHTML = ""; // Limpiar la tabla
+
+        if (data.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No se encontraron archivos</td></tr>`;
+            return;
+        }
+
+        data.forEach((archivo) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
                 <td>${archivo.id}</td>
                 <td>${archivo.nombre}</td>
                 <td>${archivo.tipo}</td>
                 <td>${(archivo.tamano / 1024).toFixed(2)} KB</td>
-                <td><a href="/almacen/download/${archivo.nombre}" target="_blank">Ver</a></td>
-                <td>${archivo.fecha}</td>
+                <td><a href="/uploads/${archivo.ruta}" target="_blank">Ver archivo</a></td>
+                <td>${archivo.fecha_subida || "Sin fecha"}</td>
                 <td>
                     <button class="btn btn-danger" onclick="deleteFile(${archivo.id})">Eliminar</button>
                 </td>
-            </tr>
-        `;
-        filesTable.innerHTML = row;
+            `;
+            tableBody.appendChild(row);
+        });
     } catch (error) {
         console.error("Error al buscar el archivo:", error);
-        alert("Archivo no encontrado o error al buscar. Intenta nuevamente.");
     }
 }
+
+// Asignar evento de entrada al campo de búsqueda para búsqueda en tiempo real
+document.getElementById("searchInput").addEventListener("input", searchFile);
+
 
 // Función para eliminar un archivo
 async function deleteFile(fileId) {
@@ -148,6 +160,12 @@ async function deleteFile(fileId) {
         return;
     }
 
+     // Confirmar eliminación
+     const confirmDelete = confirm("¿Estás seguro de que deseas eliminar este archivo?");
+     if (!confirmDelete) {
+         return;
+     }
+
     try {
         const response = await fetch(`/almacen/archivo/delete/${fileId}`, {
             method: "POST",
@@ -157,6 +175,7 @@ async function deleteFile(fileId) {
         });
 
         if (!response.ok) {
+            const errorData = await response.json();
             throw new Error("Error al eliminar el archivo.");
         }
 
@@ -173,4 +192,3 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM completamente cargado y procesado."); // LOG: Verificar carga del DOM
     loadFiles(); // Llamar a la función después de la carga del DOM
 });
-

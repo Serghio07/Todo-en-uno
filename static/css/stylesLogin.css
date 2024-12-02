@@ -97,3 +97,17 @@ body {
 .fade-in {
     animation: fadeIn 0.8s ease-in-out;
 }
+
+.password-container{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    align-items: center;
+}
+
+.toggle-password {
+    margin-left: 10px;
+    cursor: pointer;
+    color: #555;
+    font-size: 1.2em; /* Tamaño del ícono */
+}

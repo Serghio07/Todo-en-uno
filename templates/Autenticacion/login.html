@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesLogin.css') }}">
+
 </head>
 <body>
     <div class="auth-container fade-in">
@@ -13,7 +14,10 @@
         <!-- Formulario de Inicio de Sesión -->
         <div id="loginForm">
             <input type="email" id="loginEmail" placeholder="Correo electrónico" required>
-            <input type="password" id="loginPassword" placeholder="Contraseña" required>
+            <div class="password-container">
+                <input type="password" id="loginPassword" placeholder="Contraseña" required>
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
             <button onclick="login()">Iniciar Sesión</button>
             <p id="loginMessage"></p>
         </div>
@@ -29,6 +33,19 @@
     </div>
 
     <script>
+        // Función para mostrar/ocultar la contraseña
+        function togglePassword() {
+            const passwordInput = document.getElementById('loginPassword');
+            const toggleIcon = document.querySelector('.toggle-password');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.textContent = '🙈'; // Cambia el ícono al de "ocultar"
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.textContent = '👁️'; // Cambia el ícono al de "mostrar"
+            }
+        }
+
         async function login() {
             // Obtener valores de los campos
             const email = document.getElementById('loginEmail').value;
@@ -58,6 +75,8 @@
                 if (response.ok) {
                     // Guardar el token en localStorage
                     localStorage.setItem('authToken', data.token);
+                    localStorage.setItem('userName', data.user.nombre);
+                    localStorage.setItem('userRole', data.user.rol);
 
                     // Mostrar mensaje de éxito
                     messageElement.textContent = "Inicio de sesión exitoso. Redirigiendo...";
