@@ -5,6 +5,7 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     const fileInput = document.getElementById("file");
     const file = fileInput.files[0];
 
+
     if (!file) {
         alert("Por favor, selecciona un archivo para subir.");
         return;
@@ -41,13 +42,15 @@ document.querySelector("form").addEventListener("submit", async (e) => {
     }
 });
 
+
 // Función para cargar archivos del usuario
 async function loadFiles() {
     const tableBody = document.querySelector("table tbody");
+    console.log("Elemento tableBody encontrado:", tableBody); // LOG: Verificar el elemento
 
     if (!tableBody) {
         console.error("Error: No se encontró el elemento <tbody> en la tabla.");
-        return;
+        return; // Salir de la función si no se encuentra el elemento
     }
 
     try {
@@ -59,19 +62,17 @@ async function loadFiles() {
         });
 
         if (!response.ok) {
-            throw new Error("Error al obtener los archivos del servidor.");
+            throw new Error("Error al obtener los archivos del servidor");
         }
 
         const data = await response.json();
+        console.log("Datos obtenidos del servidor:", data); // LOG: Verificar los datos obtenidos
 
         tableBody.innerHTML = ""; // Limpiar el contenido anterior
 
-        if (data.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="7" class="text-center">No se encontraron archivos</td></tr>`;
-            return;
-        }
-
         data.forEach((archivo) => {
+            console.log("Procesando archivo:", archivo); // LOG: Verificar cada archivo procesado
+
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${archivo.id}</td>
@@ -79,7 +80,7 @@ async function loadFiles() {
                 <td>${archivo.tipo}</td>
                 <td>${(archivo.tamano / 1024).toFixed(2)} KB</td>
                 <td><a href="/uploads/${archivo.ruta}" target="_blank">Ver archivo</a></td>
-                <td>${archivo.fecha_subida || "Sin fecha"}</td>
+                <td>${archivo.fecha_subida}</td>
                 <td>
                     <button class="btn btn-danger" onclick="deleteFile(${archivo.id})">Eliminar</button>
                 </td>
@@ -87,10 +88,10 @@ async function loadFiles() {
             tableBody.appendChild(row);
         });
     } catch (error) {
-        console.error("Error al cargar los archivos:", error);
-        alert("Error al cargar los archivos. Intenta nuevamente.");
+        console.error("Error al cargar los archivos:", error); // LOG: Mostrar errores
     }
 }
+
 
 // Función para buscar archivos por nombre en tiempo real
 async function searchFile() {
@@ -157,6 +158,12 @@ async function deleteFile(fileId) {
         return;
     }
 
+     // Confirmar eliminación
+     const confirmDelete = confirm("¿Estás seguro de que deseas eliminar este archivo?");
+     if (!confirmDelete) {
+         return;
+     }
+
     try {
         const response = await fetch(`/almacen/archivo/delete/${fileId}`, {
             method: "POST",
@@ -166,12 +173,12 @@ async function deleteFile(fileId) {
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.message || "Error al eliminar el archivo.");
+            const errorData = await response.json();
+            throw new Error("Error al eliminar el archivo.");
         }
 
         alert("Archivo eliminado con éxito.");
-        loadFiles(); // Recargar los archivos después de eliminar
+        window.location.reload();
     } catch (error) {
         console.error("Error al eliminar el archivo:", error);
         alert("Error al eliminar el archivo. Intenta nuevamente.");
@@ -180,5 +187,6 @@ async function deleteFile(fileId) {
 
 // Cargar los archivos al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DOM completamente cargado y procesado."); // LOG: Verificar carga del DOM
     loadFiles(); // Llamar a la función después de la carga del DOM
 });

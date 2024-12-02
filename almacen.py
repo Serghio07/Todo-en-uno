@@ -31,6 +31,7 @@ def get_db_connection():
         cursorclass=pymysql.cursors.DictCursor
     )
 
+
 # Ruta para renderizar la página principal
 @almacen_bp.route('/', methods=['GET'])
 @token_required
@@ -43,24 +44,21 @@ def index_almacen(decoded_token):
     conn.close()
     return render_template('almacen/indexAlmacen.html', archivos=archivos)
 
-
-
+# Ruta para obtener archivos de un usuario
 @almacen_bp.route('/archivos', methods=['GET'])
 @token_required
 def get_archivos(decoded_token):
     usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
     with conn.cursor() as cursor:
-        cursor.execute(
-            "SELECT id, nombre, tipo, tamano, ruta, DATE_FORMAT(fecha, '%Y-%m-%d %H:%i:%s') AS fecha_subida "
+        cursor.execute("SELECT id, nombre, tipo, tamano, ruta, DATE_FORMAT(fecha, '%Y-%m-%d %H:%i:%s') AS fecha_subida "
             "FROM almacen WHERE id IS NOT NULL"
         )
         archivos = cursor.fetchall()
     conn.close()
     return jsonify(archivos), 200
 
-
-
+# Ruta para subir un archivo
 @almacen_bp.route('/archivo', methods=['POST'])
 @token_required
 def upload_archivo(decoded_token):
@@ -70,7 +68,9 @@ def upload_archivo(decoded_token):
     if not file or file.filename == '':
         return jsonify({"error": "Archivo no válido"}), 400
 
-    # Guardar el archivo físicamente
+ 
+    
+   # Guardar el archivo físicamente
     filename = secure_filename(file.filename)
     filepath = os.path.join(UPLOADS_PATH, filename)
     file.save(filepath)
@@ -107,8 +107,7 @@ def upload_archivo(decoded_token):
     return jsonify({"message": "Archivo subido exitosamente"}), 200
 
 
-
-
+# Ruta para buscar un archivo
 @almacen_bp.route('/buscar_archivo', methods=['GET'])
 @token_required
 def buscar_archivo(decoded_token):
@@ -126,7 +125,6 @@ def buscar_archivo(decoded_token):
     return jsonify(archivos)
 
 
-
 # Ruta para descargar un archivo
 @almacen_bp.route('/download/<filename>', methods=['GET'])
 def download_file(filename):
@@ -138,13 +136,30 @@ def download_file(filename):
 def delete_archivo(decoded_token, id):
     usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
-    with conn.cursor() as cursor:
-        cursor.execute("SELECT ruta FROM archivos WHERE id = %s AND usuario_id = %s", (id, usuario_id))
-        archivo = cursor.fetchone()
-        if not archivo:
-            return jsonify({"error": "Archivo no encontrado o sin permisos"}), 404
-        os.remove(archivo['ruta'])  # Eliminar archivo del sistema
-        cursor.execute("DELETE FROM archivos WHERE id = %s", (id,))
-        conn.commit()
-    conn.close()
-    return jsonify({"message": "Archivo eliminado correctamente"}), 200
+    try:
+        with conn.cursor() as cursor:
+            # Obtener ruta del archivo
+            cursor.execute("SELECT ruta FROM archivos WHERE id = %s AND usuario_id = %s", (id, usuario_id))
+            archivo = cursor.fetchone()
+
+            if not archivo:
+                return jsonify({"error": "Archivo no encontrado o no tienes permisos para eliminarlo"}), 404
+            
+            # Eliminar archivo del sistema
+            archivo_path = os.path.join(os.getcwd(), archivo['ruta'])
+            if os.path.exists(archivo_path):
+                os.remove(archivo_path)
+            else:
+                return jsonify({"error": "El archivo físico no existe en el sistema"}), 404
+
+            # Eliminar registro en la base de datos
+            cursor.execute("DELETE FROM archivos WHERE id = %s AND usuario_id = %s", (id, usuario_id))
+            conn.commit()
+
+        return jsonify({"message": "Archivo eliminado correctamente"}), 200
+    except Exception as e:
+        conn.rollback()
+        print("Error al eliminar el archivo:", e)
+        return jsonify({"error": "No se pudo eliminar el archivo"}), 500
+    finally:
+        conn.close()
