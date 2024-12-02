@@ -136,17 +136,19 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `programacion_impresion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `programacion_impresion` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `fecha_impresion` datetime NOT NULL,
-  `estado` varchar(20) DEFAULT NULL,
-  `documento_id` int NOT NULL,
-  `usuario_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `documento_id` (`documento_id`),
-  KEY `usuario_id` (`usuario_id`),
-  CONSTRAINT `programacion_impresion_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documentos` (`id`),
-  CONSTRAINT `programacion_impresion_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+  CREATE TABLE `programacion_impresion` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `fecha_impresion` datetime NOT NULL, -- Fecha y hora de la programación de impresión
+    `estado` varchar(20) DEFAULT 'Pendiente', -- Estado inicial: Pendiente, Completado, Fallido, etc.
+    `documento_id` int NOT NULL, -- ID del documento a imprimir
+    `numero_copias` int NOT NULL DEFAULT 1, -- Número de copias a imprimir
+    `tipo_impresion` varchar(50) DEFAULT 'Simplex', -- Tipo de impresión: Simplex (una cara) o Dúplex (doble cara)
+    `tamaño_papel` varchar(20) DEFAULT 'A4', -- Tamaño del papel: A4, Carta, Legal, etc.
+    `color_impresion` varchar(20) DEFAULT 'Color', -- Tipo de impresión: Color o Blanco y Negro
+    `comentarios` text DEFAULT NULL, -- Comentarios adicionales sobre la impresión
+    PRIMARY KEY (`id`),
+    KEY `documento_id` (`documento_id`),
+    CONSTRAINT `programacion_impresion_ibfk_1` FOREIGN KEY (`documento_id`) REFERENCES `documentos` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
