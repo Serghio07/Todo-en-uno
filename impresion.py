@@ -123,7 +123,7 @@ def guardar_impresion(decoded_token):
         print("Insertando programación de impresión en la base de datos...")  # LOG 7
         with conn.cursor() as cursor:
             cursor.execute(
-                "INSERT INTO programacion_impresion (fecha_impresion, estado, numero_copias, documento_id, usuario_id) "
+                "INSERT INTO programacion_impresion (fecha_impresion, estado, numero_copias, archivo_id, usuario_id) "
                 "VALUES (%s, %s, %s, %s, %s)",
                 (fecha_programada, estado, numero_copias, archivo_id, usuario_id)
             )

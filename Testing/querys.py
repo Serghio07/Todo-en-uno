@@ -68,8 +68,12 @@ class ProgramacionImpresion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     fecha_impresion = db.Column(db.DateTime, nullable=False)
     estado = db.Column(db.String(20), default="Pendiente")  # Pendiente, Completo, Cancelado
-    documento_id = db.Column(db.Integer, db.ForeignKey('documento.id'), nullable=False)
+    archivo_id = db.Column(db.Integer, db.ForeignKey('archivos.id'), nullable=False)  # Cambiado de documento_id a archivo_id
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+
+    # Relaciones
+    archivo = db.relationship('Archivo', backref='programaciones')  # Relación con Archivo
+    usuario = db.relationship('Usuario', backref='programaciones')  # Relación con Usuario
 
 # Modelo de Almacen
 class Almacen(db.Model):
