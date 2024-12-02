@@ -81,6 +81,18 @@ class Archivo(db.Model):
     fecha_subida = db.Column(db.DateTime, default=datetime.utcnow)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
 
+#Modelo de Suscripciones
+class Subscription(db.Model):
+    __tablename__ = 'subscriptions'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)  # Referencia a la tabla 'usuario'
+    start_date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    end_date = db.Column(db.Date, nullable=False)
+    status = db.Column(db.String(10), default='activa', nullable=False)  # 'activa', 'expirada', etc.
+
+    def __repr__(self):
+        return f"<Subscription id={self.id} user_id={self.user_id} status={self.status}>"
+
 # Crear todas las tablas
 with app.app_context():
     db.create_all()
