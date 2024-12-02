@@ -3,50 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impresión de Documentos</title>
+    <title>Programar Impresión</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/impresion.css') }}">
 </head>
 <body>
     <div class="container">
-        <!-- Título principal -->
-        <h1>Impresión de Documentos</h1>
+        <!-- Mensajes Flash -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="alert {{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
 
-        <!-- Sección Buscar Documento -->
-        <div class="buscar-documento">
+        <!-- Título principal -->
+        <h1>Gestión de Impresión</h1>
+
+        <!-- Buscar Documento -->
+        <section class="buscar-documento">
             <h2>Buscar Documento</h2>
-            <form action="/buscar_documento" method="GET">
-                <div class="form-group">
-                    <label for="documento_nombre">Nombre del Documento:</label>
-                    <input type="text" id="documento_nombre" name="documento_nombre" placeholder="Escribe el nombre del documento" required>
-                </div>
+            <form action="{{ url_for('impresion.buscar_documento') }}" method="GET">
+                <label for="documento_id">Seleccionar Documento:</label>
+                <select id="documento_id" name="documento_id" required>
+                    {% for doc in documentos %}
+                    <option value="{{ doc.id }}">{{ doc.titulo }}</option>
+                    {% endfor %}
+                </select>
                 <button type="submit">Buscar</button>
             </form>
-        </div>
+        </section>
 
-        <!-- Sección Formulario de Impresión -->
-        <h2>Formulario de Impresión</h2>
-        <form action="/formulario_impresion" method="POST">
-            <div class="form-group">
-                <label for="fecha_programada">Fecha Programada:</label>
-                <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
-            </div>
+        <!-- Resultados de búsqueda -->
+        <section class="resultados-documentos">
+            <h2>Resultados de Búsqueda</h2>
+            {% if documentos %}
+            <ul>
+                {% for doc in documentos %}
+                <li>
+                    <strong>{{ doc.titulo }}</strong> - {{ doc.tipo }}
+                    <form action="{{ url_for('impresion.programar_impresion') }}" method="POST" style="display:inline;">
+                        <input type="hidden" name="documento_id" value="{{ doc.id }}">
+                        <button type="submit">Programar Impresión</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No se encontraron documentos.</p>
+            {% endif %}
+        </section>
 
-            <div class="form-group">
-                <label for="estado">Estado:</label>
-                <select id="estado" name="estado" required>
-                    <option value="Pendiente">Pendiente</option>
-                    <option value="Completado">Completado</option>
-                    <option value="Cancelado">Cancelado</option>
-                </select>
-            </div>
+        <!-- Formulario de Impresión -->
+        <section class="formulario-impresion">
+            <h2>Formulario de Programación</h2>
+            <form action="{{ url_for('impresion.crear_programacion') }}" method="POST">
+                <div class="form-group">
+                    <label for="fecha_programada">Fecha Programada:</label>
+                    <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
+                </div>
 
-            <div class="form-group">
-                <label for="numero_copias">Número de Copias:</label>
-                <input type="number" id="numero_copias" name="numero_copias" required>
-            </div>
+                <div class="form-group">
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Completado">Completado</option>
+                        <option value="Fallido">Fallido</option>
+                    </select>
+                </div>
 
-            <button type="submit">Guardar Impresión</button>
-        </form>
+                <div class="form-group">
+                    <label for="numero_copias">Número de Copias:</label>
+                    <input type="number" id="numero_copias" name="numero_copias" min="1" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo_impresion">Tipo de Impresión:</label>
+                    <select id="tipo_impresion" name="tipo_impresion" required>
+                        <option value="Simplex">Simplex</option>
+                        <option value="Dúplex">Dúplex</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tamaño_papel">Tamaño del Papel:</label>
+                    <select id="tamaño_papel" name="tamaño_papel" required>
+                        <option value="A4">A4</option>
+                        <option value="Carta">Carta</option>
+                        <option value="Legal">Legal</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="color_impresion">Tipo de Color:</label>
+                    <select id="color_impresion" name="color_impresion" required>
+                        <option value="Color">Color</option>
+                        <option value="Blanco y Negro">Blanco y Negro</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comentarios">Comentarios Adicionales:</label>
+                    <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+                </div>
+
+                <button type="submit">Guardar Impresión</button>
+            </form>
+        </section>
     </div>
 </body>
 </html>
