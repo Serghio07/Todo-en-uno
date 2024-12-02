@@ -59,6 +59,33 @@ class ProgramacionImpresion(db.Model):
     estado = db.Column(db.String(20), default="Pendiente")  # Pendiente, Completo, Cancelado
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
 
+<<<<<<< Updated upstream:querys.py
 # Inicializar la base de datos
+=======
+# Modelo de Archivos
+class Archivo(db.Model):
+    __tablename__ = 'archivos'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(255), nullable=False)
+    tipo = db.Column(db.String(255), nullable=False)
+    tamano = db.Column(db.Float, nullable=False)
+    ruta = db.Column(db.String(255), nullable=False)
+    fecha_subida = db.Column(db.DateTime, default=datetime.utcnow)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+    
+    
+# Modelo de Almacen
+class Almacen(db.Model):
+    _tablename_ = 'almacen'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(120), nullable=False)
+    tipo = db.Column(db.String(120), nullable=False)
+    tamano = db.Column(db.Integer, nullable=False)
+    ruta = db.Column(db.String(120), nullable=False)
+    fecha = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+
+# Crear todas las tablas
+>>>>>>> Stashed changes:Testing/querys.py
 with app.app_context():
     db.create_all()
