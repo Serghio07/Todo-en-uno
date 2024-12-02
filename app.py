@@ -38,7 +38,7 @@ app.register_blueprint(admin_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(almacen_bp, url_prefix='/almacen')
 app.register_blueprint(impresion_bp, url_prefix='/impresion')
-app.register_blueprint(impresion_bp, url_prefix='/impresion')
+
 
 
 @app.before_request

@@ -62,18 +62,20 @@ class Transaccion(db.Model):
     tipo = db.Column(db.String(50), nullable=False)  # Ej: Pago por impresión, almacenamiento
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
 
-# Modelo de Programacion de Impresion
 class ProgramacionImpresion(db.Model):
     __tablename__ = 'programacion_impresion'
     id = db.Column(db.Integer, primary_key=True)
     fecha_impresion = db.Column(db.DateTime, nullable=False)
     estado = db.Column(db.String(20), default="Pendiente")  # Pendiente, Completo, Cancelado
-    archivo_id = db.Column(db.Integer, db.ForeignKey('archivos.id'), nullable=False)  # Cambiado de documento_id a archivo_id
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+    numero_copias = db.Column(db.Integer, nullable=False, default=1)  # Nuevo campo para el número de copias
+
+    archivo_id = db.Column(db.Integer, db.ForeignKey('archivos.id'), nullable=False)  # Relación con Archivo
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)  # Relación con Usuario
 
     # Relaciones
     archivo = db.relationship('Archivo', backref='programaciones')  # Relación con Archivo
     usuario = db.relationship('Usuario', backref='programaciones')  # Relación con Usuario
+
 
 # Modelo de Almacen
 class Almacen(db.Model):
