@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             <li><a href="/version_freemium">Impresión</a></li>
             <li><a href="/software">Información</a></li>
             <li><a href="/catalogo">Subscripciones</a></li>
+            <li><a href="/plantillas">PLantillas</a></li>
             <li><a href="/login">Iniciar Sesión</a></li>
         `;
         return;
@@ -40,13 +41,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <li><a href="/soporte">Soporte Técnico</a></li>
                 <li><a href="/version_freemium">Impresión</a></li>
                 <li><a href="/user/software">Información</a></li>
-                <li><a href="/user/catalogo">Subscripciones</a></li>
+                <li><a href="/plantillas">Plantillas</a></li>
+                <li><a href="/user/catalogo">Suscripciones</a></li>
             `;
         } else if (userRole === "user") {
             links += `
                 <li><a href="/soporte">Soporte Técnico</a></li>
-                <li><a href="/user/catalogo">Subscripciones</a></li>
+                <li><a href="/user/catalogo">Suscripciones</a></li>
                 <li><a href="/impresion">Impresión</a></li>
+                <li><a href="/plantillas">Plantillas</a></li>
                 <li><a href="/user/software">Información</a></li>
             `;
         } else if (userRole === "PremiumUser") {
