@@ -67,17 +67,17 @@ async function loadFiles() {
         console.log("Datos obtenidos del servidor:", data); // LOG: Verificar los datos obtenidos
 
         tableBody.innerHTML = ""; // Limpiar el contenido anterior
-
         data.forEach((archivo) => {
             console.log("Procesando archivo:", archivo); // LOG: Verificar cada archivo procesado
-
+        
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${archivo.id}</td>
                 <td>${archivo.nombre}</td>
                 <td>${archivo.tipo}</td>
                 <td>${(archivo.tamano / 1024).toFixed(2)} KB</td>
-                <td><a href="/uploads/${archivo.ruta}" target="_blank">Ver archivo</a></td>
+                <!-- Usar la ruta sin codificar -->
+                <td><a href="/editor?file=${archivo.ruta}" target="_blank">Ver archivo</a></td>
                 <td>${archivo.fecha_subida}</td>
                 <td>
                     <button class="btn btn-danger" onclick="deleteFile(${archivo.id})">Eliminar</button>
@@ -85,6 +85,8 @@ async function loadFiles() {
             `;
             tableBody.appendChild(row);
         });
+        
+        
     } catch (error) {
         console.error("Error al cargar los archivos:", error); // LOG: Mostrar errores
     }
