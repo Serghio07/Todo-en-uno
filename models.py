@@ -49,11 +49,15 @@ class Documento(Base):
 class Impresion(Base):
     __tablename__ = 'impresion'
     
-    id = Column(Integer, primary_key=True, index=True)
-    fecha_programada = Column(DateTime, nullable=False)
-    estado = Column(String(20), nullable=False)
-    numero_copias = Column(Integer, nullable=False)
-    documento_id = Column(Integer, ForeignKey('documento.id'))
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    fecha_impresion = Column(DateTime, nullable=False)  # Fecha y hora de la programación de impresión
+    estado = Column(String(20), default='Pendiente')  # Estado inicial: Pendiente, Completado, Fallido, etc.
+    documento_id = Column(Integer, ForeignKey('documento.id'), nullable=False)  # ID del documento a imprimir
+    numero_copias = Column(Integer, nullable=False, default=1)  # Número de copias a imprimir
+    tipo_impresion = Column(String(50), default='Simplex')  # Tipo de impresión: Simplex (una cara) o Dúplex (doble cara)
+    tamaño_papel = Column(String(20), default='A4')  # Tamaño del papel: A4, Carta, Legal, etc.
+    color_impresion = Column(String(20), default='Color')  # Tipo de impresión: Color o Blanco y Negro
+    comentarios = Column(Text, nullable=True)  # Comentarios adicionales sobre la impresión
 
     # Relaciones
     documento = relationship("Documento", back_populates="impresiones")
