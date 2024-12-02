@@ -54,25 +54,32 @@ def get_archivos(decoded_token):
 @almacen_bp.route('/archivo', methods=['POST'])
 @token_required
 def upload_archivo(decoded_token):
-    file = request.files.get('file')
-    usuario_id = decoded_token.get('user_id')
+    file = request.files.get('file')  # Obtener el archivo del formulario
+    usuario_id = decoded_token.get('user_id')  # Obtener el ID del usuario autenticado
 
     if not file or file.filename == '':
         return jsonify({"error": "Archivo no válido"}), 400
 
+    # Asegurar un nombre seguro para el archivo
     filename = secure_filename(file.filename)
-    filepath = os.path.join(UPLOADS_PATH, filename)
-    file.save(filepath)
+    filepath = os.path.join(UPLOADS_PATH, filename)  # Ruta absoluta para guardar el archivo
+    file.save(filepath)  # Guardar el archivo en el servidor
 
+    # Crear la ruta relativa con barras normales (para URLs)
+    ruta_relativa = os.path.join('uploads', filename).replace("\\", "/")
+
+    # Guardar los detalles del archivo en la base de datos
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute(
         "INSERT INTO archivos (nombre, tipo, tamano, ruta, usuario_id) VALUES (%s, %s, %s, %s, %s)",
-        (filename, file.mimetype, os.path.getsize(filepath), os.path.join('uploads', filename), usuario_id)
+        (filename, file.mimetype, os.path.getsize(filepath), ruta_relativa, usuario_id)
     )
     conn.commit()
     conn.close()
+
     return jsonify({"message": "Archivo subido exitosamente"}), 200
+
 
 # Ruta para buscar un archivo
 @almacen_bp.route('/buscar_archivo', methods=['GET'])

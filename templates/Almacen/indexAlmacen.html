@@ -62,7 +62,11 @@
                     <td>{{ archivo[1] }}</td>  <!-- Nombre -->
                     <td>{{ archivo[2] }}</td>  <!-- Tipo -->
                     <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
-                    <td><a href="{{ url_for('static', filename='uploads/' + archivo[4]) }}" target="_blank">Ver archivo</a></td>  <!-- Ruta completa -->
+                    <td>
+                        <a href="{{ url_for('editor', file=archivo[4]) }}" target="_blank">Ver archivo</a>
+                    </td>
+                    
+                          <!-- Ruta completa -->
                     <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
                     <td>
                         <!-- Enlace para descargar el archivo -->
