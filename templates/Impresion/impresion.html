@@ -44,7 +44,7 @@
                 {% for doc in documentos %}
                 <li>
                     <strong>{{ doc.titulo }}</strong> - {{ doc.tipo }}
-                    <form action="{{ url_for('impresion.programar_impresion') }}" method="POST" style="display:inline;">
+                    <form action="{{ url_for('impresion.programar_impresion_ruta') }}" method="POST" style="display:inline;">
                         <input type="hidden" name="documento_id" value="{{ doc.id }}">
                         <button type="submit">Programar Impresión</button>
                     </form>
@@ -59,7 +59,7 @@
         <!-- Formulario de Impresión -->
         <section class="formulario-impresion">
             <h2>Formulario de Programación</h2>
-            <form action="{{ url_for('impresion.crear_programacion') }}" method="POST">
+            <form action="{{ url_for('impresion.crear_programacion_ruta') }}" method="POST">
                 <div class="form-group">
                     <label for="fecha_programada">Fecha Programada:</label>
                     <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
