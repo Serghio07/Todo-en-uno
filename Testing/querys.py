@@ -21,7 +21,7 @@ class Usuario(db.Model):
     documentos = db.relationship('Documento', backref='usuario', lazy=True)
     transacciones = db.relationship('Transaccion', backref='usuario', lazy=True)
     programaciones = db.relationship('ProgramacionImpresion', backref='usuario', lazy=True)
-    archivos = db.relationship('Archivos', backref='usuario', lazy=True)
+    archivos = db.relationship('Archivo', backref='usuario', lazy=True)
 
 # Modelo de Documento
 class Documento(db.Model):
@@ -32,7 +32,6 @@ class Documento(db.Model):
     tipo = db.Column(db.String(50), nullable=False)
     fecha_creacion = db.Column(db.DateTime, default=db.func.current_timestamp())
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
-    versiones = db.relationship('Version', backref='documento', lazy=True)
     programaciones = db.relationship('ProgramacionImpresion', backref='documento', lazy=True)
 
 # Modelo de Archivo
@@ -51,15 +50,6 @@ class Plantilla(db.Model):
     __tablename__ = 'plantilla'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
-    contenido = db.Column(db.Text, nullable=False)
-    documento_id = db.Column(db.Integer, db.ForeignKey('documento.id'), nullable=False)
-
-# Modelo de Version
-class Version(db.Model):
-    __tablename__ = 'version'
-    id = db.Column(db.Integer, primary_key=True)
-    numero_version = db.Column(db.Integer, nullable=False)
-    fecha_creacion = db.Column(db.DateTime, default=db.func.current_timestamp())
     contenido = db.Column(db.Text, nullable=False)
     documento_id = db.Column(db.Integer, db.ForeignKey('documento.id'), nullable=False)
 

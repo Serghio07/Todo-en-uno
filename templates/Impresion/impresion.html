@@ -1,36 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Impresión de Documentos</title>
+{% extends "base.html" %}
+
+{% block title %}
+    Impresión de Documentos
+{% endblock %}
+
+{% block extra_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/impresion.css') }}">
-</head>
-<body>
-    <div class="container">
-        <!-- Título principal -->
-        <h1>Impresión de Documentos</h1>
+{% endblock %}
 
-        <!-- Sección Buscar Documento -->
-        <div class="buscar-documento">
-            <h2>Buscar Documento</h2>
-            <form action="/buscar_documento" method="GET">
-                <div class="form-group">
-                    <label for="documento_nombre">Nombre del Documento:</label>
-                    <input type="text" id="documento_nombre" name="documento_nombre" placeholder="Escribe el nombre del documento" required>
-                </div>
-                <button type="submit">Buscar</button>
-            </form>
-        </div>
+{% block content %}
+<div class="container">
+    <h1>Impresión de Documentos</h1>
 
-        <!-- Sección Formulario de Impresión -->
+    <div class="documentos">
+        <h2>Documentos Disponibles</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Título</th>
+                    <th>Tipo</th>
+                    <th>Fecha de Creación</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="documentosBody">
+                <!-- Aquí se llenarán los documentos disponibles -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="formulario-impresion">
         <h2>Formulario de Impresión</h2>
-        <form action="/formulario_impresion" method="POST">
+        <form id="formImpresion">
+            <div class="form-group">
+                <label for="documento">Documento:</label>
+                <select id="documento" name="documento" required>
+                    <option value="">Selecciona un documento</option>
+                </select>
+            </div>
             <div class="form-group">
                 <label for="fecha_programada">Fecha Programada:</label>
                 <input type="datetime-local" id="fecha_programada" name="fecha_programada" required>
             </div>
-
             <div class="form-group">
                 <label for="estado">Estado:</label>
                 <select id="estado" name="estado" required>
@@ -39,14 +51,17 @@
                     <option value="Cancelado">Cancelado</option>
                 </select>
             </div>
-
             <div class="form-group">
                 <label for="numero_copias">Número de Copias:</label>
-                <input type="number" id="numero_copias" name="numero_copias" required>
+                <input type="number" id="numero_copias" name="numero_copias" min="1" value="1" required>
             </div>
-
             <button type="submit">Guardar Impresión</button>
         </form>
     </div>
-</body>
-</html>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/impresion.js') }}"></script>
+{% endblock %}
