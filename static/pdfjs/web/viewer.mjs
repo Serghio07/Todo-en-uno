@@ -833,7 +833,7 @@ const defaultOptions = {
 };
 {
   defaultOptions.defaultUrl = {
-    value: "compressed.tracemonkey-pldi-09.pdf",
+    value: "jquispe_actividad1.pdf",
     kind: OptionKind.VIEWER
   };
   defaultOptions.sandboxBundleSrc = {

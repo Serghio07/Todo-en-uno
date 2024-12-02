@@ -1,10 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Plantillas de Documentos
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesdoc.css') }}">
+{% endblock %}
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plantillas de Documentos</title>
-    <link rel="stylesheet" href="stylesdoc.css">
 </head>
 <body>
     <!-- Navbar -->
@@ -14,57 +24,54 @@
             <h2>Selecciona una plantilla para comenzar</h2>
             <div class="templates-container">
                 <div class="template-card">
-                    <a href="editor.html?file=templates\Documentos\Paper_Der_Informatico.pdf">
-                        <img src="../../static/images/template-pdf.jpg" alt="Documento PDF">
+                    <a href="/editor">
+                        <img src="../../static/images/ejcar.png." alt="Documento PDF">
                         <p>Documento 1</p>
                     </a>
                 </div>
                 <div class="template-card">
-                    <a href="editor.html?file=C:\Arqui\micro_services\Todo-en-uno\templates\Documentos\Arquitectura_de_software.pdf">
-                        <img src="../../static/images/template-pdf.jpg" alt="Otro Documento">
+                    <a href="/editor">
+                        <img src="../../static/images/ejcar.png" alt="Otro Documento">
                         <p>Documento 2</p>
                     </a>
                 </div>
-                
-                
                 <div class="template-card">
-                    <a href="template-cv.html">
-                        <img src="../../static/images/template-cv.jpg" alt="Currículum">
+                    <a href="/editor">
+                        <img src="../../static/images/ejcar.png" alt="Currículum">
                         <p>Currículum</p>
                     </a>
                 </div>
                 <div class="template-card">
-                    <a href="template-propuesta.html">
-                        <img src="../../static/images/template-propuesta.jpg" alt="Propuesta de Proyecto">
+                    <a href="/editor">
+                        <img src="../../static/images/ejcar.png" alt="Propuesta de Proyecto">
                         <p>Propuesta de Proyecto</p>
                     </a>
                 </div>
                 <div class="template-card">
-                    <a href="template-acta.html">
-                        <img src="../../static/images/template-acta.jpg" alt="Acta de Reunión">
+                    <a href="/editor">
+                        <img src="../../static/images/ejcar.png" alt="Acta de Reunión">
                         <p>Acta de Reunión</p>
                     </a>
                 </div>
                 <div class="template-card">
-                    <a href="template-plan.html">
-                        <img src="../../static/images/template-plan.jpg" alt="Plan de Trabajo">
+                    <a href="/editor">
+                        <img src="../../static/images/ejcar.png" alt="Plan de Trabajo">
                         <p>Plan de Trabajo</p>
                     </a>
                 </div>
-                <!-- Nueva plantilla: Visor de PDF -->
                 <div class="template-card">
-                    <a href="editor.html">
-                        <img src="../../static/images/template-pdf.jpg" alt="Visor de PDF">
+                    <a href="/editor">
+                        <img src="../../static/images/ejcar.png" alt="Visor de PDF">
                         <p>Visor de PDF</p>
                     </a>
                 </div>
             </div>
         </section>
     </main>
-
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Plantillas de Documentos. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
+{% endblock %}
