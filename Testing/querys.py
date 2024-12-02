@@ -9,9 +9,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://myuser:mypassword@local
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-# Modelo de Usuarios
+# Modelo de Usuario
 class Usuario(db.Model):
-    _tablename_ = 'usuario'
+    __tablename__ = 'usuario'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -21,75 +21,75 @@ class Usuario(db.Model):
     documentos = db.relationship('Documento', backref='usuario', lazy=True)
     transacciones = db.relationship('Transaccion', backref='usuario', lazy=True)
     programaciones = db.relationship('ProgramacionImpresion', backref='usuario', lazy=True)
-    archivos = db.relationship('Archivo', backref='usuario', lazy=True)
+    archivos = db.relationship('Archivos', backref='usuario', lazy=True)
 
-# Modelo de Documentos
+# Modelo de Documento
 class Documento(db.Model):
-    _tablename_ = 'documentos'
+    __tablename__ = 'documento'
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
     contenido = db.Column(db.Text, nullable=False)
     tipo = db.Column(db.String(50), nullable=False)
-    fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
+    fecha_creacion = db.Column(db.DateTime, default=db.func.current_timestamp())
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
     versiones = db.relationship('Version', backref='documento', lazy=True)
     programaciones = db.relationship('ProgramacionImpresion', backref='documento', lazy=True)
 
-# Modelo de Plantillas
-class Plantilla(db.Model):
-    _tablename_ = 'plantillas'
-    id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(100), nullable=False)
-    contenido = db.Column(db.Text, nullable=False)
-    documento_id = db.Column(db.Integer, db.ForeignKey('documentos.id'), nullable=False)
-
-# Modelo de Versiones
-class Version(db.Model):
-    _tablename_ = 'versiones'
-    id = db.Column(db.Integer, primary_key=True)
-    numero_version = db.Column(db.Integer, nullable=False)
-    fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
-    contenido = db.Column(db.Text, nullable=False)
-    documento_id = db.Column(db.Integer, db.ForeignKey('documentos.id'), nullable=False)
-
-# Modelo de Transacciones
-class Transaccion(db.Model):
-    _tablename_ = 'transacciones'
-    id = db.Column(db.Integer, primary_key=True)
-    fecha = db.Column(db.DateTime, default=datetime.utcnow)
-    monto = db.Column(db.Float, nullable=False)
-    tipo = db.Column(db.String(50), nullable=False)  # Ej: Pago por impresión, almacenamiento
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
-
-# Modelo de Programaciones de Impresión
-class ProgramacionImpresion(db.Model):
-    _tablename_ = 'programacion_impresion'
-    id = db.Column(db.Integer, primary_key=True)
-    fecha_impresion = db.Column(db.DateTime, nullable=False)
-    estado = db.Column(db.String(20), default="Pendiente")  # Pendiente, Completo, Cancelado
-    documento_id = db.Column(db.Integer, db.ForeignKey('documentos.id'), nullable=False)
-    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
-
-# Modelo de Archivos
+# Modelo de Archivo
 class Archivo(db.Model):
-    _tablename_ = 'archivos'
+    __tablename__ = 'archivos'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255), nullable=False)
     tipo = db.Column(db.String(255), nullable=False)
     tamano = db.Column(db.Float, nullable=False)
     ruta = db.Column(db.String(255), nullable=False)
-    fecha_subida = db.Column(db.DateTime, default=datetime.utcnow)
+    fecha_subida = db.Column(db.DateTime, default=db.func.current_timestamp())
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
-    
+
+# Modelo de Plantilla
+class Plantilla(db.Model):
+    __tablename__ = 'plantilla'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
+    contenido = db.Column(db.Text, nullable=False)
+    documento_id = db.Column(db.Integer, db.ForeignKey('documento.id'), nullable=False)
+
+# Modelo de Version
+class Version(db.Model):
+    __tablename__ = 'version'
+    id = db.Column(db.Integer, primary_key=True)
+    numero_version = db.Column(db.Integer, nullable=False)
+    fecha_creacion = db.Column(db.DateTime, default=db.func.current_timestamp())
+    contenido = db.Column(db.Text, nullable=False)
+    documento_id = db.Column(db.Integer, db.ForeignKey('documento.id'), nullable=False)
+
+# Modelo de Transaccion
+class Transaccion(db.Model):
+    __tablename__ = 'transaccion'
+    id = db.Column(db.Integer, primary_key=True)
+    fecha = db.Column(db.DateTime, default=db.func.current_timestamp())
+    monto = db.Column(db.Float, nullable=False)
+    tipo = db.Column(db.String(50), nullable=False)  # Ej: Pago por impresión, almacenamiento
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+
+# Modelo de Programacion de Impresion
+class ProgramacionImpresion(db.Model):
+    __tablename__ = 'programacion_impresion'
+    id = db.Column(db.Integer, primary_key=True)
+    fecha_impresion = db.Column(db.DateTime, nullable=False)
+    estado = db.Column(db.String(20), default="Pendiente")  # Pendiente, Completo, Cancelado
+    documento_id = db.Column(db.Integer, db.ForeignKey('documento.id'), nullable=False)
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+
 # Modelo de Almacen
 class Almacen(db.Model):
-    _tablename_ = 'almacen'
+    __tablename__ = 'almacen'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(120), nullable=False)
     tipo = db.Column(db.String(120), nullable=False)
     tamano = db.Column(db.Integer, nullable=False)
     ruta = db.Column(db.String(120), nullable=False)
-    fecha = db.Column(db.DateTime, default=db.func.current_timestamp()) 
+    fecha = db.Column(db.DateTime, default=db.func.current_timestamp())
 
 # Crear todas las tablas
 with app.app_context():
