@@ -17,7 +17,7 @@
     {% if messages %}
         <div class="flash-message {% for category, message in messages %}{{ category }}{% endfor %}">
             <div class="icon">
-                <i class="fas fa-envelope"></i>  <!-- Ícono de sobre -->
+                <i class="fas fa-envelope"></i>
             </div>
             <div class="message-text">
                 {% for category, message in messages %}
@@ -58,20 +58,19 @@
         <tbody>
             {% for archivo in archivos %}
                 <tr>
-                    <td>{{ archivo[0] }}</td>  <!-- ID -->
-                    <td>{{ archivo[1] }}</td>  <!-- Nombre -->
-                    <td>{{ archivo[2] }}</td>  <!-- Tipo -->
-                    <td>{{ (archivo[3] / 1024) | round(2) }} KB</td>  <!-- Tamaño -->
-                    <td><a href="{{ url_for('static', filename='uploads/' + archivo[4]) }}" target="_blank">Ver archivo</a></td>  <!-- Ruta completa -->
-                    <td>{{ archivo[5] }}</td>  <!-- Fecha de Subida -->
+                    <td>{{ archivo.id }}</td> <!-- ID -->
+                    <td>{{ archivo.nombre }}</td> <!-- Nombre -->
+                    <td>{{ archivo.tipo }}</td> <!-- Tipo -->
+                    <td>{{ (archivo.tamano / 1024) | round(2) }} KB</td> <!-- Tamaño -->
+                    <td><a href="{{ url_for('static', filename='uploads/' + archivo.ruta) }}" target="_blank">Ver archivo</a></td> <!-- Ruta completa -->
+                    <td>{{ archivo.fecha_subida | default("Sin fecha") }}</td> <!-- Fecha de Subida -->
                     <td>
                         <!-- Enlace para descargar el archivo -->
-                        <a href="{{ url_for('almacen.download_file', filename=archivo[1]) }}" class="btn btn-info">Descargar</a>
+                        <a href="{{ url_for('almacen.download_file', filename=archivo.nombre) }}" class="btn btn-info">Descargar</a>
                         <!-- Formulario para eliminar archivo -->
-                        <form action="{{ url_for('almacen.delete_archivo', id=archivo[0]) }}" method="post">
+                        <form action="{{ url_for('almacen.delete_archivo', id=archivo.id) }}" method="post">
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
-                        
                     </td>
                 </tr>
             {% else %}

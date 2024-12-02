@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request, render_template, session, redirect, url_for, flash, send_from_directory
 import os
-import mysql.connector
+import pymysql  # Usamos pymysql en lugar de mysql.connector
 from werkzeug.utils import secure_filename
 from auth import token_required
+from datetime import datetime
 
 almacen_bp = Blueprint('almacen', __name__)
 
@@ -20,7 +21,15 @@ if not os.path.exists(UPLOADS_PATH):
     os.makedirs(UPLOADS_PATH)
 
 def get_db_connection():
-    return mysql.connector.connect(**db_config)
+    """Crear una conexión con la base de datos usando pymysql."""
+    return pymysql.connect(
+        host=db_config['host'],
+        user=db_config['user'],
+        password=db_config['password'],
+        database=db_config['database'],
+        charset='utf8mb4',
+        cursorclass=pymysql.cursors.DictCursor
+    )
 
 # Ruta para renderizar la página principal
 @almacen_bp.route('/', methods=['GET'])
@@ -28,29 +37,30 @@ def get_db_connection():
 def index_almacen(decoded_token):
     usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM archivos WHERE usuario_id = %s", (usuario_id,))
-    archivos = cursor.fetchall()
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT * FROM archivos WHERE usuario_id = %s", (usuario_id,))
+        archivos = cursor.fetchall()
     conn.close()
     return render_template('almacen/indexAlmacen.html', archivos=archivos)
 
-# Ruta para obtener archivos de un usuario
+
+
 @almacen_bp.route('/archivos', methods=['GET'])
 @token_required
 def get_archivos(decoded_token):
     usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM archivos WHERE usuario_id = %s", (usuario_id,))
-    archivos = cursor.fetchall()
+    with conn.cursor() as cursor:
+        cursor.execute(
+            "SELECT id, nombre, tipo, tamano, ruta, DATE_FORMAT(fecha, '%Y-%m-%d %H:%i:%s') AS fecha_subida "
+            "FROM almacen WHERE id IS NOT NULL"
+        )
+        archivos = cursor.fetchall()
     conn.close()
-    archivos_data = [
-        {"id": archivo[0], "nombre": archivo[1], "tipo": archivo[2], "tamano": archivo[3], "ruta": archivo[4], "fecha_subida": archivo[5].strftime("%Y-%m-%d %H:%M:%S") if archivo[5] else "Sin fecha"}
-        for archivo in archivos
-    ]
-    return jsonify(archivos_data), 200
+    return jsonify(archivos), 200
 
-# Ruta para subir un archivo
+
+
 @almacen_bp.route('/archivo', methods=['POST'])
 @token_required
 def upload_archivo(decoded_token):
@@ -60,35 +70,62 @@ def upload_archivo(decoded_token):
     if not file or file.filename == '':
         return jsonify({"error": "Archivo no válido"}), 400
 
+    # Guardar el archivo físicamente
     filename = secure_filename(file.filename)
     filepath = os.path.join(UPLOADS_PATH, filename)
     file.save(filepath)
 
+    # Preparar los datos del archivo
+    file_size = os.path.getsize(filepath)
+    file_type = file.mimetype
+    relative_path = os.path.join('uploads', filename)
+
+    # Guardar la información en la base de datos
     conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute(
-        "INSERT INTO archivos (nombre, tipo, tamano, ruta, usuario_id) VALUES (%s, %s, %s, %s, %s)",
-        (filename, file.mimetype, os.path.getsize(filepath), os.path.join('uploads', filename), usuario_id)
-    )
-    conn.commit()
-    conn.close()
+    try:
+        with conn.cursor() as cursor:
+            # Insertar en la tabla archivos
+            cursor.execute(
+                "INSERT INTO archivos (nombre, tipo, tamano, ruta, usuario_id) VALUES (%s, %s, %s, %s, %s)",
+                (filename, file_type, file_size, relative_path, usuario_id)
+            )
+
+            # Insertar en la tabla almacen con fecha explícita
+            cursor.execute(
+                "INSERT INTO almacen (nombre, tipo, tamano, ruta, fecha) VALUES (%s, %s, %s, %s, %s)",
+                (filename, file_type, file_size, relative_path, datetime.now())
+            )
+
+            conn.commit()
+    except Exception as e:
+        conn.rollback()
+        print("Error al insertar en la base de datos:", e)
+        return jsonify({"error": "Error al subir el archivo."}), 500
+    finally:
+        conn.close()
+
     return jsonify({"message": "Archivo subido exitosamente"}), 200
 
-# Ruta para buscar un archivo
+
+
+
 @almacen_bp.route('/buscar_archivo', methods=['GET'])
 @token_required
 def buscar_archivo(decoded_token):
     usuario_id = decoded_token.get('user_id')
-    nombre = request.args.get('nombre')
+    nombre = request.args.get('nombre', '')
     conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM archivos WHERE usuario_id = %s AND nombre LIKE %s", (usuario_id, f"%{nombre}%"))
-    archivos = cursor.fetchall()
+    with conn.cursor() as cursor:
+        cursor.execute(
+            "SELECT id, nombre, tipo, tamano, ruta, DATE_FORMAT(fecha_subida, '%%Y-%%m-%%d %%H:%%i:%%s') AS fecha_subida "
+            "FROM archivos WHERE usuario_id = %s AND nombre LIKE %s",
+            (usuario_id, f"%{nombre}%")
+        )
+        archivos = cursor.fetchall()
     conn.close()
-    if archivos:
-        return jsonify([{"id": archivo[0], "nombre": archivo[1]} for archivo in archivos]), 200
-    else:
-        return jsonify({"error": "No se encontraron archivos"}), 404
+    return jsonify(archivos)
+
+
 
 # Ruta para descargar un archivo
 @almacen_bp.route('/download/<filename>', methods=['GET'])
@@ -101,13 +138,13 @@ def download_file(filename):
 def delete_archivo(decoded_token, id):
     usuario_id = decoded_token.get('user_id')
     conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT ruta FROM archivos WHERE id = %s AND usuario_id = %s", (id, usuario_id))
-    archivo = cursor.fetchone()
-    if not archivo:
-        return jsonify({"error": "Archivo no encontrado o sin permisos"}), 404
-    os.remove(archivo[0])  # Eliminar archivo del sistema
-    cursor.execute("DELETE FROM archivos WHERE id = %s", (id,))
-    conn.commit()
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT ruta FROM archivos WHERE id = %s AND usuario_id = %s", (id, usuario_id))
+        archivo = cursor.fetchone()
+        if not archivo:
+            return jsonify({"error": "Archivo no encontrado o sin permisos"}), 404
+        os.remove(archivo['ruta'])  # Eliminar archivo del sistema
+        cursor.execute("DELETE FROM archivos WHERE id = %s", (id,))
+        conn.commit()
     conn.close()
     return jsonify({"message": "Archivo eliminado correctamente"}), 200

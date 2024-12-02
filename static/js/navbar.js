@@ -95,5 +95,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Función para cerrar sesión
 function logout() {
     localStorage.removeItem("authToken"); // Eliminar el token del almacenamiento local
+    localStorage.removeItem("userName"); // Eliminar el token del almacenamiento local
+    localStorage.removeItem("userRole"); // Eliminar el token del almacenamiento local
+    localStorage.removeItem("user"); // Eliminar el token del almacenamiento local
+
     window.location.href = "/login"; // Redirigir al login
 }

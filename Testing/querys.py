@@ -11,7 +11,7 @@ db = SQLAlchemy(app)
 
 # Modelo de Usuarios
 class Usuario(db.Model):
-    __tablename__ = 'usuario'
+    _tablename_ = 'usuario'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -25,7 +25,7 @@ class Usuario(db.Model):
 
 # Modelo de Documentos
 class Documento(db.Model):
-    __tablename__ = 'documentos'
+    _tablename_ = 'documentos'
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100), nullable=False)
     contenido = db.Column(db.Text, nullable=False)
@@ -37,7 +37,7 @@ class Documento(db.Model):
 
 # Modelo de Plantillas
 class Plantilla(db.Model):
-    __tablename__ = 'plantillas'
+    _tablename_ = 'plantillas'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False)
     contenido = db.Column(db.Text, nullable=False)
@@ -45,7 +45,7 @@ class Plantilla(db.Model):
 
 # Modelo de Versiones
 class Version(db.Model):
-    __tablename__ = 'versiones'
+    _tablename_ = 'versiones'
     id = db.Column(db.Integer, primary_key=True)
     numero_version = db.Column(db.Integer, nullable=False)
     fecha_creacion = db.Column(db.DateTime, default=datetime.utcnow)
@@ -54,7 +54,7 @@ class Version(db.Model):
 
 # Modelo de Transacciones
 class Transaccion(db.Model):
-    __tablename__ = 'transacciones'
+    _tablename_ = 'transacciones'
     id = db.Column(db.Integer, primary_key=True)
     fecha = db.Column(db.DateTime, default=datetime.utcnow)
     monto = db.Column(db.Float, nullable=False)
@@ -63,7 +63,7 @@ class Transaccion(db.Model):
 
 # Modelo de Programaciones de Impresión
 class ProgramacionImpresion(db.Model):
-    __tablename__ = 'programacion_impresion'
+    _tablename_ = 'programacion_impresion'
     id = db.Column(db.Integer, primary_key=True)
     fecha_impresion = db.Column(db.DateTime, nullable=False)
     estado = db.Column(db.String(20), default="Pendiente")  # Pendiente, Completo, Cancelado
@@ -72,7 +72,7 @@ class ProgramacionImpresion(db.Model):
 
 # Modelo de Archivos
 class Archivo(db.Model):
-    __tablename__ = 'archivos'
+    _tablename_ = 'archivos'
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(255), nullable=False)
     tipo = db.Column(db.String(255), nullable=False)
@@ -80,6 +80,16 @@ class Archivo(db.Model):
     ruta = db.Column(db.String(255), nullable=False)
     fecha_subida = db.Column(db.DateTime, default=datetime.utcnow)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
+    
+# Modelo de Almacen
+class Almacen(db.Model):
+    _tablename_ = 'almacen'
+    id = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(120), nullable=False)
+    tipo = db.Column(db.String(120), nullable=False)
+    tamano = db.Column(db.Integer, nullable=False)
+    ruta = db.Column(db.String(120), nullable=False)
+    fecha = db.Column(db.DateTime, default=db.func.current_timestamp()) 
 
 # Crear todas las tablas
 with app.app_context():
