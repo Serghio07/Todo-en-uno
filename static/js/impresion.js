@@ -120,15 +120,9 @@ async function loadDocuments() {
     }
 }
 
-function seleccionarDocumento(id, titulo) {
-    const selectDocumento = document.getElementById("documento");
-    const option = document.createElement("option");
-    option.value = id;
-    option.textContent = titulo;
-    option.selected = true;
-
-    selectDocumento.innerHTML = ""; // Limpiar opciones previas
-    selectDocumento.appendChild(option);
+function seleccionarDocumento(id, nombre) {
+    document.getElementById("archivo_nombre").value = nombre; // Mostrar el nombre del archivo en el campo de texto
+    document.getElementById("archivo_id").value = id; // Actualizar el campo oculto con el ID
 }
 
 document.getElementById("formImpresion").addEventListener("submit", async (e) => {
@@ -164,3 +158,48 @@ document.getElementById("formImpresion").addEventListener("submit", async (e) =>
         alert("Error al guardar la impresión. Intenta nuevamente.");
     }
 });
+
+// Asignar evento de clic al botón "Seleccionar" de cada fila
+function seleccionarArchivo(archivoId) {
+    console.log(`Archivo seleccionado con ID: ${archivoId}`); // LOG: Confirmar selección
+    document.getElementById("archivo_id").value = archivoId; // Actualiza el campo oculto
+}
+
+// Agregar eventos a los botones "Seleccionar" al cargar los datos
+async function loadArchivos() {
+    const tableBody = document.querySelector("table tbody");
+    if (!tableBody) return;
+
+    try {
+        const response = await fetch("/almacen/archivos", {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("authToken")}`
+            }
+        });
+
+        if (!response.ok) throw new Error("Error al obtener los archivos");
+
+        const data = await response.json();
+        tableBody.innerHTML = ""; // Limpiar el contenido anterior
+
+        data.forEach((archivo) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${archivo.id}</td>
+                <td>${archivo.nombre}</td>
+                <td>${archivo.tipo}</td>
+                <td>${archivo.fecha || "Sin fecha"}</td>
+                <td>
+                    <button class="btn btn-primary" onclick="seleccionarArchivo(${archivo.id})">Seleccionar</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error("Error al cargar los archivos:", error);
+    }
+}
+
+// Cargar los archivos al cargar la página
+document.addEventListener("DOMContentLoaded", loadArchivos);

@@ -90,30 +90,49 @@ def get_documentos(decoded_token):
 @token_required
 def guardar_impresion(decoded_token):
     try:
+        print("Iniciando el proceso de guardar impresión...")  # LOG 1
         usuario_id = decoded_token.get("user_id")
-        documento_id = request.form.get("documento_id")
+        archivo_id = request.form.get("archivo_id")
         fecha_programada = request.form.get("fecha_programada")
         estado = request.form.get("estado")
         numero_copias = request.form.get("numero_copias")
-        # Verifica que el documento existe
-        documento = get_documentos.query.get(documento_id)
-        if not documento:
-            return jsonify({"error": "El documento no existe"}), 400
+
+        print(f"Datos recibidos: usuario_id={usuario_id}, archivo_id={archivo_id}, "
+              f"fecha_programada={fecha_programada}, estado={estado}, numero_copias={numero_copias}")  # LOG 2
+
         # Verificación de datos obligatorios
-        if not documento_id or not fecha_programada or not numero_copias:
+        if not archivo_id or not fecha_programada or not numero_copias:
+            print("Error: Faltan campos obligatorios")  # LOG 3
             return jsonify({"error": "Todos los campos son obligatorios"}), 400
 
-        # Conexión a la base de datos
+        # Validar que el archivo existe y pertenece al usuario
+        print("Verificando que el archivo exista y pertenezca al usuario...")  # LOG 4
         conn = get_db_connection()
+        with conn.cursor() as cursor:
+            cursor.execute(
+                "SELECT * FROM archivos WHERE id = %s AND usuario_id = %s",
+                (archivo_id, usuario_id)
+            )
+            archivo = cursor.fetchone()
+            print(f"Archivo encontrado: {archivo}")  # LOG 5
+            if not archivo:
+                print("Error: El archivo no existe o no pertenece al usuario")  # LOG 6
+                return jsonify({"error": "El archivo no existe o no pertenece al usuario"}), 400
+
+        # Guardar la programación de impresión en la base de datos
+        print("Insertando programación de impresión en la base de datos...")  # LOG 7
         with conn.cursor() as cursor:
             cursor.execute(
                 "INSERT INTO programacion_impresion (fecha_impresion, estado, numero_copias, documento_id, usuario_id) "
                 "VALUES (%s, %s, %s, %s, %s)",
-                (fecha_programada, estado, numero_copias, documento_id, usuario_id)
+                (fecha_programada, estado, numero_copias, archivo_id, usuario_id)
             )
             conn.commit()
+            print("Programación de impresión guardada exitosamente.")  # LOG 8
 
         return jsonify({"message": "Impresión guardada exitosamente"}), 200
+
     except Exception as e:
-        print("Error al guardar la impresión:", e)
+        print("Error al guardar la impresión:", e)  # LOG 9
         return jsonify({"error": "No se pudo guardar la impresión"}), 500
+
