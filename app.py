@@ -9,7 +9,9 @@ from admin import admin_bp
 from user import user_bp
 from almacen import almacen_bp  
 import logging
-
+import werkzeug
+import mimetypes
+mimetypes.add_type('application/javascript', '.mjs')
 logging.basicConfig(level=logging.DEBUG)
 
 
@@ -52,6 +54,10 @@ def login():
 def register():
     return render_template('Autenticacion/registro.html')
 
+@app.route('/plantillas')
+def plantillas():
+    return render_template('Documentos/indexdoc.html')
+
 @app.route('/pagos/pago')
 def pago():
     return render_template('Pagos/pago.html')  # Ruta relativa dentro de 'templates'
@@ -59,6 +65,12 @@ def pago():
 @app.route('/impresion')
 def impresion():
     return render_template('impresion/impresion.html')
+
+
+@app.route('/editor')
+def editor():
+    return render_template('Documentos/editor.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,6 +1,6 @@
 
 *.pyc
-
+upload/
 /__pycache__
 \venv
 *.pyc
